@@ -97,7 +97,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
             { Name: 'Không xác định' }
         ];
         
-        $scope.DefaultArea = '30' // Tỉnh Hải Dương
+        $scope.DefaultArea = '01' // Hà Nội
         $scope.isHidePagebar = 0;
 
         $scope.toggleChat = function () {

@@ -1,0 +1,47 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>DANH SÁCH HỌC SINH GIỎI</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>
+                    <thead style="background-color:#eee">
+                        <tr style="border:solid 1px">
+                            <th width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </th>
+
+                            <th style="border:solid 1px"> <div style="text-align:center">Họ và tên</div> </th>
+                            <th style="border:solid 1px"><div style="text-align:center">Giới tính</div>  </th>
+                            <th style="border:solid 1px"> <div style="text-align:center">Ngày sinh</div> </th>
+                            <th style="border:solid 1px"> <div style="text-align:center">Dân tộc</div> </th>
+                            <th style="border:solid 1px"> <div style="text-align:center">Hộ khẩu TT</div> </th>
+                            <th style="border:solid 1px"> <div style="text-align:center">Trường</div> </th>
+                            <th style="border:solid 1px"> <div style="text-align:center">Học lớp</div> </th>
+                            <th style="border:solid 1px"> <div style="text-align:center">Điểm thi</div> </th>
+                            <th style="border:solid 1px"> <div style="text-align:center">Giải thưởng</div> </th>
+                            <th width="1px" style="border:solid 1px"><div style="text-align:center">#</div>  </th>
+                            <th width="1px" style="border:solid 1px"><div style="text-align:center">#</div> </th>
+                            <th width="1px" style="border:solid 1px"><div style="text-align:center">#</div> </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ngIf: ThiSinhDuThi.length == 0 -->
+                        <!-- ngRepeat: dm in ThiSinhDuThi --><tr class="odd gradeX ng-scope" ng-repeat="dm in ThiSinhDuThi ">
+                            <td align="center" width="1%" style="border:solid 1px" class="ng-binding"> 1 </td>
+                            <td style="border:solid 1px">
+                                <a ui-sref="EditHocSinhGioi({myParam: dm.hsg})" class="ng-binding" href="#/EditHocSinhGioi/"> NGUYỄN ĐÌNH PHÚC</a>
+                            </td>
+                            <td style="border:solid 1px" class="ng-binding"> Nam</td>
+                            <td style="border:solid 1px" class="ng-binding">10/08/2000</td>
+                            <td style="border:solid 1px" class="ng-binding"> Kinh</td>
+                            <td style="border:solid 1px" class="ng-binding"> </td>
+                            <td style="border:solid 1px" class="ng-binding"> THPT Chuyên Tuyên Quang</td>
+                            <td style="border:solid 1px" class="ng-binding"> </td>
+                            <td style="border:solid 1px" class="ng-binding">
+                                8.9
+                            </td>
+                            <td style="border:solid 1px" class="ng-binding">
+                                Nhất
+                            </td>
+                            <td style="border:solid 1px"><a title="Xem têp đính kèm"><i class="fa fa-paperclip"></i></a></td>
+                            <td style="border:solid 1px"><a ui-sref="EditHocSinhGioi({myParam: dm.hsg})" title="Sửa" href="#/EditHocSinhGioi/"><i class="fa fa-edit"></i></a></td>
+                            <td style="border:solid 1px"><a ng-click="Del(dm.hsg.Id)" title="Xóa"><i class="fa fa-trash font-red"></i></a></td>
+
+                        </tr><!-- end ngRepeat: dm in ThiSinhDuThi -->
+
+                    </tbody>
+                </table></body></html>

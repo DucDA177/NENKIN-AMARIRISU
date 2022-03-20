@@ -3031,6 +3031,7 @@
     <Content Include="js\controllers\MainMenuController.js" />
     <Content Include="js\controllers\MenuController.js" />
     <Content Include="js\controllers\NhatKySuDungController.js" />
+    <Content Include="js\controllers\QuanLyHoSoController.js" />
     <Content Include="js\controllers\SaoLuuPhucHoiController.js" />
     <Content Include="js\controllers\TienIch\HDSDController.js" />
     <Content Include="js\controllers\TienIch\HoTroController.js" />
@@ -3786,6 +3787,7 @@
     <Content Include="views-client\template\Modal\ModalThongBao.html" />
     <Content Include="views-client\template\Modal\ModalViewPDF.html" />
     <Content Include="views-client\template\NhatKySuDung.html" />
+    <Content Include="views-client\template\QuanLyHoSo.html" />
     <Content Include="views-client\template\SaoLuuPhucHoi.html" />
     <Content Include="views-client\template\TienIch\HDSD.html" />
     <Content Include="views-client\template\TienIch\HoTro.html" />

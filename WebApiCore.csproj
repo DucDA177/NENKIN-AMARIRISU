@@ -450,79 +450,10 @@
     <Compile Include="Models\Configuration.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CountInspectByStatus_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DMDonVi.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FILE_DINH_KEM.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetActivityInspects_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetAllInspections_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetAreas_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetBMTT_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetChucDanh_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetDTTT_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetGioiTinh_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetInspectionByID_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetInspectionsV2_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetInspections_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetKeHoachDuKien_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetLGT_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetLHDN_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetLHTT_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetObjectByInspection_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetObjectInSpections_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetPositions_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetProjectInSpections_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetTrangThai_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetTypeInspections_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetUserReceived_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetUsers_Result.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Group.cs">
@@ -555,39 +486,6 @@
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PagingList.cs" />
-    <Compile Include="Models\Proc_FILE_DOC_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proc_GetAllPlanByYear_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proc_Inspection_Obj_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proc_NDKiemTrung_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proc_SearchDocumentAll_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proc_SearchInspection_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proc_SearchObjectInspect_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proc_SearchOrganization_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proc_SearchPlan_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proc_SearchProjectInspect_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Proc_Search_DonVi_Ins_Result.cs">
-      <DependentUpon>WebApiDataCore.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>

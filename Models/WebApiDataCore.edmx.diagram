@@ -22,6 +22,9 @@
         <EntityTypeShape EntityType="WebApiDataModel.ThongBao" Width="1.5" PointX="12.75" PointY="0.75" />
         <EntityTypeShape EntityType="WebApiDataModel.UnreadMe" Width="1.5" PointX="2.75" PointY="12.75" />
         <EntityTypeShape EntityType="WebApiDataModel.UserProfile" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="WebApiDataModel.Configuration" Width="1.5" PointX="13.375" PointY="10.75" />
+        <EntityTypeShape EntityType="WebApiDataModel.List" Width="1.5" PointX="5.375" PointY="14.75" />
+        <EntityTypeShape EntityType="WebApiDataModel.ListInfo" Width="1.5" PointX="7.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

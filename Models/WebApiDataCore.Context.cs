@@ -46,15 +46,24 @@ namespace WebApiCore.Models
 
             foreach (var entity in entities)
             {
-
+                if (entity.State != EntityState.Deleted)
+                {
+                    if (entity.CurrentValues.PropertyNames.Contains("UpdatedAt"))
+                        entity.Property("UpdatedAt").CurrentValue = DateTime.Now;
+                    if (entity.CurrentValues.PropertyNames.Contains("UpdatedBy"))
+                        entity.Property("UpdatedBy").CurrentValue = currentUsername;
+                }
                 if (entity.State == EntityState.Added)
                 {
                     if (entity.CurrentValues.PropertyNames.Contains("FInUse"))
                         entity.Property("FInUse").CurrentValue = true;
-
+                    if (entity.CurrentValues.PropertyNames.Contains("CreatedAt"))
+                        entity.Property("CreatedAt").CurrentValue = DateTime.Now;
+                    if (entity.CurrentValues.PropertyNames.Contains("CreatedBy"))
+                        entity.Property("CreatedBy").CurrentValue = currentUsername;
                 }
 
-                HandleUserLog(entity, currentUsername);
+                // HandleUserLog(entity, currentUsername);
 
 
             }
@@ -114,6 +123,7 @@ namespace WebApiCore.Models
 
             }
         }
+
         public virtual DbSet<Area> Areas { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AutoID> AutoIDs { get; set; }
@@ -131,6 +141,9 @@ namespace WebApiCore.Models
         public virtual DbSet<ThongBao> ThongBaos { get; set; }
         public virtual DbSet<UnreadMe> UnreadMes { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<Configuration> Configurations { get; set; }
+        public virtual DbSet<List> Lists { get; set; }
+        public virtual DbSet<ListInfo> ListInfoes { get; set; }
     
     }
 }

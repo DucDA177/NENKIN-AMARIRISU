@@ -447,6 +447,9 @@
     <Compile Include="Models\AutoID.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Configuration.cs">
+      <DependentUpon>WebApiDataCore.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CountInspectByStatus_Result.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
@@ -532,6 +535,12 @@
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\List.cs">
+      <DependentUpon>WebApiDataCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListInfo.cs">
+      <DependentUpon>WebApiDataCore.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MainMenu.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>

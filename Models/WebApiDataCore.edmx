@@ -81,6 +81,21 @@
           <Property Name="Counter" Type="bigint" />
           <Property Name="FUserUpdate" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Figure1" Type="float" />
+          <Property Name="Figure2" Type="float" />
+          <Property Name="Figure3" Type="float" />
+          <Property Name="Figure4" Type="float" />
+          <Property Name="FInUse" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
         <EntityType Name="DMDonVi">
           <Key>
             <PropertyRef Name="Id" />
@@ -184,6 +199,73 @@
           <Property Name="FBranchCode" Type="nvarchar" MaxLength="20" />
           <Property Name="FUserUpdate" Type="nvarchar" MaxLength="50" />
           <Property Name="Menu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="IdConfiguration" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="FInUse" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ListInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="SendDate" Type="datetime" />
+          <Property Name="EMSCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="Order" Type="nvarchar" MaxLength="100" />
+          <Property Name="DocumentType" Type="nvarchar" MaxLength="100" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="500" />
+          <Property Name="HowToReadName" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="100" />
+          <Property Name="BasicPensionNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="PlaceOfBirth" Type="nvarchar" MaxLength="500" />
+          <Property Name="USDBankNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="VNDBankNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="500" />
+          <Property Name="BankBranch" Type="nvarchar" MaxLength="500" />
+          <Property Name="EmployeeManager" Type="nvarchar" MaxLength="500" />
+          <Property Name="TicketWindow" Type="nvarchar" MaxLength="500" />
+          <Property Name="Error" Type="nvarchar" MaxLength="500" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="500" />
+          <Property Name="AdvanceFee" Type="float" Nullable="false" />
+          <Property Name="ErrorFee" Type="float" Nullable="false" />
+          <Property Name="OtherFee" Type="float" Nullable="false" />
+          <Property Name="Cost" Type="float" Nullable="false" />
+          <Property Name="AverageWage" Type="float" Nullable="false" />
+          <Property Name="Coefficient" Type="float" Nullable="false" />
+          <Property Name="Pension" Type="float" Nullable="false" />
+          <Property Name="FirstTime" Type="float" Nullable="false" />
+          <Property Name="MonthOfFirstTime" Type="nvarchar" MaxLength="100" />
+          <Property Name="SecondTime" Type="float" Nullable="false" />
+          <Property Name="MonthOfSecondTime" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostOfLiving" Type="float" Nullable="false" />
+          <Property Name="Calculate" Type="float" Nullable="false" />
+          <Property Name="Pay" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateToPay" Type="datetime" />
+          <Property Name="Deduct" Type="float" Nullable="false" />
+          <Property Name="AverageWage_Tax" Type="float" Nullable="false" />
+          <Property Name="Coefficient_Tax" Type="float" Nullable="false" />
+          <Property Name="Pension_Tax" Type="float" Nullable="false" />
+          <Property Name="FirstTime_Tax" Type="float" Nullable="false" />
+          <Property Name="SecondTime_Tax" Type="float" Nullable="false" />
+          <Property Name="IdList" Type="int" />
+          <Property Name="IsError" Type="bit" Nullable="false" />
+          <Property Name="FInUse" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdatedAt" Type="datetime" />
         </EntityType>
         <EntityType Name="MainMenu">
           <Key>
@@ -355,11 +437,14 @@
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AutoID" EntityType="Self.AutoID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DMDonVi" EntityType="Self.DMDonVi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FILE_DINH_KEM" EntityType="Self.FILE_DINH_KEM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group_Menu" EntityType="Self.Group_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group_User" EntityType="Self.Group_User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListInfo" EntityType="Self.ListInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainMenu" EntityType="Self.MainMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
@@ -1053,6 +1138,9 @@
           <EntitySet Name="ThongBaos" EntityType="WebApiDataModel.ThongBao" />
           <EntitySet Name="UnreadMes" EntityType="WebApiDataModel.UnreadMe" />
           <EntitySet Name="UserProfiles" EntityType="WebApiDataModel.UserProfile" />
+          <EntitySet Name="Configurations" EntityType="WebApiDataModel.Configuration" />
+          <EntitySet Name="Lists" EntityType="WebApiDataModel.List" />
+          <EntitySet Name="ListInfoes" EntityType="WebApiDataModel.ListInfo" />
           </EntityContainer>
         <ComplexType Name="CountInspectByStatus_Result">
           <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
@@ -1972,6 +2060,88 @@
           <Property Name="IsOnline" Type="Boolean" />
           <Property Name="ConnId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Figure1" Type="Double" />
+          <Property Name="Figure2" Type="Double" />
+          <Property Name="Figure3" Type="Double" />
+          <Property Name="Figure4" Type="Double" />
+          <Property Name="FInUse" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdConfiguration" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="FInUse" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ListInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PassportNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SendDate" Type="DateTime" Precision="3" />
+          <Property Name="EMSCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="HowToReadName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BasicPensionNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceOfBirth" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="USDBankNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="VNDBankNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BankBranch" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeManager" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TicketWindow" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Error" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AdvanceFee" Type="Double" Nullable="false" />
+          <Property Name="ErrorFee" Type="Double" Nullable="false" />
+          <Property Name="OtherFee" Type="Double" Nullable="false" />
+          <Property Name="Cost" Type="Double" Nullable="false" />
+          <Property Name="AverageWage" Type="Double" Nullable="false" />
+          <Property Name="Coefficient" Type="Double" Nullable="false" />
+          <Property Name="Pension" Type="Double" Nullable="false" />
+          <Property Name="FirstTime" Type="Double" Nullable="false" />
+          <Property Name="MonthOfFirstTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SecondTime" Type="Double" Nullable="false" />
+          <Property Name="MonthOfSecondTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostOfLiving" Type="Double" Nullable="false" />
+          <Property Name="Calculate" Type="Double" Nullable="false" />
+          <Property Name="Pay" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateToPay" Type="DateTime" Precision="3" />
+          <Property Name="Deduct" Type="Double" Nullable="false" />
+          <Property Name="AverageWage_Tax" Type="Double" Nullable="false" />
+          <Property Name="Coefficient_Tax" Type="Double" Nullable="false" />
+          <Property Name="Pension_Tax" Type="Double" Nullable="false" />
+          <Property Name="FirstTime_Tax" Type="Double" Nullable="false" />
+          <Property Name="SecondTime_Tax" Type="Double" Nullable="false" />
+          <Property Name="IdList" Type="Int32" />
+          <Property Name="IsError" Type="Boolean" Nullable="false" />
+          <Property Name="FInUse" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2357,6 +2527,91 @@
                 <ScalarProperty Name="FInUse" ColumnName="FInUse" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
                 <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="WebApiDataModel.Configuration">
+              <MappingFragment StoreEntitySet="Configuration">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="Figure4" ColumnName="Figure4" />
+                <ScalarProperty Name="Figure3" ColumnName="Figure3" />
+                <ScalarProperty Name="Figure2" ColumnName="Figure2" />
+                <ScalarProperty Name="Figure1" ColumnName="Figure1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lists">
+            <EntityTypeMapping TypeName="WebApiDataModel.List">
+              <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="IdConfiguration" ColumnName="IdConfiguration" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListInfoes">
+            <EntityTypeMapping TypeName="WebApiDataModel.ListInfo">
+              <MappingFragment StoreEntitySet="ListInfo">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="IsError" ColumnName="IsError" />
+                <ScalarProperty Name="IdList" ColumnName="IdList" />
+                <ScalarProperty Name="SecondTime_Tax" ColumnName="SecondTime_Tax" />
+                <ScalarProperty Name="FirstTime_Tax" ColumnName="FirstTime_Tax" />
+                <ScalarProperty Name="Pension_Tax" ColumnName="Pension_Tax" />
+                <ScalarProperty Name="Coefficient_Tax" ColumnName="Coefficient_Tax" />
+                <ScalarProperty Name="AverageWage_Tax" ColumnName="AverageWage_Tax" />
+                <ScalarProperty Name="Deduct" ColumnName="Deduct" />
+                <ScalarProperty Name="DateToPay" ColumnName="DateToPay" />
+                <ScalarProperty Name="Pay" ColumnName="Pay" />
+                <ScalarProperty Name="Calculate" ColumnName="Calculate" />
+                <ScalarProperty Name="CostOfLiving" ColumnName="CostOfLiving" />
+                <ScalarProperty Name="MonthOfSecondTime" ColumnName="MonthOfSecondTime" />
+                <ScalarProperty Name="SecondTime" ColumnName="SecondTime" />
+                <ScalarProperty Name="MonthOfFirstTime" ColumnName="MonthOfFirstTime" />
+                <ScalarProperty Name="FirstTime" ColumnName="FirstTime" />
+                <ScalarProperty Name="Pension" ColumnName="Pension" />
+                <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
+                <ScalarProperty Name="AverageWage" ColumnName="AverageWage" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="OtherFee" ColumnName="OtherFee" />
+                <ScalarProperty Name="ErrorFee" ColumnName="ErrorFee" />
+                <ScalarProperty Name="AdvanceFee" ColumnName="AdvanceFee" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Error" ColumnName="Error" />
+                <ScalarProperty Name="TicketWindow" ColumnName="TicketWindow" />
+                <ScalarProperty Name="EmployeeManager" ColumnName="EmployeeManager" />
+                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="VNDBankNumber" ColumnName="VNDBankNumber" />
+                <ScalarProperty Name="USDBankNumber" ColumnName="USDBankNumber" />
+                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+                <ScalarProperty Name="BasicPensionNumber" ColumnName="BasicPensionNumber" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="HowToReadName" ColumnName="HowToReadName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="EMSCode" ColumnName="EMSCode" />
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

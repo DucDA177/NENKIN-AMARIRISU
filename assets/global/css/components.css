@@ -12703,8 +12703,6 @@ Scrollable Tables
 ***/
 .table-scrollable {
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
   border: 1px solid #e7ecf1;
   margin: 10px 0 !important; }
   .DTS .table-scrollable {

@@ -319,25 +319,25 @@
 /* end Chinh*/
 
 /* width */
-::-webkit-scrollbar {
-    width: 10px;
+/*::-webkit-scrollbar {
+    width: 5px;
     height: 0px
-}
+}*/
 
 /* Track */
-::-webkit-scrollbar-track {
+/*::-webkit-scrollbar-track {
     background: #f1f1f1;
-}
+}*/
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+/*::-webkit-scrollbar-thumb {
     background: #aaa;
-}
+}*/
 
     /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
+    /*::-webkit-scrollbar-thumb:hover {
         background: #555;
-    }
+    }*/
 
 .no-pointer {
     pointer-events: none;

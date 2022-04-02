@@ -238,30 +238,30 @@
           <Property Name="TicketWindow" Type="nvarchar" MaxLength="500" />
           <Property Name="Error" Type="nvarchar" MaxLength="500" />
           <Property Name="Reason" Type="nvarchar" MaxLength="500" />
-          <Property Name="AdvanceFee" Type="float" Nullable="false" />
-          <Property Name="ErrorFee" Type="float" Nullable="false" />
-          <Property Name="OtherFee" Type="float" Nullable="false" />
-          <Property Name="Cost" Type="float" Nullable="false" />
-          <Property Name="AverageWage" Type="float" Nullable="false" />
-          <Property Name="Coefficient" Type="float" Nullable="false" />
-          <Property Name="Pension" Type="float" Nullable="false" />
-          <Property Name="FirstTime" Type="float" Nullable="false" />
+          <Property Name="AdvanceFee" Type="float" />
+          <Property Name="ErrorFee" Type="float" />
+          <Property Name="OtherFee" Type="float" />
+          <Property Name="Cost" Type="float" />
+          <Property Name="AverageWage" Type="float" />
+          <Property Name="Coefficient" Type="float" />
+          <Property Name="Pension" Type="float" />
+          <Property Name="FirstTime" Type="float" />
           <Property Name="MonthOfFirstTime" Type="nvarchar" MaxLength="100" />
-          <Property Name="SecondTime" Type="float" Nullable="false" />
+          <Property Name="SecondTime" Type="float" />
           <Property Name="MonthOfSecondTime" Type="nvarchar" MaxLength="100" />
-          <Property Name="CostOfLiving" Type="float" Nullable="false" />
-          <Property Name="Calculate" Type="float" Nullable="false" />
+          <Property Name="CostOfLiving" Type="float" />
+          <Property Name="Calculate" Type="float" />
           <Property Name="Pay" Type="nvarchar" MaxLength="100" />
           <Property Name="DateToPay" Type="datetime" />
-          <Property Name="Deduct" Type="float" Nullable="false" />
-          <Property Name="AverageWage_Tax" Type="float" Nullable="false" />
-          <Property Name="Coefficient_Tax" Type="float" Nullable="false" />
-          <Property Name="Pension_Tax" Type="float" Nullable="false" />
-          <Property Name="FirstTime_Tax" Type="float" Nullable="false" />
-          <Property Name="SecondTime_Tax" Type="float" Nullable="false" />
+          <Property Name="Deduct" Type="float" />
+          <Property Name="AverageWage_Tax" Type="float" />
+          <Property Name="Coefficient_Tax" Type="float" />
+          <Property Name="Pension_Tax" Type="float" />
+          <Property Name="FirstTime_Tax" Type="float" />
+          <Property Name="SecondTime_Tax" Type="float" />
           <Property Name="IdList" Type="int" />
-          <Property Name="IsError" Type="bit" Nullable="false" />
-          <Property Name="FInUse" Type="bit" Nullable="false" />
+          <Property Name="IsError" Type="bit" />
+          <Property Name="FInUse" Type="bit" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" />
@@ -2113,30 +2113,30 @@
           <Property Name="TicketWindow" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Error" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="AdvanceFee" Type="Double" Nullable="false" />
-          <Property Name="ErrorFee" Type="Double" Nullable="false" />
-          <Property Name="OtherFee" Type="Double" Nullable="false" />
-          <Property Name="Cost" Type="Double" Nullable="false" />
-          <Property Name="AverageWage" Type="Double" Nullable="false" />
-          <Property Name="Coefficient" Type="Double" Nullable="false" />
-          <Property Name="Pension" Type="Double" Nullable="false" />
-          <Property Name="FirstTime" Type="Double" Nullable="false" />
+          <Property Name="AdvanceFee" Type="Double" />
+          <Property Name="ErrorFee" Type="Double" />
+          <Property Name="OtherFee" Type="Double" />
+          <Property Name="Cost" Type="Double" />
+          <Property Name="AverageWage" Type="Double" />
+          <Property Name="Coefficient" Type="Double" />
+          <Property Name="Pension" Type="Double" />
+          <Property Name="FirstTime" Type="Double" />
           <Property Name="MonthOfFirstTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SecondTime" Type="Double" Nullable="false" />
+          <Property Name="SecondTime" Type="Double" />
           <Property Name="MonthOfSecondTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CostOfLiving" Type="Double" Nullable="false" />
-          <Property Name="Calculate" Type="Double" Nullable="false" />
+          <Property Name="CostOfLiving" Type="Double" />
+          <Property Name="Calculate" Type="Double" />
           <Property Name="Pay" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DateToPay" Type="DateTime" Precision="3" />
-          <Property Name="Deduct" Type="Double" Nullable="false" />
-          <Property Name="AverageWage_Tax" Type="Double" Nullable="false" />
-          <Property Name="Coefficient_Tax" Type="Double" Nullable="false" />
-          <Property Name="Pension_Tax" Type="Double" Nullable="false" />
-          <Property Name="FirstTime_Tax" Type="Double" Nullable="false" />
-          <Property Name="SecondTime_Tax" Type="Double" Nullable="false" />
+          <Property Name="Deduct" Type="Double" />
+          <Property Name="AverageWage_Tax" Type="Double" />
+          <Property Name="Coefficient_Tax" Type="Double" />
+          <Property Name="Pension_Tax" Type="Double" />
+          <Property Name="FirstTime_Tax" Type="Double" />
+          <Property Name="SecondTime_Tax" Type="Double" />
           <Property Name="IdList" Type="Int32" />
-          <Property Name="IsError" Type="Boolean" Nullable="false" />
-          <Property Name="FInUse" Type="Boolean" Nullable="false" />
+          <Property Name="IsError" Type="Boolean" />
+          <Property Name="FInUse" Type="Boolean" />
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />

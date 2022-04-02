@@ -1,0 +1,365 @@
+﻿<style>
+    table, th, td {
+        border: 0.5px solid black !important;
+    }
+
+    th {
+        text-align: center;
+        cursor: pointer !important
+    }
+
+    .lightpink {
+        background-color: lightpink
+    }
+
+    .lightblue {
+        background-color: lightblue
+    }
+
+    .lightgoldenrodyellow {
+        background-color: lightgoldenrodyellow
+    }
+
+    .lawngreen {
+        background-color: lawngreen
+    }
+
+    .popover {
+        max-width: 1000px; /* Max Width of the popover (depending on the container!) */
+        width: 400px
+    }
+    .text-overflow {
+        display: inline-block;
+        width: 10px;
+        white-space: nowrap;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+</style>
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> QUẢN LÝ HỒ SƠ</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="row ">
+        <div class="col-md-2">
+            <a class="btn btn-primary"
+               style="margin-top:15px"
+               ng-click="openModal('','CreateData')"><i class="fa fa-plus-circle"></i> Thêm mới</a>
+
+        </div>
+        <div class="col-md-3">
+            Số hộ chiếu
+            <input type="text" ng-model="ListColumn[1].Value"
+                   class="form-control input-sm " placeholder="Nhập số hộ chiếu..."
+                   ng-enter="LoadHS()">
+
+        </div>
+
+        <div class="col-md-3">
+            Họ và tên
+            <input type="text" ng-model="ListColumn[6].Value"
+                   class="form-control input-sm " placeholder="Nhập đầy đủ Họ đệm và tên..."
+                   ng-enter="LoadHS()">
+
+        </div>
+
+        <div class="col-md-4">
+            EMS コード
+            <div class="input-group">
+                <input type="text" ng-model="ListColumn[3].Value"
+                       class="form-control input-sm " placeholder="Nhập  EMS コード..."
+                       ng-enter="LoadHS()">
+                <a class="input-group-addon" ng-click="LoadHS()">
+                    <i class="fa fa-search font-blue"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="table-scrollable">
+           <center><h4 class="bold">{{ListConfig.ls.Name}}</h4></center>
+            <div style="width: 100%; overflow-x: auto">
+                <table class="table table-striped"
+                       id="fixTable">
+
+                    <thead>
+                        <tr class="bold font-red">
+                            <td colspan="13">Thông số 1: {{ListConfig.cf.Figure1}}</td>
+                            <td colspan="10">Thông số 2: {{ListConfig.cf.Figure2}}</td>
+                            <td colspan="10">Thông số 3: {{ListConfig.cf.Figure3}}</td>
+                            <td colspan="10">Thông số 4: {{ListConfig.cf.Figure4}}</td>
+                        </tr>
+                    </thead>
+                    <thead title="Click vào cột tương ứng để sắp xếp dữ liệu">
+                        <tr>
+                            <th rowspan="2" class="lightpink parent-header" width="1px">STT</th>
+                            <th rowspan="2" class="lightpink parent-header" width="1px">#</th>
+                            <th rowspan="2" class="lightpink parent-header" width="1px">#</th>
+                            <th rowspan="2" class="lightpink" id="PassportNumber">Số hộ chiếu</th>
+                            <th rowspan="2" class="lightpink" id="SendDate">送信日 </th>
+                            <th rowspan="2" class="lightpink" id="EMSCode">EMS コード </th>
+                            <th rowspan="2" class="lightpink" id="Order">
+                                順番<br />
+                                1
+                            </th>
+                            <th rowspan="2" class="lightpink" id="DocumentType">
+                                書類タイプ<br />
+                                2
+                            </th>
+                            <th rowspan="2" class="lightpink" id="FullName">
+                                氏名<br />
+                                3
+                            </th>
+                            <th rowspan="2" class="lightpink" id="HowToReadName">
+                                名前の読み方 <br />
+                                4
+                            </th>
+                            <th rowspan="2" class="lightpink" id="DateOfBirth">
+                                生年月日 <br />
+                                5
+                            </th>
+                            <th rowspan="2" class="lightpink" id="Gender">
+                                性別 <br />
+                                6
+                            </th>
+                            <th rowspan="2" class="lightpink" id="BasicPensionNumber">
+                                基礎年金番号 <br />
+                                7
+                            </th>
+                            <th rowspan="2" class="lightpink" id="PlaceOfBirth">
+                                出身地 <br />
+                                8
+                            </th>
+                            <th rowspan="2" class="lightpink" id="USDBankNumber">
+                                銀行番号(usd)<br />
+                                9
+                            </th>
+                            <th rowspan="2" class="lightpink" id="VNDBankNumber">
+                                銀行番号(vn) <br />
+                                10
+                            </th>
+                            <th rowspan="2" class="lightpink" id="BankName">
+                                銀行名  <br />
+                                11
+                            </th>
+                            <th rowspan="2" class="lightpink" id="BankBranch">
+                                支店 <br />
+                                12
+                            </th>
+                            <th colspan="2" class="lightpink parent-header">管理者</th>
+                            <th colspan="2" class="lightpink parent-header">Ghi chú</th>
+                            <th colspan="11" class="lightblue parent-header">年金金額</th>
+                            <th colspan="4" class="lightgoldenrodyellow parent-header">Quyết Toán</th>
+                            <th colspan="6" class="lawngreen parent-header">Cục Thuế</th>
+                        </tr>
+                        <tr>
+                            <th class="lightpink" id="EmployeeManager">
+                                社員 <br />
+                                13
+                            </th>
+                            <th class="lightpink" id="TicketWindow">窓口 14</th>
+                            <th class="lightpink" id="Error">
+                                Lỗi<br />
+                                15
+                            </th>
+                            <th class="lightpink" id="Reason">
+                                Lý do<br />
+                                16
+                            </th>
+                            <th class="lightblue" id="AdvanceFee">
+                                Tạm Ứng<br />
+                                17
+                            </th>
+                            <th class="lightblue" id="ErrorFee">
+                                Ph&iacute; lỗi<br />
+                                18
+                            </th>
+                            <th class="lightblue" id="OtherFee">
+                                Phụ Ph&iacute; <br />
+                                19
+                            </th>
+                            <th class="lightblue" id="Cost">
+                                費用 <br />
+                                20
+                            </th>
+                            <th class="lightblue" id="AverageWage">
+                                平均賃金 <br />
+                                21
+                            </th>
+                            <th class="lightblue" id="Coefficient">
+                                係数 <br />
+                                22
+                            </th>
+                            <th class="lightblue" id="Pension">
+                                年金 <br />
+                                23
+                            </th>
+                            <th class="lightblue" id="FirstTime">
+                                1回 <br />
+                                24
+                            </th>
+                            <th class="lightblue" id="MonthOfFirstTime">
+                                受け取り月
+                                1回<br />
+                                25
+                            </th>
+                            <th class="lightblue" id="SecondTime">
+                                2回 <br />
+                                26
+                            </th>
+                            <th class="lightblue" id="MonthOfSecondTime">
+                                受け取り月
+                                2回<br />
+                                27
+                            </th>
+                            <th class="lightgoldenrodyellow" id="CostOfLiving">
+                                物価 <br />
+                                28
+                            </th>
+                            <th class="lightgoldenrodyellow" id="Calculate">
+                                計算 <br />
+                                29
+                            </th>
+                            <th class="lightgoldenrodyellow" id="Pay">
+                                払う<br />
+                                30
+                            </th>
+                            <th class="lightgoldenrodyellow" id="DateToPay">
+                                払う日 <br />
+                                31
+                            </th>
+                            <th class="lawngreen" id="Deduct">
+                                KHẤU TRỪ <br />
+                                32
+                            </th>
+                            <th class="lawngreen" id="AverageWage_Tax">
+                                平均賃金 <br />
+                                33
+                            </th>
+                            <th class="lawngreen" id="Coefficient_Tax">
+                                係数 <br />
+                                34
+                            </th>
+                            <th class="lawngreen" id="Pension_Tax">
+                                年金 <br />
+                                35
+                            </th>
+                            <th class="lawngreen" id="FirstTime_Tax">
+                                1回 <br />
+                                36
+                            </th>
+                            <th class="lawngreen" id="SecondTime_Tax">
+                                2回 <br />
+                                37
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ls in ListInfo" >
+                            <td>{{$index +1}}</td>
+                            <td><a ng-click="openModal(ls,'CreateData')" tooltip title="Sửa"><i class="fa fa-edit"></i></a></td>
+                            <td><a ng-click="Del(ls.Id)" tooltip title="Xóa"><i class="fa fa-trash font-red"></i></a></td>
+                            <td>{{ls.PassportNumber}}</td>
+                            <td>{{ls.SendDate | date: 'yyyy-MM-dd'}} </td>
+                            <td>{{ls.EMSCode}}</td>
+                            <td> {{ls.Order}}</td>
+                            <td>{{ls.DocumentType}}</td>
+                            <td>{{ls.FullName}}</td>
+                            <td>
+                                <span class="text-overflow" tooltip title="{{ls.HowToReadName}}">
+                                    {{ls.HowToReadName}}
+                                </span>
+                            </td>
+                            <td>{{ls.DateOfBirth | date:'yyyy-MM-dd'}} </td>
+                            <td>{{ls.Gender}}</td>
+                            <td>{{ls.BasicPensionNumber}}</td>
+                            <td>{{ls.PlaceOfBirth}}</td>
+                            <td>{{ls.USDBankNumber}}</td>
+                            <td>{{ls.VNDBankNumber}}</td>
+                            <td>{{ls.BankName}}</td>
+                            <td>{{ls.BankBranch}}</td>
+                            <td>{{ls.EmployeeManager}}</td>
+                            <td>{{ls.TicketWindow}}</td>
+                            <td>
+                                <span class="text-overflow" tooltip title="{{ls.Error}}">
+                                    {{ls.Error}}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="text-overflow" tooltip title="{{ls.Reason}}">
+                                    {{ls.Reason}}
+                                </span>
+                            </td>
+                            <td>{{ls.AdvanceFee | number}}</td>
+                            <td>{{ls.ErrorFee | number}}</td>
+                            <td>{{ls.OtherFee | number}}</td>
+                            <td>{{ls.Cost | number}}%</td>
+                            <td>{{ls.AverageWage | number}}</td>
+                            <td>{{ls.Coefficient | number}}</td>
+                            <td>{{ls.Pension | number}}</td>
+                            <td>{{ls.FirstTime | number}}</td>
+                            <td>{{ls.MonthOfFirstTime}}</td>
+                            <td>{{ls.SecondTime | number}}</td>
+                            <td>{{ls.MonthOfSecondTime}}</td>
+                            <td>{{ls.CostOfLiving | number}}</td>
+                            <td>{{ls.Calculate | number}}</td>
+                            <td>{{ls.Pay}}</td>
+                            <td>{{ls.DateToPay |date:'dd/MM/yyyy'}}</td>
+                            <td>{{ls.Deduct | number}}</td>
+                            <td>{{ls.AverageWage_Tax | number}}</td>
+                            <td>{{ls.Coefficient_Tax | number}}</td>
+                            <td>{{ls.Pension_Tax | number}}</td>
+                            <td>{{ls.FirstTime_Tax | number}}</td>
+                            <td>{{ls.SecondTime_Tax | number}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="pull-left col-md-3">
+            <div class="input-group col-md-12">
+                <span class="input-group-addon"> Hiển thị </span>
+                <select ng-model="Paging.pageSize"
+                        ng-options="template.value as template.text for template in displayPage"
+                        ng-change="LoadHS()" class="form-control select2"></select>
+
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <!--<div id="displayPage"></div>-->
+            <!--<div class="pull-right" style="margin-top:-10px" id="show_paginator"></div>-->
+            <div class="pull-right" style="margin-top:-10px">
+                <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                    <div class="pagination-panel">
+                        Trang
+                        <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                            <i class="fa fa-angle-left"></i>
+                        </a><input type="text" allow-only-numbers ng-model="Paging.currentPage" class="pagination-panel-input form-control input-mini input-inline input-sm" maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="LoadHS()" ng-model-options="{updateOn: 'change'}">
+                        <a href="#" class="btn btn-sm default next " ng-click="NextPage()" title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                        <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    ComponentsSelect2.init();
+</script>
+
+
+
+
+

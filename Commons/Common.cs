@@ -10,6 +10,7 @@ using Spire.Pdf.HtmlConverter;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -63,10 +64,101 @@ namespace WebApiCore.Commons
     }
     public class Common
     {
+        public class SearchFilter
+        {
+            public string Name { get; set; }
+            public string DisplayName { get; set; }
+            public string Value { get; set; }
+            public string DataType { get; set; }
+            public bool IsSortable { get; set; }
+            public bool IsDescending { get; set; }
+            public bool IsDisplay { get; set; }
+        }
+        public static ListPaging<T> GetDataAndSorting<T>(int pageNumber, int pageSize, WebApiDataEntities db,
+            string tableName, List<SearchFilter> searchFilters)
+        {
+            string cmdText = "select * from " + tableName + " where 1=1 ";
 
+            foreach(var item in searchFilters)
+            {
+                if (!string.IsNullOrEmpty(item.Value))
+                {
+                    cmdText += " and " + item.Name;
+
+                    if (item.DataType == "nvarchar")
+                        cmdText += " like N'%" + item.Value + "%' ";
+                    else
+                        cmdText += " = '" + item.Value + "' ";
+                }
+            }
+            string cmdForOrder = " order by (select null) ";
+            var fieldToSort = searchFilters.Where(t => t.IsSortable).FirstOrDefault();
+            if(fieldToSort != null)
+            {
+                cmdForOrder += " , " + fieldToSort.Name;
+
+                if (fieldToSort.IsDescending)
+                    cmdForOrder += " desc ";
+                else
+                    cmdForOrder += " asc ";
+            }
+            cmdForOrder += ", Id desc";
+
+            string cmdForPaging = " offset " + pageSize*(pageNumber-1) + " rows fetch next " + pageSize + " rows only; " + Environment.NewLine;
+
+            string cmdForRowsCount = cmdText.Replace("select * from", "select count(*) from");
+
+            ListPaging<T> ls = new ListPaging<T>();
+            var cmd = db.Database.Connection.CreateCommand();
+            cmd.CommandText = cmdText + cmdForOrder + cmdForPaging + cmdForRowsCount;
+            db.Database.Connection.Open();
+            var reader = cmd.ExecuteReader();
+            var dt = ((IObjectContextAdapter)db)
+                .ObjectContext
+                .Translate<T>(reader).ToList();
+
+            ls.ListData = dt;
+
+            reader.NextResult();
+            var totalCount = ((IObjectContextAdapter)db)
+                .ObjectContext
+                .Translate<int>(reader).ToList();
+
+            db.Database.Connection.Close();
+
+            foreach (var item in totalCount)
+            {
+                ls.totalCount = item;
+            }
+
+           
+            ls.totalPage = Convert.ToInt32(Math.Ceiling(ls.totalCount / Convert.ToDouble(pageSize)));
+            ls.pageStart = ((pageNumber - 1) * pageSize) + 1;
+            if (ls.totalPage == pageNumber)
+            {
+                ls.pageEnd = ls.totalCount;
+            }
+            else ls.pageEnd = ((pageNumber - 1) * pageSize) + pageSize;
+            return ls;
+        }
+        public static List<SearchFilter> GetListColumnOfTable(string tableName, WebApiDataEntities db)
+        {
+            var cmd = db.Database.Connection.CreateCommand();
+            cmd.CommandText = "SELECT COLUMN_NAME as Name, DATA_TYPE as DataType FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '"
+                    + tableName + "' ORDER BY ORDINAL_POSITION";
+            db.Database.Connection.Open();
+            var reader = cmd.ExecuteReader();
+            var dt = ((IObjectContextAdapter)db)
+                .ObjectContext
+                .Translate<SearchFilter>(reader).ToList();
+            db.Database.Connection.Close();
+
+            return dt;
+        }
         public class ListPaging<T>
         {
             public IQueryable<T> ListOut { get; set; }
+            public List<T> ListData { get; set; }
             public int totalCount { get; set; }
             public int pageStart { get; set; }
             public int pageEnd { get; set; }
@@ -79,7 +171,7 @@ namespace WebApiCore.Commons
             ls.totalCount = listAll.Count();
             if ( pageSize == 0 ) pageSize = listAll.Count() == 0 ? 1 : listAll.Count();
 
-            ls.ListOut = listAll.Skip(pageSize * ( pageNumber - 1 )).Take(pageSize);
+            ls.ListOut = listAll.OrderBy(o => 0).Skip(pageSize * ( pageNumber - 1 )).Take(pageSize);
 
 
             ls.totalPage = System.Convert.ToInt32(System.Math.Ceiling(ls.totalCount / System.Convert.ToDouble(pageSize)));

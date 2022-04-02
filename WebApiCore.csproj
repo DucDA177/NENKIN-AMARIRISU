@@ -422,12 +422,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AreasController.cs" />
     <Compile Include="Controllers\AutoIDsController.cs" />
+    <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\DanhMuc\DanhMucChungController.cs" />
     <Compile Include="Controllers\DonViController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HubStore\UserActivityHub.cs" />
+    <Compile Include="Controllers\ListController.cs" />
+    <Compile Include="Controllers\ListInfoController.cs" />
     <Compile Include="Controllers\MainMenusController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -2929,6 +2932,7 @@
     <Content Include="js\ckeditor.js" />
     <Content Include="js\controllers\AccountController.js" />
     <Content Include="js\controllers\AreasController.js" />
+    <Content Include="js\controllers\ConfigurationController.js" />
     <Content Include="js\controllers\DanhMuc\DMChungController.js" />
     <Content Include="js\controllers\DashboardController.js" />
     <Content Include="js\controllers\DanhMuc\DMDiaBanController.js" />
@@ -2938,8 +2942,9 @@
     <Content Include="js\controllers\MainMenuController.js" />
     <Content Include="js\controllers\MenuController.js" />
     <Content Include="js\controllers\NhatKySuDungController.js" />
-    <Content Include="js\controllers\QuanLyHoSoController.js" />
+    <Content Include="js\controllers\ListInfoController.js" />
     <Content Include="js\controllers\SaoLuuPhucHoiController.js" />
+    <Content Include="js\controllers\SearchByPassportNumberController.js" />
     <Content Include="js\controllers\TienIch\HDSDController.js" />
     <Content Include="js\controllers\TienIch\HoTroController.js" />
     <Content Include="js\controllers\TienIch\ThongBaoController.js" />
@@ -2953,6 +2958,7 @@
     <Content Include="js\customjs\ngStorage.js" />
     <Content Include="js\customjs\ngStorage.min.js" />
     <Content Include="js\customjs\select2.multi-checkboxes.js" />
+    <Content Include="js\controllers\ListController.js" />
     <Content Include="js\ModelController.js" />
     <Content Include="js\controllers\UserManagerController.js" />
     <Content Include="js\directives.js" />
@@ -2996,6 +3002,7 @@
     <Content Include="js\tempPagination\dirPagination.tpl.html" />
     <Content Include="login.html" />
     <Content Include="home.html" />
+    <Content Include="logo.jpg" />
     <Content Include="Models\WebApiDataCore.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WebApiDataCore.edmx</DependentUpon>
@@ -3669,6 +3676,7 @@
     <Content Include="views-client\dashboard.html" />
     <Content Include="views-client\profile\account.html" />
     <Content Include="views-client\template\Areas.html" />
+    <Content Include="views-client\template\Configuration.html" />
     <Content Include="views-client\template\DanhMuc\DMChung.html" />
     <Content Include="views-client\template\DanhMuc\DMDiaBan.html" />
     <Content Include="views-client\template\DanhMuc\DMDonVi.html" />
@@ -3679,6 +3687,7 @@
     <Content Include="views-client\template\EditPassword.html" />
     <Content Include="views-client\template\EditUser.html" />
     <Content Include="views-client\template\Group.html" />
+    <Content Include="views-client\template\List.html" />
     <Content Include="views-client\template\MainMenu.html" />
     <Content Include="views-client\template\Menu.html" />
     <Content Include="views-client\template\Modal\ModalChonOCung.html" />
@@ -3695,8 +3704,9 @@
     <Content Include="views-client\template\Modal\ModalThongBao.html" />
     <Content Include="views-client\template\Modal\ModalViewPDF.html" />
     <Content Include="views-client\template\NhatKySuDung.html" />
-    <Content Include="views-client\template\QuanLyHoSo.html" />
+    <Content Include="views-client\template\ListInfo.html" />
     <Content Include="views-client\template\SaoLuuPhucHoi.html" />
+    <Content Include="views-client\template\SearchByPassportNumber.html" />
     <Content Include="views-client\template\TienIch\HDSD.html" />
     <Content Include="views-client\template\TienIch\HoTro.html" />
     <Content Include="views-client\template\TienIch\ThongBao.html" />

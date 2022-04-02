@@ -1,0 +1,101 @@
+﻿
+
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> THIẾT LẬP THÔNG SỐ HỆ THỐNG</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+    <div class="form-group ">
+
+        <div class="col-md-4">
+            <a ng-if="!isShowAddNew" class="btn btn-primary btn-sm" ng-click="handleAddNew()"><i class="fa fa-plus-circle"></i> Thêm mới</a>
+            <div ng-if="isShowAddNew">
+                <a class="btn btn-success btn-sm" ng-click="Save()"><i class="fa fa-save"></i> Lưu</a>
+                <a class="btn btn-danger btn-sm" ng-click="handleAddNew()"><i class="fa fa-times"></i> Hủy</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group " ng-if="isShowAddNew">
+        <div class="{{itemError.ModelState.Figure1[1]}}">
+            <label class="control-label col-md-2">Thông số 1 <span style="color:red">*</span>:</label>
+            <div class="col-md-1">
+                <input type="number" step="0.1" class="form-control input-sm" ng-model="item.Figure1">
+            </div>
+        </div>
+        <div class="{{itemError.ModelState.Figure2[1]}}">
+            <label class="control-label col-md-2">Thông số 2 <span style="color:red">*</span>:</label>
+            <div class="col-md-1">
+                <input type="number" step="0.1" class="form-control input-sm" ng-model="item.Figure2">
+            </div>
+        </div>
+        <div class="{{itemError.ModelState.Figure3[1]}}">
+            <label class="control-label col-md-2">Thông số 3 <span style="color:red">*</span>:</label>
+            <div class="col-md-1">
+                <input type="number" step="0.1" class="form-control input-sm" ng-model="item.Figure3">
+            </div>
+        </div>
+        <div class="{{itemError.ModelState.Figure4[1]}}">
+            <label class="control-label col-md-2">Thông số 4 <span style="color:red">*</span>:</label>
+            <div class="col-md-1">
+                <input type="number" step="0.1" class="form-control input-sm" ng-model="item.Figure4">
+            </div>
+        </div>
+    </div>
+    <div class="form-group ">
+
+        <div class="col-md-12">
+           <i class="font-red">Khi thiết lập các danh sách, hệ thống sẽ tự động lấy những thông số có ngày tạo gần nhất</i>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="table-scrollable ">
+                <!-- BEGIN FORM-->
+                <table class="table table-striped table-bordered table-hover"
+                       id="fixTable">
+                    <thead>
+                        <tr>
+                            <th width="1px" align="center"> STT </th>
+                            <th> <div style="text-align:center">Ngày tạo</div></th>
+                            <th> <div style="text-align:center">Thông số 1</div> </th>
+                            <th> <div style="text-align:center">Thông số 2</div> </th>
+                            <th> <div style="text-align:center">Thông số 3</div> </th>
+                            <th> <div style="text-align:center">Thông số 4</div> </th>
+                            <th width="1px"><div style="text-align:center">#</div> </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd gradeX" ng-repeat="dm in Configuration">
+                            <td align="center" width="1px"> {{$index + 1}} </td>
+                            <td>  {{dm.CreatedAt | date:'dd/MM/yyyy'}} </td>
+                            <td>
+                                {{dm.Figure1}}
+                            </td>
+                            <td>
+                                {{dm.Figure2}}
+                            </td>
+                            <td>
+                                {{dm.Figure3}}
+                            </td>
+                            <td>
+                                {{dm.Figure4}}
+                            </td>
+                            <td><a ng-click="Del(dm.Id)" title="Xóa"><i class="fa fa-trash font-red"></i></a></td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+

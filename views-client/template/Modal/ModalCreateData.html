@@ -1,65 +1,363 @@
-﻿<div ng-init="OnLoad()">
-    <div class="modal-header bg-color" style="background-color:#ccc">
-        <div class="modal-title">
-            <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+﻿<style>
+    .modal-dialog {
+        width: 90%;
+    }
+    .control-label{
+        font-weight:bold
+    }
+</style>
 
-            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> Cập nhật thông tin {{item.Ten}} </label></h4>
+<div class="modal-header bg-color" style="background-color:#ccc">
+    <div class="modal-title">
+        <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+
+        <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> Cập nhật thông tin hồ sơ {{item.FullName}} </label></h4>
+
+    </div>
+</div>
+<div class="modal-body form">
+    <div class="form-body form-horizontal margin-top-10">
+
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">Số hộ chiếu:</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" ng-model="item.PassportNumber">
+
+            </div>
+
+            <label class="control-label col-md-1">送信日:</label>
+            <div class="col-md-3">
+                <input type="text"
+                       placeholder="dd/MM/yyyy"
+                       datetime="dd/MM/yyyy"
+                       class="form-control input-sm"
+                       ng-model="item.SendDate"
+                       datetime-separator=",.-/" />
+            </div>
+
+            <label class="control-label col-md-1">EMS コード:</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" ng-model="item.EMSCode">
+
+            </div>
 
         </div>
-    </div>
-    <div class="modal-body form">
-        <div class="form-body form-horizontal margin-top-10">
-            <div class="row margin-bottom-5">
+        <div class="row margin-bottom-5">
 
-                <div class="{{itemError.ModelState.Ma[1]}}">
-                    <label class="control-label col-md-2">Mã <span style="color:red">*</span>:</label>
-                    <div class="col-md-4">
-                        <input ng-change="ValidMa()" ng-model-options="{updateOn: 'change'}" type="text" class="form-control input-sm" ng-model="item.Ma">
-
-                    </div>
-                </div>
-
-                <label class="control-label col-md-2">Tên viết tắt:</label>
-                <div class="col-md-4">
-                    <input type="text" class="form-control input-sm" ng-model="item.Viettat">
-
-                </div>
+            <label class="control-label col-md-1">順番:</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" ng-model="item.Order">
 
             </div>
-            <div class="row margin-bottom-5">
-                <div class="{{itemError.ModelState.Ten[1]}}">
-                    <label class="control-label col-md-2">Tên  <span style="color:red">*</span>:</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control input-sm" ng-model="item.Ten">
 
-                    </div>
-                </div>
+            <label class="control-label col-md-1"> 書類タイプ: </label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" ng-model="item.DocumentType">
+
             </div>
-      
-            <div class="row margin-bottom-5">
 
-                <label class="control-label col-md-2">Hiển thị:</label>
-                <div class="col-md-4">
-                    <input type="checkbox" class="input-sm" ng-model="item.FInUse">
-                </div>
-           
-                <div class="col-md-6 text-right">
-                    <div style="margin-top:7px"><i>Lưu ý: <span style="color:red">*</span> Bắt buộc nhập</i></div>
+            <div class="{{itemError.ModelState.FullName[1]}}">
+                <label class="control-label col-md-1">氏名 <span style="color:red">*</span>:</label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control input-sm" ng-model="item.FullName">
+
                 </div>
             </div>
 
-            <div class="form-group " style="position: sticky;bottom: 10px;z-index:500;background-color:white">
-                <label class="control-label col-md-2"></label>
-                <div class="col-md-10 clearfix">
-                    <a class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveModal()"><i class="fa fa-save"></i> Lưu </a>
-                    <a class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveAndNew()"><i class="fa fa-save"></i> Lưu và thêm </a>
-                    <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
-                </div>
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">名前の読み方:</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" ng-model="item.HowToReadName">
 
             </div>
+
+            <label class="control-label col-md-1">生年月日: </label>
+            <div class="col-md-3">
+                <input type="text"
+                       placeholder="dd/MM/yyyy"
+                       datetime="dd/MM/yyyy"
+                       class="form-control input-sm"
+                       ng-model="item.DateOfBirth"
+                       datetime-separator=",.-/" />
+            </div>
+
+            <label class="control-label col-md-1">性別:</label>
+            <div class="col-md-3 text-left" style="margin-top:5px">
+                <label class="margin-right-10"> <input type="radio" ng-model="item.Gender" value="男" /> 男 </label>
+                <label class="margin-right-10"> <input type="radio" ng-model="item.Gender" value="女" /> 女 </label>
+            </div>
+
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">基礎年金番号:</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" ng-model="item.BasicPensionNumber">
+
+            </div>
+
+            <label class="control-label col-md-1"> 出身地: </label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" ng-model="item.PlaceOfBirth">
+
+            </div>
+
+            <label class="control-label col-md-1">銀行番号:</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" placeholder="USD" ng-model="item.USDBankNumber">
+
+            </div>
+
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">銀行番号:</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" placeholder="VND" ng-model="item.VNDBankNumber">
+
+            </div>
+
+            <label class="control-label col-md-1"> 銀行名: </label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" ng-model="item.BankName">
+
+            </div>
+
+            <label class="control-label col-md-1">支店:</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control input-sm" ng-model="item.BankBranch">
+
+            </div>
+
+        </div>
+        <div class="row">
+            <center class="font-red bold"><h4><b>管理者</b></h4></center>
+            <hr />
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">社員:</label>
+            <div class="col-md-5">
+                <input type="text" class="form-control input-sm" ng-model="item.EmployeeManager">
+
+            </div>
+
+            <label class="control-label col-md-1"> 窓口: </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control input-sm" ng-model="item.TicketWindow">
+
+            </div>
+        </div>
+        <div class="row">
+            <center class="font-red bold"><h4><b>GHI CHÚ</b></h4></center>
+            <hr />
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">Lỗi:</label>
+            <div class="col-md-5">
+                <input type="text" class="form-control input-sm" ng-model="item.Error">
+
+            </div>
+
+            <label class="control-label col-md-1">Lý do: </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control input-sm" ng-model="item.Reason">
+
+            </div>
+
+        </div>
+        <div class="row">
+            <center class="font-blue bold"><h4><b>年金金額</b></h4></center>
+            <hr />
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">Tạm Ứng:</label>
+            <div class="col-md-3">
+                <input type="number" class="form-control input-sm" ng-model="item.AdvanceFee">
+
+            </div>
+
+            <label class="control-label col-md-1"> Phí lỗi: </label>
+            <div class="col-md-3">
+                <input type="number" class="form-control input-sm" ng-model="item.ErrorFee">
+
+            </div>
+
+            <label class="control-label col-md-1">Phụ Phí:</label>
+            <div class="col-md-3">
+                <input type="number" class="form-control input-sm" ng-model="item.OtherFee">
+
+            </div>
+
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">費用 (%):</label>
+            <div class="col-md-3">
+                <input type="number" class="form-control input-sm" ng-model="item.Cost">
+
+            </div>
+
+            <label class="control-label col-md-1"> 平均賃金: </label>
+            <div class="col-md-3">
+                <input disabled type="number" class="form-control input-sm" ng-model="item.AverageWage">
+
+            </div>
+
+            <label class="control-label col-md-1">係数:</label>
+            <div class="col-md-3">
+                <input disabled type="number" class="form-control input-sm" ng-model="item.Coefficient">
+
+            </div>
+
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">年金:</label>
+            <div class="col-md-3">
+                <input type="number" disabled class="form-control input-sm" ng-model="item.Pension">
+
+            </div>
+
+            <label class="control-label col-md-1">1回: </label>
+            <div class="col-md-3">
+                <input type="number" disabled class="form-control input-sm" ng-model="item.FirstTime">
+
+            </div>
+
+            <label class="control-label col-md-1"> 受け取り月 1: </label>
+            <div class="col-md-3">
+                <select ng-model="item.MonthOfFirstTime"
+                        class="form-control input-sm select2">
+                    <option value="{{m}}" ng-repeat="m in months ">
+                        {{m}}
+                    </option>
+                </select>
+            </div>
+
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">2回: </label>
+            <div class="col-md-3">
+                <input type="number" disabled class="form-control input-sm" ng-model="item.SecondTime">
+
+            </div>
+
+            <label class="control-label col-md-1"> 受け取り月 2: </label>
+            <div class="col-md-3">
+                <select ng-model="item.MonthOfSecondTime"
+                        class="form-control input-sm select2">
+                    <option value="{{m}}" ng-repeat="m in months ">
+                        {{m}}
+                    </option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <center class="font-yellow bold"><h4><b>QUYẾT TOÁN</b></h4></center>
+            <hr />
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">物価: </label>
+            <div class="col-md-5">
+                <input type="number" class="form-control input-sm" ng-model="item.CostOfLiving">
+
+            </div>
+
+            <label class="control-label col-md-1">計算: </label>
+            <div class="col-md-5">
+                <input type="number" disabled class="form-control input-sm" ng-model="item.Calculate">
+
+            </div>
+
+        </div>
+        <div class="row margin-bottom-5">
+            <label class="control-label col-md-1">払う: </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control input-sm" ng-model="item.Pay">
+
+            </div>
+            <label class="control-label col-md-1">払う日: </label>
+            <div class="col-md-5">
+                <input type="text"
+                       placeholder="dd/MM/yyyy"
+                       datetime="dd/MM/yyyy"
+                       class="form-control input-sm"
+                       ng-model="item.DateToPay"
+                       datetime-separator=",.-/" />
+            </div>
+        </div>
+
+        <div class="row">
+            <center class="font-green-haze bold"><h4><b>CỤC THUẾ</b></h4></center>
+            <hr />
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">Khấu trừ:</label>
+            <div class="col-md-3">
+                <input type="number" ng-change="CalAverageWage()" class="form-control input-sm" ng-model="item.Deduct">
+
+            </div>
+
+            <label class="control-label col-md-1"> 平均賃金: </label>
+            <div class="col-md-3">
+                <input type="number" ng-change="CalAverageWage()" class="form-control input-sm" ng-model="item.AverageWage_Tax">
+
+            </div>
+
+            <label class="control-label col-md-1">係数:</label>
+            <div class="col-md-3">
+                <input type="number" ng-change="CalCoefficient()" class="form-control input-sm" ng-model="item.Coefficient_Tax">
+
+            </div>
+
+        </div>
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-1">年金:</label>
+            <div class="col-md-3">
+                <input type="number" disabled class="form-control input-sm" ng-model="item.Pension_Tax">
+
+            </div>
+
+            <label class="control-label col-md-1"> 1回: </label>
+            <div class="col-md-3">
+                <input type="number" disabled class="form-control input-sm" ng-model="item.FirstTime_Tax">
+
+            </div>
+
+            <label class="control-label col-md-1">2回:</label>
+            <div class="col-md-3">
+                <input type="number" disabled class="form-control input-sm" ng-model="item.SecondTime_Tax">
+
+            </div>
+
+        </div>
+
+        <div class="form-group text-right" style="position: sticky;bottom: 10px;z-index:500;background-color:white">
+            
+            <div class="col-md-12 clearfix">
+                <i><span style="color:red">Lưu ý: * Bắt buộc nhập</span> </i>
+                <a class="btn btn-sm btn-success btn-outline sbold" ng-click="Calculate()"><i class="fa fa-calculator"></i> Tự động tính toán </a>
+                <a class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveModal()"><i class="fa fa-save"></i> Lưu </a>
+                <a class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveModal(1)"><i class="fa fa-save"></i> Lưu và thêm mới </a>
+                <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+            </div>
+
         </div>
     </div>
 </div>
+
 
 
 <script>

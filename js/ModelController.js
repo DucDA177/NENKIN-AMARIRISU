@@ -932,4 +932,51 @@ angular.module("WebApiApp").controller("ModalSetBackupConfigHandlerController", 
 
 });
 
+angular.module('WebApiApp').controller("ModalCreateDataHandlerController", function ($rootScope, $scope, $http, $uibModalInstance) {
+    $scope.item = $scope.$resolve.item;
+    $scope.type = $scope.$resolve.type;
+    $scope.check = $scope.$resolve.check;
+
+    $scope.cancelModal = function () {
+        $uibModalInstance.dismiss('close');
+    }
+    $scope.Calculate = function () {
+        
+        $scope.item.AverageWage = $scope.item.AverageWage_Tax - $scope.item.Deduct;
+        $scope.item.Coefficient = $scope.item.Coefficient_Tax;
+        $scope.item.Pension = $scope.item.AverageWage * $scope.item.Coefficient;
+        $scope.item.FirstTime = $scope.item.Pension * $rootScope.ListConfig.cf.Figure1;
+        $scope.item.SecondTime = $scope.item.Pension - $scope.item.FirstTime;
+        $scope.item.Calculate = $scope.item.SecondTime * ($scope.item.Cost / 100) * $scope.item.CostOfLiving
+            - $scope.item.ErrorFee - $scope.item.OtherFee - $scope.item.AdvanceFee;
+        $scope.item.Pension_Tax = $scope.item.AverageWage_Tax * $scope.item.Coefficient_Tax;
+        $scope.item.FirstTime_Tax = $scope.item.Pension_Tax * $rootScope.ListConfig.cf.Figure3;
+        $scope.item.SecondTime_Tax = $scope.item.Pension_Tax - $scope.item.FirstTime_Tax;
+    }
+
+
+    $scope.SaveModal = function (isNew) {
+        $scope.Calculate();
+
+        $http({
+            method: 'POST',
+            url: 'api/ListInfo/Save',
+            data: $scope.item
+        }).then(function successCallback(response) {
+            $scope.item = response.data;
+            $scope.itemError = "";
+            toastr.success('Đã tính toán và lưu dữ liệu thành công !', 'Thông báo');
+            $rootScope.LoadHS();
+            if (isNew)
+                $scope.item = '';
+            else
+                $scope.cancelModal();
+        }, function errorCallback(response) {
+            $scope.itemError = response.data;
+            toastr.error('Có lỗi xảy ra hoặc bạn chưa điền đầy đủ các trường bắt buộc !', 'Thông báo');
+        });
+
+    }
+
+});
 

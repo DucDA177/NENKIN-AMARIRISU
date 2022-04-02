@@ -82,10 +82,7 @@ namespace WebApiCore.Controllers.DanhMuc
 
             }
             return Ok(ndkt);
-
-
-
-
+            
         }
         private void Validate(tblDanhmuc item)
         {

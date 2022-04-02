@@ -34,30 +34,30 @@ namespace WebApiCore.Models
         public string TicketWindow { get; set; }
         public string Error { get; set; }
         public string Reason { get; set; }
-        public double AdvanceFee { get; set; }
-        public double ErrorFee { get; set; }
-        public double OtherFee { get; set; }
-        public double Cost { get; set; }
-        public double AverageWage { get; set; }
-        public double Coefficient { get; set; }
-        public double Pension { get; set; }
-        public double FirstTime { get; set; }
+        public Nullable<double> AdvanceFee { get; set; }
+        public Nullable<double> ErrorFee { get; set; }
+        public Nullable<double> OtherFee { get; set; }
+        public Nullable<double> Cost { get; set; }
+        public Nullable<double> AverageWage { get; set; }
+        public Nullable<double> Coefficient { get; set; }
+        public Nullable<double> Pension { get; set; }
+        public Nullable<double> FirstTime { get; set; }
         public string MonthOfFirstTime { get; set; }
-        public double SecondTime { get; set; }
+        public Nullable<double> SecondTime { get; set; }
         public string MonthOfSecondTime { get; set; }
-        public double CostOfLiving { get; set; }
-        public double Calculate { get; set; }
+        public Nullable<double> CostOfLiving { get; set; }
+        public Nullable<double> Calculate { get; set; }
         public string Pay { get; set; }
         public Nullable<System.DateTime> DateToPay { get; set; }
-        public double Deduct { get; set; }
-        public double AverageWage_Tax { get; set; }
-        public double Coefficient_Tax { get; set; }
-        public double Pension_Tax { get; set; }
-        public double FirstTime_Tax { get; set; }
-        public double SecondTime_Tax { get; set; }
+        public Nullable<double> Deduct { get; set; }
+        public Nullable<double> AverageWage_Tax { get; set; }
+        public Nullable<double> Coefficient_Tax { get; set; }
+        public Nullable<double> Pension_Tax { get; set; }
+        public Nullable<double> FirstTime_Tax { get; set; }
+        public Nullable<double> SecondTime_Tax { get; set; }
         public Nullable<int> IdList { get; set; }
-        public bool IsError { get; set; }
-        public bool FInUse { get; set; }
+        public Nullable<bool> IsError { get; set; }
+        public Nullable<bool> FInUse { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public string UpdatedBy { get; set; }

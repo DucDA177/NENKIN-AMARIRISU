@@ -96,6 +96,8 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
             { Name: 'Nữ' },
             { Name: 'Không xác định' }
         ];
+
+        $scope.months = ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'];
         
         $scope.DefaultArea = '01' // Hà Nội
         $scope.isHidePagebar = 0;
@@ -835,6 +837,27 @@ WebApiApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', funct
                         insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                         files: [
                             'js/controllers/AccountController.js',
+                        ]
+                    });
+                }]
+            }
+        })
+        .state('ListInfo', {
+
+            url: "/ListInfo?Id" + "&eraseCache=true",
+            templateUrl: function ($stateParams) {
+                return "views-client/template/ListInfo.html?Id=" + $stateParams.Id
+                    + "&bust=" + Math.random().toString(36).slice(2)
+            },
+            data: { pageTitle: 'QUẢN LÝ HỒ SƠ NENKIN' },
+            controller: "ListInfoController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'WebApiApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                        files: [
+                            'js/controllers/ListInfoController.js',
                         ]
                     });
                 }]

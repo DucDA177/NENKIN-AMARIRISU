@@ -948,6 +948,10 @@ WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies
 
                 $rootScope.CurUserGroup = response.data;
 
+                if ($rootScope.CurUserGroup.includes('CTV') && !$rootScope.CurUserGroup.includes('TGD')
+                    && !$rootScope.CurUserGroup.includes('PGD') && !$rootScope.CurUserGroup.includes('NV'))
+                    $rootScope.onlyCTV = true;
+
             }, function errorCallback(response) {
 
             });

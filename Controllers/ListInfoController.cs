@@ -10,6 +10,7 @@ using static WebApiCore.Commons.Common;
 
 namespace WebApiCore.Controllers
 {
+    [Authorize]
     public class ListInfoController : ApiController
     {
         private WebApiDataEntities db = new WebApiDataEntities();
@@ -19,6 +20,12 @@ namespace WebApiCore.Controllers
             public int pageNumber { get; set; }
             public int pageSize { get; set; }
             public List<SearchFilter> searchFilters { get; set; }
+            public string EMSCode { get; set; }
+            public float? CostOfLiving { get; set; }
+            public float? Calculate { get; set; }
+            public bool? Pay { get; set; }
+            public DateTime? DateToPay { get; set; }
+            public List<ListInfo> ListInfo { get; set; }
         }
         [HttpPost]
         [Route("api/ListInfo/GetAll")]
@@ -32,7 +39,7 @@ namespace WebApiCore.Controllers
         [Route("api/ListInfo/GetListColumn")]
         public IHttpActionResult GetListColumn()
         {
-            var listColumn = GetListColumnOfTable("ListInfo", db); 
+            var listColumn = GetListColumnOfTable("ListInfo", db);
 
             return Ok(listColumn);
         }
@@ -49,6 +56,7 @@ namespace WebApiCore.Controllers
 
             if (ndkt.Id == 0)
             {
+                ndkt.Order = "NK" + (db.ListInfoes.Count() + 1).ToString();
                 db.ListInfoes.Add(ndkt);
                 db.SaveChanges();
             }
@@ -71,6 +79,54 @@ namespace WebApiCore.Controllers
 
         }
 
+        [HttpPost]
+        [Route("api/ListInfo/UpdateList")]
+        public IHttpActionResult UpdateList([FromBody] DataIn dti)
+        {
+            foreach (var item in dti.ListInfo)
+            {
+                bool isUpdated = false;
+
+                if (dti.EMSCode != null)
+                {
+                    item.EMSCode = dti.EMSCode;
+                    isUpdated = true;
+                }
+
+                if (dti.CostOfLiving != null)
+                {
+                    item.CostOfLiving = dti.CostOfLiving;
+                    isUpdated = true;
+                }
+
+                if (dti.Calculate != null)
+                {
+                    item.Calculate = dti.Calculate;
+                    isUpdated = true;
+                }
+
+                if (dti.Pay != null)
+                {
+                    item.Pay = dti.Pay;
+                    isUpdated = true;
+                }
+
+                if (dti.DateToPay != null)
+                {
+                    item.DateToPay = dti.DateToPay;
+                    isUpdated = true;
+                }
+
+                if (isUpdated)
+                    db.Entry(item).State = EntityState.Modified;
+
+            }
+
+            db.SaveChanges();
+
+            return Ok(dti);
+
+        }
         [HttpGet]
         [Route("api/ListInfo/Delete")]
         public IHttpActionResult Delete(int Id)
@@ -81,13 +137,37 @@ namespace WebApiCore.Controllers
             return Ok(dt);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("api/ListInfo/SearchByPassportNumber")]
-        public IHttpActionResult SearchByPassportNumber(string PassportNumber)
+        public IHttpActionResult SearchByPassportNumber(string PassportNumber, string PhoneNumber)
         {
             if (string.IsNullOrEmpty(PassportNumber))
                 return BadRequest("Vui lòng nhập số hộ chiếu!");
+            if (string.IsNullOrEmpty(PhoneNumber))
+                return BadRequest("Vui lòng nhập số điện thoại!");
             var dt = db.ListInfoes.Where(t => t.FInUse == true && t.PassportNumber == PassportNumber).FirstOrDefault();
+
+            if(dt != null)
+            {
+                var log = db.LogUserSearches
+                    .Where(t => t.PassportNumber == PassportNumber && t.PhoneNumber == PhoneNumber)
+                    .FirstOrDefault();
+                if (log != null)
+                {
+                    log.Count = log.Count + 1;
+                }
+                else
+                {
+                    var newLog = new LogUserSearch();
+                    newLog.PassportNumber = PassportNumber;
+                    newLog.PhoneNumber = PhoneNumber;
+                    newLog.Count = 1;
+                    db.LogUserSearches.Add(newLog);
+                }
+
+                db.SaveChanges();
+            }
             return Ok(dt);
         }
     }

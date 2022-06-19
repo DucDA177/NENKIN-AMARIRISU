@@ -386,3 +386,7 @@
 .select-checkbox-fa option:checked::before {
     content: "\f046";
 }
+
+.control-label {
+    font-weight: bold
+}

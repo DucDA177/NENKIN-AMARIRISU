@@ -515,3 +515,69 @@ WebApiApp.directive('onFinishRender', ['$timeout', '$parse', function ($timeout,
         }
     }
 }]);
+
+WebApiApp.directive('context', [
+
+    function () {
+        return {
+            restrict: 'A',
+            scope: '@&',
+            compile: function compile(tElement, tAttrs, transclude) {
+                return {
+                    post: function postLink(scope, iElement, iAttrs, controller) {
+                        
+                        var ul = $('#' + iAttrs.context),
+                            last = null;
+
+                        ul.css({
+                            'display': 'none'
+                        });
+                        $(iElement).bind('contextmenu', function (event) {
+                            event.preventDefault();
+                            ul.css({
+                                position: "fixed",
+                                display: "block",
+                                left: event.clientX + 'px',
+                                top: event.clientY + 'px'
+                            });
+                            let data_index = parseInt(event.currentTarget.firstElementChild.innerText)
+                            ul.attr("data-index", data_index);
+                            last = event.timeStamp;
+
+                            let rowSelected = $('#row-context-' + data_index)
+                            rowSelected.mouseleave(function (event) {
+                                
+                                ul.css({
+                                    'display': 'none'
+                                });
+
+                                ul.mouseover(function (event) {
+                                    ul.css({
+                                        display: "block",
+                                    });
+                                });
+                                ul.mouseleave(function (event) {
+                                    ul.css({
+                                        display: "none",
+                                    });
+                                });
+                            });
+
+                        });
+
+                        $(document).click(function (event) {
+                            var target = $(event.target);
+                            if (!target.is(".popover") && !target.parents().is(".popover")) {
+                                if (last === event.timeStamp)
+                                    return;
+                                ul.css({
+                                    'display': 'none'
+                                });
+                            }
+                        });
+                    }
+                };
+            }
+        };
+    }
+]);

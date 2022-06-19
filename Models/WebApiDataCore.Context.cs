@@ -124,6 +124,7 @@ namespace WebApiCore.Models
             }
         }
 
+
         public virtual DbSet<Area> Areas { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AutoID> AutoIDs { get; set; }
@@ -144,6 +145,2302 @@ namespace WebApiCore.Models
         public virtual DbSet<Configuration> Configurations { get; set; }
         public virtual DbSet<List> Lists { get; set; }
         public virtual DbSet<ListInfo> ListInfoes { get; set; }
+        public virtual DbSet<LogUserSearch> LogUserSearches { get; set; }
     
+        public virtual int aspnet_AnyDataInTables(Nullable<int> tablesToCheck)
+        {
+            var tablesToCheckParameter = tablesToCheck.HasValue ?
+                new ObjectParameter("TablesToCheck", tablesToCheck) :
+                new ObjectParameter("TablesToCheck", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_AnyDataInTables", tablesToCheckParameter);
+        }
+    
+        public virtual int aspnet_Applications_CreateApplication(string applicationName, ObjectParameter applicationId)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Applications_CreateApplication", applicationNameParameter, applicationId);
+        }
+    
+        public virtual int aspnet_CheckSchemaVersion(string feature, string compatibleSchemaVersion)
+        {
+            var featureParameter = feature != null ?
+                new ObjectParameter("Feature", feature) :
+                new ObjectParameter("Feature", typeof(string));
+    
+            var compatibleSchemaVersionParameter = compatibleSchemaVersion != null ?
+                new ObjectParameter("CompatibleSchemaVersion", compatibleSchemaVersion) :
+                new ObjectParameter("CompatibleSchemaVersion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_CheckSchemaVersion", featureParameter, compatibleSchemaVersionParameter);
+        }
+    
+        public virtual int aspnet_Membership_ChangePasswordQuestionAndAnswer(string applicationName, string userName, string newPasswordQuestion, string newPasswordAnswer)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var newPasswordQuestionParameter = newPasswordQuestion != null ?
+                new ObjectParameter("NewPasswordQuestion", newPasswordQuestion) :
+                new ObjectParameter("NewPasswordQuestion", typeof(string));
+    
+            var newPasswordAnswerParameter = newPasswordAnswer != null ?
+                new ObjectParameter("NewPasswordAnswer", newPasswordAnswer) :
+                new ObjectParameter("NewPasswordAnswer", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_ChangePasswordQuestionAndAnswer", applicationNameParameter, userNameParameter, newPasswordQuestionParameter, newPasswordAnswerParameter);
+        }
+    
+        public virtual int aspnet_Membership_CreateUser(string applicationName, string userName, string password, string passwordSalt, string email, string passwordQuestion, string passwordAnswer, Nullable<bool> isApproved, Nullable<System.DateTime> currentTimeUtc, Nullable<System.DateTime> createDate, Nullable<int> uniqueEmail, Nullable<int> passwordFormat, ObjectParameter userId)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var passwordSaltParameter = passwordSalt != null ?
+                new ObjectParameter("PasswordSalt", passwordSalt) :
+                new ObjectParameter("PasswordSalt", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var passwordQuestionParameter = passwordQuestion != null ?
+                new ObjectParameter("PasswordQuestion", passwordQuestion) :
+                new ObjectParameter("PasswordQuestion", typeof(string));
+    
+            var passwordAnswerParameter = passwordAnswer != null ?
+                new ObjectParameter("PasswordAnswer", passwordAnswer) :
+                new ObjectParameter("PasswordAnswer", typeof(string));
+    
+            var isApprovedParameter = isApproved.HasValue ?
+                new ObjectParameter("IsApproved", isApproved) :
+                new ObjectParameter("IsApproved", typeof(bool));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            var createDateParameter = createDate.HasValue ?
+                new ObjectParameter("CreateDate", createDate) :
+                new ObjectParameter("CreateDate", typeof(System.DateTime));
+    
+            var uniqueEmailParameter = uniqueEmail.HasValue ?
+                new ObjectParameter("UniqueEmail", uniqueEmail) :
+                new ObjectParameter("UniqueEmail", typeof(int));
+    
+            var passwordFormatParameter = passwordFormat.HasValue ?
+                new ObjectParameter("PasswordFormat", passwordFormat) :
+                new ObjectParameter("PasswordFormat", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_CreateUser", applicationNameParameter, userNameParameter, passwordParameter, passwordSaltParameter, emailParameter, passwordQuestionParameter, passwordAnswerParameter, isApprovedParameter, currentTimeUtcParameter, createDateParameter, uniqueEmailParameter, passwordFormatParameter, userId);
+        }
+    
+        public virtual int aspnet_Membership_FindUsersByEmail(string applicationName, string emailToMatch, Nullable<int> pageIndex, Nullable<int> pageSize)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var emailToMatchParameter = emailToMatch != null ?
+                new ObjectParameter("EmailToMatch", emailToMatch) :
+                new ObjectParameter("EmailToMatch", typeof(string));
+    
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_FindUsersByEmail", applicationNameParameter, emailToMatchParameter, pageIndexParameter, pageSizeParameter);
+        }
+    
+        public virtual int aspnet_Membership_FindUsersByName(string applicationName, string userNameToMatch, Nullable<int> pageIndex, Nullable<int> pageSize)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameToMatchParameter = userNameToMatch != null ?
+                new ObjectParameter("UserNameToMatch", userNameToMatch) :
+                new ObjectParameter("UserNameToMatch", typeof(string));
+    
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_FindUsersByName", applicationNameParameter, userNameToMatchParameter, pageIndexParameter, pageSizeParameter);
+        }
+    
+        public virtual int aspnet_Membership_GetAllUsers(string applicationName, Nullable<int> pageIndex, Nullable<int> pageSize)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_GetAllUsers", applicationNameParameter, pageIndexParameter, pageSizeParameter);
+        }
+    
+        public virtual int aspnet_Membership_GetNumberOfUsersOnline(string applicationName, Nullable<int> minutesSinceLastInActive, Nullable<System.DateTime> currentTimeUtc)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var minutesSinceLastInActiveParameter = minutesSinceLastInActive.HasValue ?
+                new ObjectParameter("MinutesSinceLastInActive", minutesSinceLastInActive) :
+                new ObjectParameter("MinutesSinceLastInActive", typeof(int));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_GetNumberOfUsersOnline", applicationNameParameter, minutesSinceLastInActiveParameter, currentTimeUtcParameter);
+        }
+    
+        public virtual int aspnet_Membership_GetPassword(string applicationName, string userName, Nullable<int> maxInvalidPasswordAttempts, Nullable<int> passwordAttemptWindow, Nullable<System.DateTime> currentTimeUtc, string passwordAnswer)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var maxInvalidPasswordAttemptsParameter = maxInvalidPasswordAttempts.HasValue ?
+                new ObjectParameter("MaxInvalidPasswordAttempts", maxInvalidPasswordAttempts) :
+                new ObjectParameter("MaxInvalidPasswordAttempts", typeof(int));
+    
+            var passwordAttemptWindowParameter = passwordAttemptWindow.HasValue ?
+                new ObjectParameter("PasswordAttemptWindow", passwordAttemptWindow) :
+                new ObjectParameter("PasswordAttemptWindow", typeof(int));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            var passwordAnswerParameter = passwordAnswer != null ?
+                new ObjectParameter("PasswordAnswer", passwordAnswer) :
+                new ObjectParameter("PasswordAnswer", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_GetPassword", applicationNameParameter, userNameParameter, maxInvalidPasswordAttemptsParameter, passwordAttemptWindowParameter, currentTimeUtcParameter, passwordAnswerParameter);
+        }
+    
+        public virtual int aspnet_Membership_GetPasswordWithFormat(string applicationName, string userName, Nullable<bool> updateLastLoginActivityDate, Nullable<System.DateTime> currentTimeUtc)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var updateLastLoginActivityDateParameter = updateLastLoginActivityDate.HasValue ?
+                new ObjectParameter("UpdateLastLoginActivityDate", updateLastLoginActivityDate) :
+                new ObjectParameter("UpdateLastLoginActivityDate", typeof(bool));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_GetPasswordWithFormat", applicationNameParameter, userNameParameter, updateLastLoginActivityDateParameter, currentTimeUtcParameter);
+        }
+    
+        public virtual int aspnet_Membership_GetUserByEmail(string applicationName, string email)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_GetUserByEmail", applicationNameParameter, emailParameter);
+        }
+    
+        public virtual int aspnet_Membership_GetUserByName(string applicationName, string userName, Nullable<System.DateTime> currentTimeUtc, Nullable<bool> updateLastActivity)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            var updateLastActivityParameter = updateLastActivity.HasValue ?
+                new ObjectParameter("UpdateLastActivity", updateLastActivity) :
+                new ObjectParameter("UpdateLastActivity", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_GetUserByName", applicationNameParameter, userNameParameter, currentTimeUtcParameter, updateLastActivityParameter);
+        }
+    
+        public virtual int aspnet_Membership_GetUserByUserId(Nullable<System.Guid> userId, Nullable<System.DateTime> currentTimeUtc, Nullable<bool> updateLastActivity)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(System.Guid));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            var updateLastActivityParameter = updateLastActivity.HasValue ?
+                new ObjectParameter("UpdateLastActivity", updateLastActivity) :
+                new ObjectParameter("UpdateLastActivity", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_GetUserByUserId", userIdParameter, currentTimeUtcParameter, updateLastActivityParameter);
+        }
+    
+        public virtual int aspnet_Membership_ResetPassword(string applicationName, string userName, string newPassword, Nullable<int> maxInvalidPasswordAttempts, Nullable<int> passwordAttemptWindow, string passwordSalt, Nullable<System.DateTime> currentTimeUtc, Nullable<int> passwordFormat, string passwordAnswer)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var newPasswordParameter = newPassword != null ?
+                new ObjectParameter("NewPassword", newPassword) :
+                new ObjectParameter("NewPassword", typeof(string));
+    
+            var maxInvalidPasswordAttemptsParameter = maxInvalidPasswordAttempts.HasValue ?
+                new ObjectParameter("MaxInvalidPasswordAttempts", maxInvalidPasswordAttempts) :
+                new ObjectParameter("MaxInvalidPasswordAttempts", typeof(int));
+    
+            var passwordAttemptWindowParameter = passwordAttemptWindow.HasValue ?
+                new ObjectParameter("PasswordAttemptWindow", passwordAttemptWindow) :
+                new ObjectParameter("PasswordAttemptWindow", typeof(int));
+    
+            var passwordSaltParameter = passwordSalt != null ?
+                new ObjectParameter("PasswordSalt", passwordSalt) :
+                new ObjectParameter("PasswordSalt", typeof(string));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            var passwordFormatParameter = passwordFormat.HasValue ?
+                new ObjectParameter("PasswordFormat", passwordFormat) :
+                new ObjectParameter("PasswordFormat", typeof(int));
+    
+            var passwordAnswerParameter = passwordAnswer != null ?
+                new ObjectParameter("PasswordAnswer", passwordAnswer) :
+                new ObjectParameter("PasswordAnswer", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_ResetPassword", applicationNameParameter, userNameParameter, newPasswordParameter, maxInvalidPasswordAttemptsParameter, passwordAttemptWindowParameter, passwordSaltParameter, currentTimeUtcParameter, passwordFormatParameter, passwordAnswerParameter);
+        }
+    
+        public virtual int aspnet_Membership_SetPassword(string applicationName, string userName, string newPassword, string passwordSalt, Nullable<System.DateTime> currentTimeUtc, Nullable<int> passwordFormat)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var newPasswordParameter = newPassword != null ?
+                new ObjectParameter("NewPassword", newPassword) :
+                new ObjectParameter("NewPassword", typeof(string));
+    
+            var passwordSaltParameter = passwordSalt != null ?
+                new ObjectParameter("PasswordSalt", passwordSalt) :
+                new ObjectParameter("PasswordSalt", typeof(string));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            var passwordFormatParameter = passwordFormat.HasValue ?
+                new ObjectParameter("PasswordFormat", passwordFormat) :
+                new ObjectParameter("PasswordFormat", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_SetPassword", applicationNameParameter, userNameParameter, newPasswordParameter, passwordSaltParameter, currentTimeUtcParameter, passwordFormatParameter);
+        }
+    
+        public virtual int aspnet_Membership_UnlockUser(string applicationName, string userName)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_UnlockUser", applicationNameParameter, userNameParameter);
+        }
+    
+        public virtual int aspnet_Membership_UpdateUser(string applicationName, string userName, string email, string comment, Nullable<bool> isApproved, Nullable<System.DateTime> lastLoginDate, Nullable<System.DateTime> lastActivityDate, Nullable<int> uniqueEmail, Nullable<System.DateTime> currentTimeUtc)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var commentParameter = comment != null ?
+                new ObjectParameter("Comment", comment) :
+                new ObjectParameter("Comment", typeof(string));
+    
+            var isApprovedParameter = isApproved.HasValue ?
+                new ObjectParameter("IsApproved", isApproved) :
+                new ObjectParameter("IsApproved", typeof(bool));
+    
+            var lastLoginDateParameter = lastLoginDate.HasValue ?
+                new ObjectParameter("LastLoginDate", lastLoginDate) :
+                new ObjectParameter("LastLoginDate", typeof(System.DateTime));
+    
+            var lastActivityDateParameter = lastActivityDate.HasValue ?
+                new ObjectParameter("LastActivityDate", lastActivityDate) :
+                new ObjectParameter("LastActivityDate", typeof(System.DateTime));
+    
+            var uniqueEmailParameter = uniqueEmail.HasValue ?
+                new ObjectParameter("UniqueEmail", uniqueEmail) :
+                new ObjectParameter("UniqueEmail", typeof(int));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_UpdateUser", applicationNameParameter, userNameParameter, emailParameter, commentParameter, isApprovedParameter, lastLoginDateParameter, lastActivityDateParameter, uniqueEmailParameter, currentTimeUtcParameter);
+        }
+    
+        public virtual int aspnet_Membership_UpdateUserInfo(string applicationName, string userName, Nullable<bool> isPasswordCorrect, Nullable<bool> updateLastLoginActivityDate, Nullable<int> maxInvalidPasswordAttempts, Nullable<int> passwordAttemptWindow, Nullable<System.DateTime> currentTimeUtc, Nullable<System.DateTime> lastLoginDate, Nullable<System.DateTime> lastActivityDate)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var isPasswordCorrectParameter = isPasswordCorrect.HasValue ?
+                new ObjectParameter("IsPasswordCorrect", isPasswordCorrect) :
+                new ObjectParameter("IsPasswordCorrect", typeof(bool));
+    
+            var updateLastLoginActivityDateParameter = updateLastLoginActivityDate.HasValue ?
+                new ObjectParameter("UpdateLastLoginActivityDate", updateLastLoginActivityDate) :
+                new ObjectParameter("UpdateLastLoginActivityDate", typeof(bool));
+    
+            var maxInvalidPasswordAttemptsParameter = maxInvalidPasswordAttempts.HasValue ?
+                new ObjectParameter("MaxInvalidPasswordAttempts", maxInvalidPasswordAttempts) :
+                new ObjectParameter("MaxInvalidPasswordAttempts", typeof(int));
+    
+            var passwordAttemptWindowParameter = passwordAttemptWindow.HasValue ?
+                new ObjectParameter("PasswordAttemptWindow", passwordAttemptWindow) :
+                new ObjectParameter("PasswordAttemptWindow", typeof(int));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            var lastLoginDateParameter = lastLoginDate.HasValue ?
+                new ObjectParameter("LastLoginDate", lastLoginDate) :
+                new ObjectParameter("LastLoginDate", typeof(System.DateTime));
+    
+            var lastActivityDateParameter = lastActivityDate.HasValue ?
+                new ObjectParameter("LastActivityDate", lastActivityDate) :
+                new ObjectParameter("LastActivityDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Membership_UpdateUserInfo", applicationNameParameter, userNameParameter, isPasswordCorrectParameter, updateLastLoginActivityDateParameter, maxInvalidPasswordAttemptsParameter, passwordAttemptWindowParameter, currentTimeUtcParameter, lastLoginDateParameter, lastActivityDateParameter);
+        }
+    
+        public virtual int aspnet_Paths_CreatePath(Nullable<System.Guid> applicationId, string path, ObjectParameter pathId)
+        {
+            var applicationIdParameter = applicationId.HasValue ?
+                new ObjectParameter("ApplicationId", applicationId) :
+                new ObjectParameter("ApplicationId", typeof(System.Guid));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Paths_CreatePath", applicationIdParameter, pathParameter, pathId);
+        }
+    
+        public virtual int aspnet_Personalization_GetApplicationId(string applicationName, ObjectParameter applicationId)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Personalization_GetApplicationId", applicationNameParameter, applicationId);
+        }
+    
+        public virtual int aspnet_PersonalizationAdministration_DeleteAllState(Nullable<bool> allUsersScope, string applicationName, ObjectParameter count)
+        {
+            var allUsersScopeParameter = allUsersScope.HasValue ?
+                new ObjectParameter("AllUsersScope", allUsersScope) :
+                new ObjectParameter("AllUsersScope", typeof(bool));
+    
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationAdministration_DeleteAllState", allUsersScopeParameter, applicationNameParameter, count);
+        }
+    
+        public virtual int aspnet_PersonalizationAdministration_FindState(Nullable<bool> allUsersScope, string applicationName, Nullable<int> pageIndex, Nullable<int> pageSize, string path, string userName, Nullable<System.DateTime> inactiveSinceDate)
+        {
+            var allUsersScopeParameter = allUsersScope.HasValue ?
+                new ObjectParameter("AllUsersScope", allUsersScope) :
+                new ObjectParameter("AllUsersScope", typeof(bool));
+    
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var inactiveSinceDateParameter = inactiveSinceDate.HasValue ?
+                new ObjectParameter("InactiveSinceDate", inactiveSinceDate) :
+                new ObjectParameter("InactiveSinceDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationAdministration_FindState", allUsersScopeParameter, applicationNameParameter, pageIndexParameter, pageSizeParameter, pathParameter, userNameParameter, inactiveSinceDateParameter);
+        }
+    
+        public virtual int aspnet_PersonalizationAdministration_GetCountOfState(ObjectParameter count, Nullable<bool> allUsersScope, string applicationName, string path, string userName, Nullable<System.DateTime> inactiveSinceDate)
+        {
+            var allUsersScopeParameter = allUsersScope.HasValue ?
+                new ObjectParameter("AllUsersScope", allUsersScope) :
+                new ObjectParameter("AllUsersScope", typeof(bool));
+    
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var inactiveSinceDateParameter = inactiveSinceDate.HasValue ?
+                new ObjectParameter("InactiveSinceDate", inactiveSinceDate) :
+                new ObjectParameter("InactiveSinceDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationAdministration_GetCountOfState", count, allUsersScopeParameter, applicationNameParameter, pathParameter, userNameParameter, inactiveSinceDateParameter);
+        }
+    
+        public virtual int aspnet_PersonalizationAdministration_ResetSharedState(ObjectParameter count, string applicationName, string path)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationAdministration_ResetSharedState", count, applicationNameParameter, pathParameter);
+        }
+    
+        public virtual int aspnet_PersonalizationAdministration_ResetUserState(ObjectParameter count, string applicationName, Nullable<System.DateTime> inactiveSinceDate, string userName, string path)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var inactiveSinceDateParameter = inactiveSinceDate.HasValue ?
+                new ObjectParameter("InactiveSinceDate", inactiveSinceDate) :
+                new ObjectParameter("InactiveSinceDate", typeof(System.DateTime));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationAdministration_ResetUserState", count, applicationNameParameter, inactiveSinceDateParameter, userNameParameter, pathParameter);
+        }
+    
+        public virtual int aspnet_PersonalizationAllUsers_GetPageSettings(string applicationName, string path)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationAllUsers_GetPageSettings", applicationNameParameter, pathParameter);
+        }
+    
+        public virtual int aspnet_PersonalizationAllUsers_ResetPageSettings(string applicationName, string path)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationAllUsers_ResetPageSettings", applicationNameParameter, pathParameter);
+        }
+    
+        public virtual int aspnet_PersonalizationAllUsers_SetPageSettings(string applicationName, string path, byte[] pageSettings, Nullable<System.DateTime> currentTimeUtc)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            var pageSettingsParameter = pageSettings != null ?
+                new ObjectParameter("PageSettings", pageSettings) :
+                new ObjectParameter("PageSettings", typeof(byte[]));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationAllUsers_SetPageSettings", applicationNameParameter, pathParameter, pageSettingsParameter, currentTimeUtcParameter);
+        }
+    
+        public virtual int aspnet_PersonalizationPerUser_GetPageSettings(string applicationName, string userName, string path, Nullable<System.DateTime> currentTimeUtc)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationPerUser_GetPageSettings", applicationNameParameter, userNameParameter, pathParameter, currentTimeUtcParameter);
+        }
+    
+        public virtual int aspnet_PersonalizationPerUser_ResetPageSettings(string applicationName, string userName, string path, Nullable<System.DateTime> currentTimeUtc)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationPerUser_ResetPageSettings", applicationNameParameter, userNameParameter, pathParameter, currentTimeUtcParameter);
+        }
+    
+        public virtual int aspnet_PersonalizationPerUser_SetPageSettings(string applicationName, string userName, string path, byte[] pageSettings, Nullable<System.DateTime> currentTimeUtc)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var pathParameter = path != null ?
+                new ObjectParameter("Path", path) :
+                new ObjectParameter("Path", typeof(string));
+    
+            var pageSettingsParameter = pageSettings != null ?
+                new ObjectParameter("PageSettings", pageSettings) :
+                new ObjectParameter("PageSettings", typeof(byte[]));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_PersonalizationPerUser_SetPageSettings", applicationNameParameter, userNameParameter, pathParameter, pageSettingsParameter, currentTimeUtcParameter);
+        }
+    
+        public virtual int aspnet_Profile_DeleteInactiveProfiles(string applicationName, Nullable<int> profileAuthOptions, Nullable<System.DateTime> inactiveSinceDate)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var profileAuthOptionsParameter = profileAuthOptions.HasValue ?
+                new ObjectParameter("ProfileAuthOptions", profileAuthOptions) :
+                new ObjectParameter("ProfileAuthOptions", typeof(int));
+    
+            var inactiveSinceDateParameter = inactiveSinceDate.HasValue ?
+                new ObjectParameter("InactiveSinceDate", inactiveSinceDate) :
+                new ObjectParameter("InactiveSinceDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Profile_DeleteInactiveProfiles", applicationNameParameter, profileAuthOptionsParameter, inactiveSinceDateParameter);
+        }
+    
+        public virtual int aspnet_Profile_DeleteProfiles(string applicationName, string userNames)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNamesParameter = userNames != null ?
+                new ObjectParameter("UserNames", userNames) :
+                new ObjectParameter("UserNames", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Profile_DeleteProfiles", applicationNameParameter, userNamesParameter);
+        }
+    
+        public virtual int aspnet_Profile_GetNumberOfInactiveProfiles(string applicationName, Nullable<int> profileAuthOptions, Nullable<System.DateTime> inactiveSinceDate)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var profileAuthOptionsParameter = profileAuthOptions.HasValue ?
+                new ObjectParameter("ProfileAuthOptions", profileAuthOptions) :
+                new ObjectParameter("ProfileAuthOptions", typeof(int));
+    
+            var inactiveSinceDateParameter = inactiveSinceDate.HasValue ?
+                new ObjectParameter("InactiveSinceDate", inactiveSinceDate) :
+                new ObjectParameter("InactiveSinceDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Profile_GetNumberOfInactiveProfiles", applicationNameParameter, profileAuthOptionsParameter, inactiveSinceDateParameter);
+        }
+    
+        public virtual int aspnet_Profile_GetProfiles(string applicationName, Nullable<int> profileAuthOptions, Nullable<int> pageIndex, Nullable<int> pageSize, string userNameToMatch, Nullable<System.DateTime> inactiveSinceDate)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var profileAuthOptionsParameter = profileAuthOptions.HasValue ?
+                new ObjectParameter("ProfileAuthOptions", profileAuthOptions) :
+                new ObjectParameter("ProfileAuthOptions", typeof(int));
+    
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("PageSize", pageSize) :
+                new ObjectParameter("PageSize", typeof(int));
+    
+            var userNameToMatchParameter = userNameToMatch != null ?
+                new ObjectParameter("UserNameToMatch", userNameToMatch) :
+                new ObjectParameter("UserNameToMatch", typeof(string));
+    
+            var inactiveSinceDateParameter = inactiveSinceDate.HasValue ?
+                new ObjectParameter("InactiveSinceDate", inactiveSinceDate) :
+                new ObjectParameter("InactiveSinceDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Profile_GetProfiles", applicationNameParameter, profileAuthOptionsParameter, pageIndexParameter, pageSizeParameter, userNameToMatchParameter, inactiveSinceDateParameter);
+        }
+    
+        public virtual int aspnet_Profile_GetProperties(string applicationName, string userName, Nullable<System.DateTime> currentTimeUtc)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Profile_GetProperties", applicationNameParameter, userNameParameter, currentTimeUtcParameter);
+        }
+    
+        public virtual int aspnet_Profile_SetProperties(string applicationName, string propertyNames, string propertyValuesString, byte[] propertyValuesBinary, string userName, Nullable<bool> isUserAnonymous, Nullable<System.DateTime> currentTimeUtc)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var propertyNamesParameter = propertyNames != null ?
+                new ObjectParameter("PropertyNames", propertyNames) :
+                new ObjectParameter("PropertyNames", typeof(string));
+    
+            var propertyValuesStringParameter = propertyValuesString != null ?
+                new ObjectParameter("PropertyValuesString", propertyValuesString) :
+                new ObjectParameter("PropertyValuesString", typeof(string));
+    
+            var propertyValuesBinaryParameter = propertyValuesBinary != null ?
+                new ObjectParameter("PropertyValuesBinary", propertyValuesBinary) :
+                new ObjectParameter("PropertyValuesBinary", typeof(byte[]));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var isUserAnonymousParameter = isUserAnonymous.HasValue ?
+                new ObjectParameter("IsUserAnonymous", isUserAnonymous) :
+                new ObjectParameter("IsUserAnonymous", typeof(bool));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Profile_SetProperties", applicationNameParameter, propertyNamesParameter, propertyValuesStringParameter, propertyValuesBinaryParameter, userNameParameter, isUserAnonymousParameter, currentTimeUtcParameter);
+        }
+    
+        public virtual int aspnet_RegisterSchemaVersion(string feature, string compatibleSchemaVersion, Nullable<bool> isCurrentVersion, Nullable<bool> removeIncompatibleSchema)
+        {
+            var featureParameter = feature != null ?
+                new ObjectParameter("Feature", feature) :
+                new ObjectParameter("Feature", typeof(string));
+    
+            var compatibleSchemaVersionParameter = compatibleSchemaVersion != null ?
+                new ObjectParameter("CompatibleSchemaVersion", compatibleSchemaVersion) :
+                new ObjectParameter("CompatibleSchemaVersion", typeof(string));
+    
+            var isCurrentVersionParameter = isCurrentVersion.HasValue ?
+                new ObjectParameter("IsCurrentVersion", isCurrentVersion) :
+                new ObjectParameter("IsCurrentVersion", typeof(bool));
+    
+            var removeIncompatibleSchemaParameter = removeIncompatibleSchema.HasValue ?
+                new ObjectParameter("RemoveIncompatibleSchema", removeIncompatibleSchema) :
+                new ObjectParameter("RemoveIncompatibleSchema", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_RegisterSchemaVersion", featureParameter, compatibleSchemaVersionParameter, isCurrentVersionParameter, removeIncompatibleSchemaParameter);
+        }
+    
+        public virtual int aspnet_Roles_CreateRole(string applicationName, string roleName)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("RoleName", roleName) :
+                new ObjectParameter("RoleName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Roles_CreateRole", applicationNameParameter, roleNameParameter);
+        }
+    
+        public virtual int aspnet_Roles_DeleteRole(string applicationName, string roleName, Nullable<bool> deleteOnlyIfRoleIsEmpty)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("RoleName", roleName) :
+                new ObjectParameter("RoleName", typeof(string));
+    
+            var deleteOnlyIfRoleIsEmptyParameter = deleteOnlyIfRoleIsEmpty.HasValue ?
+                new ObjectParameter("DeleteOnlyIfRoleIsEmpty", deleteOnlyIfRoleIsEmpty) :
+                new ObjectParameter("DeleteOnlyIfRoleIsEmpty", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Roles_DeleteRole", applicationNameParameter, roleNameParameter, deleteOnlyIfRoleIsEmptyParameter);
+        }
+    
+        public virtual int aspnet_Roles_GetAllRoles(string applicationName)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Roles_GetAllRoles", applicationNameParameter);
+        }
+    
+        public virtual int aspnet_Roles_RoleExists(string applicationName, string roleName)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("RoleName", roleName) :
+                new ObjectParameter("RoleName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Roles_RoleExists", applicationNameParameter, roleNameParameter);
+        }
+    
+        public virtual int aspnet_Setup_RemoveAllRoleMembers(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Setup_RemoveAllRoleMembers", nameParameter);
+        }
+    
+        public virtual int aspnet_Setup_RestorePermissions(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Setup_RestorePermissions", nameParameter);
+        }
+    
+        public virtual int aspnet_UnRegisterSchemaVersion(string feature, string compatibleSchemaVersion)
+        {
+            var featureParameter = feature != null ?
+                new ObjectParameter("Feature", feature) :
+                new ObjectParameter("Feature", typeof(string));
+    
+            var compatibleSchemaVersionParameter = compatibleSchemaVersion != null ?
+                new ObjectParameter("CompatibleSchemaVersion", compatibleSchemaVersion) :
+                new ObjectParameter("CompatibleSchemaVersion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_UnRegisterSchemaVersion", featureParameter, compatibleSchemaVersionParameter);
+        }
+    
+        public virtual int aspnet_Users_CreateUser(Nullable<System.Guid> applicationId, string userName, Nullable<bool> isUserAnonymous, Nullable<System.DateTime> lastActivityDate, ObjectParameter userId)
+        {
+            var applicationIdParameter = applicationId.HasValue ?
+                new ObjectParameter("ApplicationId", applicationId) :
+                new ObjectParameter("ApplicationId", typeof(System.Guid));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var isUserAnonymousParameter = isUserAnonymous.HasValue ?
+                new ObjectParameter("IsUserAnonymous", isUserAnonymous) :
+                new ObjectParameter("IsUserAnonymous", typeof(bool));
+    
+            var lastActivityDateParameter = lastActivityDate.HasValue ?
+                new ObjectParameter("LastActivityDate", lastActivityDate) :
+                new ObjectParameter("LastActivityDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Users_CreateUser", applicationIdParameter, userNameParameter, isUserAnonymousParameter, lastActivityDateParameter, userId);
+        }
+    
+        public virtual int aspnet_Users_DeleteUser(string applicationName, string userName, Nullable<int> tablesToDeleteFrom, ObjectParameter numTablesDeletedFrom)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var tablesToDeleteFromParameter = tablesToDeleteFrom.HasValue ?
+                new ObjectParameter("TablesToDeleteFrom", tablesToDeleteFrom) :
+                new ObjectParameter("TablesToDeleteFrom", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_Users_DeleteUser", applicationNameParameter, userNameParameter, tablesToDeleteFromParameter, numTablesDeletedFrom);
+        }
+    
+        public virtual int aspnet_UsersInRoles_AddUsersToRoles(string applicationName, string userNames, string roleNames, Nullable<System.DateTime> currentTimeUtc)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNamesParameter = userNames != null ?
+                new ObjectParameter("UserNames", userNames) :
+                new ObjectParameter("UserNames", typeof(string));
+    
+            var roleNamesParameter = roleNames != null ?
+                new ObjectParameter("RoleNames", roleNames) :
+                new ObjectParameter("RoleNames", typeof(string));
+    
+            var currentTimeUtcParameter = currentTimeUtc.HasValue ?
+                new ObjectParameter("CurrentTimeUtc", currentTimeUtc) :
+                new ObjectParameter("CurrentTimeUtc", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_UsersInRoles_AddUsersToRoles", applicationNameParameter, userNamesParameter, roleNamesParameter, currentTimeUtcParameter);
+        }
+    
+        public virtual int aspnet_UsersInRoles_FindUsersInRole(string applicationName, string roleName, string userNameToMatch)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("RoleName", roleName) :
+                new ObjectParameter("RoleName", typeof(string));
+    
+            var userNameToMatchParameter = userNameToMatch != null ?
+                new ObjectParameter("UserNameToMatch", userNameToMatch) :
+                new ObjectParameter("UserNameToMatch", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_UsersInRoles_FindUsersInRole", applicationNameParameter, roleNameParameter, userNameToMatchParameter);
+        }
+    
+        public virtual int aspnet_UsersInRoles_GetRolesForUser(string applicationName, string userName)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_UsersInRoles_GetRolesForUser", applicationNameParameter, userNameParameter);
+        }
+    
+        public virtual int aspnet_UsersInRoles_GetUsersInRoles(string applicationName, string roleName)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("RoleName", roleName) :
+                new ObjectParameter("RoleName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_UsersInRoles_GetUsersInRoles", applicationNameParameter, roleNameParameter);
+        }
+    
+        public virtual int aspnet_UsersInRoles_IsUserInRole(string applicationName, string userName, string roleName)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var roleNameParameter = roleName != null ?
+                new ObjectParameter("RoleName", roleName) :
+                new ObjectParameter("RoleName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_UsersInRoles_IsUserInRole", applicationNameParameter, userNameParameter, roleNameParameter);
+        }
+    
+        public virtual int aspnet_UsersInRoles_RemoveUsersFromRoles(string applicationName, string userNames, string roleNames)
+        {
+            var applicationNameParameter = applicationName != null ?
+                new ObjectParameter("ApplicationName", applicationName) :
+                new ObjectParameter("ApplicationName", typeof(string));
+    
+            var userNamesParameter = userNames != null ?
+                new ObjectParameter("UserNames", userNames) :
+                new ObjectParameter("UserNames", typeof(string));
+    
+            var roleNamesParameter = roleNames != null ?
+                new ObjectParameter("RoleNames", roleNames) :
+                new ObjectParameter("RoleNames", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_UsersInRoles_RemoveUsersFromRoles", applicationNameParameter, userNamesParameter, roleNamesParameter);
+        }
+    
+        public virtual int aspnet_WebEvent_LogEvent(string eventId, Nullable<System.DateTime> eventTimeUtc, Nullable<System.DateTime> eventTime, string eventType, Nullable<decimal> eventSequence, Nullable<decimal> eventOccurrence, Nullable<int> eventCode, Nullable<int> eventDetailCode, string message, string applicationPath, string applicationVirtualPath, string machineName, string requestUrl, string exceptionType, string details)
+        {
+            var eventIdParameter = eventId != null ?
+                new ObjectParameter("EventId", eventId) :
+                new ObjectParameter("EventId", typeof(string));
+    
+            var eventTimeUtcParameter = eventTimeUtc.HasValue ?
+                new ObjectParameter("EventTimeUtc", eventTimeUtc) :
+                new ObjectParameter("EventTimeUtc", typeof(System.DateTime));
+    
+            var eventTimeParameter = eventTime.HasValue ?
+                new ObjectParameter("EventTime", eventTime) :
+                new ObjectParameter("EventTime", typeof(System.DateTime));
+    
+            var eventTypeParameter = eventType != null ?
+                new ObjectParameter("EventType", eventType) :
+                new ObjectParameter("EventType", typeof(string));
+    
+            var eventSequenceParameter = eventSequence.HasValue ?
+                new ObjectParameter("EventSequence", eventSequence) :
+                new ObjectParameter("EventSequence", typeof(decimal));
+    
+            var eventOccurrenceParameter = eventOccurrence.HasValue ?
+                new ObjectParameter("EventOccurrence", eventOccurrence) :
+                new ObjectParameter("EventOccurrence", typeof(decimal));
+    
+            var eventCodeParameter = eventCode.HasValue ?
+                new ObjectParameter("EventCode", eventCode) :
+                new ObjectParameter("EventCode", typeof(int));
+    
+            var eventDetailCodeParameter = eventDetailCode.HasValue ?
+                new ObjectParameter("EventDetailCode", eventDetailCode) :
+                new ObjectParameter("EventDetailCode", typeof(int));
+    
+            var messageParameter = message != null ?
+                new ObjectParameter("Message", message) :
+                new ObjectParameter("Message", typeof(string));
+    
+            var applicationPathParameter = applicationPath != null ?
+                new ObjectParameter("ApplicationPath", applicationPath) :
+                new ObjectParameter("ApplicationPath", typeof(string));
+    
+            var applicationVirtualPathParameter = applicationVirtualPath != null ?
+                new ObjectParameter("ApplicationVirtualPath", applicationVirtualPath) :
+                new ObjectParameter("ApplicationVirtualPath", typeof(string));
+    
+            var machineNameParameter = machineName != null ?
+                new ObjectParameter("MachineName", machineName) :
+                new ObjectParameter("MachineName", typeof(string));
+    
+            var requestUrlParameter = requestUrl != null ?
+                new ObjectParameter("RequestUrl", requestUrl) :
+                new ObjectParameter("RequestUrl", typeof(string));
+    
+            var exceptionTypeParameter = exceptionType != null ?
+                new ObjectParameter("ExceptionType", exceptionType) :
+                new ObjectParameter("ExceptionType", typeof(string));
+    
+            var detailsParameter = details != null ?
+                new ObjectParameter("Details", details) :
+                new ObjectParameter("Details", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("aspnet_WebEvent_LogEvent", eventIdParameter, eventTimeUtcParameter, eventTimeParameter, eventTypeParameter, eventSequenceParameter, eventOccurrenceParameter, eventCodeParameter, eventDetailCodeParameter, messageParameter, applicationPathParameter, applicationVirtualPathParameter, machineNameParameter, requestUrlParameter, exceptionTypeParameter, detailsParameter);
+        }
+    
+        public virtual ObjectResult<CountInspectByStatus_Result> CountInspectByStatus(string status)
+        {
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CountInspectByStatus_Result>("CountInspectByStatus", statusParameter);
+        }
+    
+        public virtual ObjectResult<GetActivityInspects_Result> GetActivityInspects(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActivityInspects_Result>("GetActivityInspects", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetAllInspections_Result> GetAllInspections(string currentUser, string status)
+        {
+            var currentUserParameter = currentUser != null ?
+                new ObjectParameter("currentUser", currentUser) :
+                new ObjectParameter("currentUser", typeof(string));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllInspections_Result>("GetAllInspections", currentUserParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<GetAreas_Result> GetAreas(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAreas_Result>("GetAreas", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetBMTT_Result> GetBMTT(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBMTT_Result>("GetBMTT", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetChucDanh_Result> GetChucDanh(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetChucDanh_Result>("GetChucDanh", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetDTTT_Result> GetDTTT(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDTTT_Result>("GetDTTT", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual int GetFinishedInspections(Nullable<int> pageIndex, Nullable<int> year, Nullable<int> pageSize, string searchKey, string currentOrg, string currentUser, string status)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("Year", year) :
+                new ObjectParameter("Year", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            var currentOrgParameter = currentOrg != null ?
+                new ObjectParameter("currentOrg", currentOrg) :
+                new ObjectParameter("currentOrg", typeof(string));
+    
+            var currentUserParameter = currentUser != null ?
+                new ObjectParameter("currentUser", currentUser) :
+                new ObjectParameter("currentUser", typeof(string));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetFinishedInspections", pageIndexParameter, yearParameter, pageSizeParameter, searchKeyParameter, currentOrgParameter, currentUserParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<GetGioiTinh_Result> GetGioiTinh(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetGioiTinh_Result>("GetGioiTinh", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetInspectionByID_Result> GetInspectionByID(string id)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInspectionByID_Result>("GetInspectionByID", idParameter);
+        }
+    
+        public virtual ObjectResult<GetInspections_Result> GetInspections(Nullable<int> pageIndex, Nullable<int> year, Nullable<int> pageSize, string searchKey, string currentUser, string donVi)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("Year", year) :
+                new ObjectParameter("Year", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            var currentUserParameter = currentUser != null ?
+                new ObjectParameter("currentUser", currentUser) :
+                new ObjectParameter("currentUser", typeof(string));
+    
+            var donViParameter = donVi != null ?
+                new ObjectParameter("DonVi", donVi) :
+                new ObjectParameter("DonVi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInspections_Result>("GetInspections", pageIndexParameter, yearParameter, pageSizeParameter, searchKeyParameter, currentUserParameter, donViParameter);
+        }
+    
+        public virtual ObjectResult<GetInspectionsV2_Result> GetInspectionsV2(string fCode)
+        {
+            var fCodeParameter = fCode != null ?
+                new ObjectParameter("FCode", fCode) :
+                new ObjectParameter("FCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInspectionsV2_Result>("GetInspectionsV2", fCodeParameter);
+        }
+    
+        public virtual ObjectResult<GetKeHoachDuKien_Result> GetKeHoachDuKien(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetKeHoachDuKien_Result>("GetKeHoachDuKien", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetLGT_Result> GetLGT(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLGT_Result>("GetLGT", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetLHDN_Result> GetLHDN(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLHDN_Result>("GetLHDN", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetLHTT_Result> GetLHTT(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLHTT_Result>("GetLHTT", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetObjectByInspection_Result> GetObjectByInspection(string f_Inspection)
+        {
+            var f_InspectionParameter = f_Inspection != null ?
+                new ObjectParameter("F_Inspection", f_Inspection) :
+                new ObjectParameter("F_Inspection", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetObjectByInspection_Result>("GetObjectByInspection", f_InspectionParameter);
+        }
+    
+        public virtual ObjectResult<GetObjectInSpections_Result> GetObjectInSpections(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey, string type)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("Type", type) :
+                new ObjectParameter("Type", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetObjectInSpections_Result>("GetObjectInSpections", pageIndexParameter, pageSizeParameter, searchKeyParameter, typeParameter);
+        }
+    
+        public virtual ObjectResult<GetPositions_Result> GetPositions(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPositions_Result>("GetPositions", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetProjectInSpections_Result> GetProjectInSpections(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProjectInSpections_Result>("GetProjectInSpections", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetTrangThai_Result> GetTrangThai(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetTrangThai_Result>("GetTrangThai", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetTypeInspections_Result> GetTypeInspections(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetTypeInspections_Result>("GetTypeInspections", pageIndexParameter, pageSizeParameter, searchKeyParameter);
+        }
+    
+        public virtual ObjectResult<GetUserReceived_Result> GetUserReceived(string curUser)
+        {
+            var curUserParameter = curUser != null ?
+                new ObjectParameter("curUser", curUser) :
+                new ObjectParameter("curUser", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUserReceived_Result>("GetUserReceived", curUserParameter);
+        }
+    
+        public virtual ObjectResult<GetUsers_Result> GetUsers(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey, string donVi)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            var donViParameter = donVi != null ?
+                new ObjectParameter("DonVi", donVi) :
+                new ObjectParameter("DonVi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUsers_Result>("GetUsers", pageIndexParameter, pageSizeParameter, searchKeyParameter, donViParameter);
+        }
+    
+        public virtual int Proc_Branch_Inspect_Khong_Trung(string fCode, Nullable<int> strYear, string lHTT)
+        {
+            var fCodeParameter = fCode != null ?
+                new ObjectParameter("FCode", fCode) :
+                new ObjectParameter("FCode", typeof(string));
+    
+            var strYearParameter = strYear.HasValue ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(int));
+    
+            var lHTTParameter = lHTT != null ?
+                new ObjectParameter("LHTT", lHTT) :
+                new ObjectParameter("LHTT", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_Branch_Inspect_Khong_Trung", fCodeParameter, strYearParameter, lHTTParameter);
+        }
+    
+        public virtual int Proc_Branch_Inspect_Trung(string fCode, Nullable<int> strYear, string lHTT)
+        {
+            var fCodeParameter = fCode != null ?
+                new ObjectParameter("FCode", fCode) :
+                new ObjectParameter("FCode", typeof(string));
+    
+            var strYearParameter = strYear.HasValue ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(int));
+    
+            var lHTTParameter = lHTT != null ?
+                new ObjectParameter("LHTT", lHTT) :
+                new ObjectParameter("LHTT", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_Branch_Inspect_Trung", fCodeParameter, strYearParameter, lHTTParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Proc_DemDoiTuongTrung(string strFInspection, Nullable<int> strYear, Nullable<int> strPL)
+        {
+            var strFInspectionParameter = strFInspection != null ?
+                new ObjectParameter("strFInspection", strFInspection) :
+                new ObjectParameter("strFInspection", typeof(string));
+    
+            var strYearParameter = strYear.HasValue ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(int));
+    
+            var strPLParameter = strPL.HasValue ?
+                new ObjectParameter("strPL", strPL) :
+                new ObjectParameter("strPL", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Proc_DemDoiTuongTrung", strFInspectionParameter, strYearParameter, strPLParameter);
+        }
+    
+        public virtual ObjectResult<Proc_FILE_DOC_Result> Proc_FILE_DOC(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey, string docID, string codeIns, string bien0, string bien1, string bien2)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            var docIDParameter = docID != null ?
+                new ObjectParameter("DocID", docID) :
+                new ObjectParameter("DocID", typeof(string));
+    
+            var codeInsParameter = codeIns != null ?
+                new ObjectParameter("CodeIns", codeIns) :
+                new ObjectParameter("CodeIns", typeof(string));
+    
+            var bien0Parameter = bien0 != null ?
+                new ObjectParameter("Bien0", bien0) :
+                new ObjectParameter("Bien0", typeof(string));
+    
+            var bien1Parameter = bien1 != null ?
+                new ObjectParameter("Bien1", bien1) :
+                new ObjectParameter("Bien1", typeof(string));
+    
+            var bien2Parameter = bien2 != null ?
+                new ObjectParameter("Bien2", bien2) :
+                new ObjectParameter("Bien2", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_FILE_DOC_Result>("Proc_FILE_DOC", pageIndexParameter, pageSizeParameter, searchKeyParameter, docIDParameter, codeInsParameter, bien0Parameter, bien1Parameter, bien2Parameter);
+        }
+    
+        public virtual int Proc_GetAllInspectionByYear(Nullable<int> currPage, Nullable<int> recodperpage, Nullable<int> strYear, string strBranhCode, string strSearch, string strPhanLoai, string strFPlan, string strStatusSend, string strapprove)
+        {
+            var currPageParameter = currPage.HasValue ?
+                new ObjectParameter("currPage", currPage) :
+                new ObjectParameter("currPage", typeof(int));
+    
+            var recodperpageParameter = recodperpage.HasValue ?
+                new ObjectParameter("recodperpage", recodperpage) :
+                new ObjectParameter("recodperpage", typeof(int));
+    
+            var strYearParameter = strYear.HasValue ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(int));
+    
+            var strBranhCodeParameter = strBranhCode != null ?
+                new ObjectParameter("strBranhCode", strBranhCode) :
+                new ObjectParameter("strBranhCode", typeof(string));
+    
+            var strSearchParameter = strSearch != null ?
+                new ObjectParameter("strSearch", strSearch) :
+                new ObjectParameter("strSearch", typeof(string));
+    
+            var strPhanLoaiParameter = strPhanLoai != null ?
+                new ObjectParameter("strPhanLoai", strPhanLoai) :
+                new ObjectParameter("strPhanLoai", typeof(string));
+    
+            var strFPlanParameter = strFPlan != null ?
+                new ObjectParameter("strFPlan", strFPlan) :
+                new ObjectParameter("strFPlan", typeof(string));
+    
+            var strStatusSendParameter = strStatusSend != null ?
+                new ObjectParameter("strStatusSend", strStatusSend) :
+                new ObjectParameter("strStatusSend", typeof(string));
+    
+            var strapproveParameter = strapprove != null ?
+                new ObjectParameter("strapprove", strapprove) :
+                new ObjectParameter("strapprove", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_GetAllInspectionByYear", currPageParameter, recodperpageParameter, strYearParameter, strBranhCodeParameter, strSearchParameter, strPhanLoaiParameter, strFPlanParameter, strStatusSendParameter, strapproveParameter);
+        }
+    
+        public virtual ObjectResult<Proc_GetAllPlanByYear_Result> Proc_GetAllPlanByYear(Nullable<int> currPage, Nullable<int> recodperpage, Nullable<int> strYear, string strBranhCode, string strSearch, string strPhanLoai, string strUser, string strUid, string strStatusSend, string strapprove)
+        {
+            var currPageParameter = currPage.HasValue ?
+                new ObjectParameter("currPage", currPage) :
+                new ObjectParameter("currPage", typeof(int));
+    
+            var recodperpageParameter = recodperpage.HasValue ?
+                new ObjectParameter("recodperpage", recodperpage) :
+                new ObjectParameter("recodperpage", typeof(int));
+    
+            var strYearParameter = strYear.HasValue ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(int));
+    
+            var strBranhCodeParameter = strBranhCode != null ?
+                new ObjectParameter("strBranhCode", strBranhCode) :
+                new ObjectParameter("strBranhCode", typeof(string));
+    
+            var strSearchParameter = strSearch != null ?
+                new ObjectParameter("strSearch", strSearch) :
+                new ObjectParameter("strSearch", typeof(string));
+    
+            var strPhanLoaiParameter = strPhanLoai != null ?
+                new ObjectParameter("strPhanLoai", strPhanLoai) :
+                new ObjectParameter("strPhanLoai", typeof(string));
+    
+            var strUserParameter = strUser != null ?
+                new ObjectParameter("strUser", strUser) :
+                new ObjectParameter("strUser", typeof(string));
+    
+            var strUidParameter = strUid != null ?
+                new ObjectParameter("strUid", strUid) :
+                new ObjectParameter("strUid", typeof(string));
+    
+            var strStatusSendParameter = strStatusSend != null ?
+                new ObjectParameter("strStatusSend", strStatusSend) :
+                new ObjectParameter("strStatusSend", typeof(string));
+    
+            var strapproveParameter = strapprove != null ?
+                new ObjectParameter("strapprove", strapprove) :
+                new ObjectParameter("strapprove", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_GetAllPlanByYear_Result>("Proc_GetAllPlanByYear", currPageParameter, recodperpageParameter, strYearParameter, strBranhCodeParameter, strSearchParameter, strPhanLoaiParameter, strUserParameter, strUidParameter, strStatusSendParameter, strapproveParameter);
+        }
+    
+        public virtual int Proc_GetObjByInspection(Nullable<int> currPage, Nullable<int> recodperpage, Nullable<int> strYear, string strBranhCode, string strSearch, string strBien00, string strBien0, string strBien1, string strBien2, string strBien3)
+        {
+            var currPageParameter = currPage.HasValue ?
+                new ObjectParameter("currPage", currPage) :
+                new ObjectParameter("currPage", typeof(int));
+    
+            var recodperpageParameter = recodperpage.HasValue ?
+                new ObjectParameter("recodperpage", recodperpage) :
+                new ObjectParameter("recodperpage", typeof(int));
+    
+            var strYearParameter = strYear.HasValue ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(int));
+    
+            var strBranhCodeParameter = strBranhCode != null ?
+                new ObjectParameter("strBranhCode", strBranhCode) :
+                new ObjectParameter("strBranhCode", typeof(string));
+    
+            var strSearchParameter = strSearch != null ?
+                new ObjectParameter("strSearch", strSearch) :
+                new ObjectParameter("strSearch", typeof(string));
+    
+            var strBien00Parameter = strBien00 != null ?
+                new ObjectParameter("strBien00", strBien00) :
+                new ObjectParameter("strBien00", typeof(string));
+    
+            var strBien0Parameter = strBien0 != null ?
+                new ObjectParameter("strBien0", strBien0) :
+                new ObjectParameter("strBien0", typeof(string));
+    
+            var strBien1Parameter = strBien1 != null ?
+                new ObjectParameter("strBien1", strBien1) :
+                new ObjectParameter("strBien1", typeof(string));
+    
+            var strBien2Parameter = strBien2 != null ?
+                new ObjectParameter("strBien2", strBien2) :
+                new ObjectParameter("strBien2", typeof(string));
+    
+            var strBien3Parameter = strBien3 != null ?
+                new ObjectParameter("strBien3", strBien3) :
+                new ObjectParameter("strBien3", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_GetObjByInspection", currPageParameter, recodperpageParameter, strYearParameter, strBranhCodeParameter, strSearchParameter, strBien00Parameter, strBien0Parameter, strBien1Parameter, strBien2Parameter, strBien3Parameter);
+        }
+    
+        public virtual ObjectResult<Proc_Inspection_Obj_Result> Proc_Inspection_Obj(Nullable<int> pageIndex, Nullable<int> pageSize, string strSearch, string fCodeOBJ, string plan, string user, string strYear)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var strSearchParameter = strSearch != null ?
+                new ObjectParameter("strSearch", strSearch) :
+                new ObjectParameter("strSearch", typeof(string));
+    
+            var fCodeOBJParameter = fCodeOBJ != null ?
+                new ObjectParameter("FCodeOBJ", fCodeOBJ) :
+                new ObjectParameter("FCodeOBJ", typeof(string));
+    
+            var planParameter = plan != null ?
+                new ObjectParameter("Plan", plan) :
+                new ObjectParameter("Plan", typeof(string));
+    
+            var userParameter = user != null ?
+                new ObjectParameter("User", user) :
+                new ObjectParameter("User", typeof(string));
+    
+            var strYearParameter = strYear != null ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_Inspection_Obj_Result>("Proc_Inspection_Obj", pageIndexParameter, pageSizeParameter, strSearchParameter, fCodeOBJParameter, planParameter, userParameter, strYearParameter);
+        }
+    
+        public virtual ObjectResult<Proc_NDKiemTrung_Result> Proc_NDKiemTrung(Nullable<int> pageIndex, Nullable<int> pageSize, string strSearch, string fCode)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var strSearchParameter = strSearch != null ?
+                new ObjectParameter("strSearch", strSearch) :
+                new ObjectParameter("strSearch", typeof(string));
+    
+            var fCodeParameter = fCode != null ?
+                new ObjectParameter("FCode", fCode) :
+                new ObjectParameter("FCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_NDKiemTrung_Result>("Proc_NDKiemTrung", pageIndexParameter, pageSizeParameter, strSearchParameter, fCodeParameter);
+        }
+    
+        public virtual int Proc_Obj_Inspect_Trung(Nullable<int> pageIndex, Nullable<int> pageSize, string fCode, Nullable<int> strYear, string sttSend, string fodeObj, string fOrg, string lHTT, string lHTTCode)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var fCodeParameter = fCode != null ?
+                new ObjectParameter("FCode", fCode) :
+                new ObjectParameter("FCode", typeof(string));
+    
+            var strYearParameter = strYear.HasValue ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(int));
+    
+            var sttSendParameter = sttSend != null ?
+                new ObjectParameter("SttSend", sttSend) :
+                new ObjectParameter("SttSend", typeof(string));
+    
+            var fodeObjParameter = fodeObj != null ?
+                new ObjectParameter("FodeObj", fodeObj) :
+                new ObjectParameter("FodeObj", typeof(string));
+    
+            var fOrgParameter = fOrg != null ?
+                new ObjectParameter("FOrg", fOrg) :
+                new ObjectParameter("FOrg", typeof(string));
+    
+            var lHTTParameter = lHTT != null ?
+                new ObjectParameter("LHTT", lHTT) :
+                new ObjectParameter("LHTT", typeof(string));
+    
+            var lHTTCodeParameter = lHTTCode != null ?
+                new ObjectParameter("LHTTCode", lHTTCode) :
+                new ObjectParameter("LHTTCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_Obj_Inspect_Trung", pageIndexParameter, pageSizeParameter, fCodeParameter, strYearParameter, sttSendParameter, fodeObjParameter, fOrgParameter, lHTTParameter, lHTTCodeParameter);
+        }
+    
+        public virtual int Proc_ObjectInspection(Nullable<int> currPage, Nullable<int> pagesize, string codeArea, string typeArea, string parentArea, string code, string searchKey, string type, string listObjByInspection)
+        {
+            var currPageParameter = currPage.HasValue ?
+                new ObjectParameter("currPage", currPage) :
+                new ObjectParameter("currPage", typeof(int));
+    
+            var pagesizeParameter = pagesize.HasValue ?
+                new ObjectParameter("Pagesize", pagesize) :
+                new ObjectParameter("Pagesize", typeof(int));
+    
+            var codeAreaParameter = codeArea != null ?
+                new ObjectParameter("CodeArea", codeArea) :
+                new ObjectParameter("CodeArea", typeof(string));
+    
+            var typeAreaParameter = typeArea != null ?
+                new ObjectParameter("TypeArea", typeArea) :
+                new ObjectParameter("TypeArea", typeof(string));
+    
+            var parentAreaParameter = parentArea != null ?
+                new ObjectParameter("ParentArea", parentArea) :
+                new ObjectParameter("ParentArea", typeof(string));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("code", code) :
+                new ObjectParameter("code", typeof(string));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("searchKey", searchKey) :
+                new ObjectParameter("searchKey", typeof(string));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("Type", type) :
+                new ObjectParameter("Type", typeof(string));
+    
+            var listObjByInspectionParameter = listObjByInspection != null ?
+                new ObjectParameter("ListObjByInspection", listObjByInspection) :
+                new ObjectParameter("ListObjByInspection", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_ObjectInspection", currPageParameter, pagesizeParameter, codeAreaParameter, typeAreaParameter, parentAreaParameter, codeParameter, searchKeyParameter, typeParameter, listObjByInspectionParameter);
+        }
+    
+        public virtual int Proc_OrgInspection(Nullable<int> currPage, Nullable<int> pagesize, Nullable<int> codeArea, string typeArea, string parentArea, string code, string searchKey, string type, string listObjByInspection)
+        {
+            var currPageParameter = currPage.HasValue ?
+                new ObjectParameter("currPage", currPage) :
+                new ObjectParameter("currPage", typeof(int));
+    
+            var pagesizeParameter = pagesize.HasValue ?
+                new ObjectParameter("Pagesize", pagesize) :
+                new ObjectParameter("Pagesize", typeof(int));
+    
+            var codeAreaParameter = codeArea.HasValue ?
+                new ObjectParameter("CodeArea", codeArea) :
+                new ObjectParameter("CodeArea", typeof(int));
+    
+            var typeAreaParameter = typeArea != null ?
+                new ObjectParameter("TypeArea", typeArea) :
+                new ObjectParameter("TypeArea", typeof(string));
+    
+            var parentAreaParameter = parentArea != null ?
+                new ObjectParameter("ParentArea", parentArea) :
+                new ObjectParameter("ParentArea", typeof(string));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("code", code) :
+                new ObjectParameter("code", typeof(string));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("searchKey", searchKey) :
+                new ObjectParameter("searchKey", typeof(string));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("Type", type) :
+                new ObjectParameter("Type", typeof(string));
+    
+            var listObjByInspectionParameter = listObjByInspection != null ?
+                new ObjectParameter("ListObjByInspection", listObjByInspection) :
+                new ObjectParameter("ListObjByInspection", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_OrgInspection", currPageParameter, pagesizeParameter, codeAreaParameter, typeAreaParameter, parentAreaParameter, codeParameter, searchKeyParameter, typeParameter, listObjByInspectionParameter);
+        }
+    
+        public virtual int Proc_ProjectInspection(Nullable<int> currPage, Nullable<int> pagesize, Nullable<int> strYear, string strBranhCode, string strSearch, string strFOrg, string listObjByInspection)
+        {
+            var currPageParameter = currPage.HasValue ?
+                new ObjectParameter("currPage", currPage) :
+                new ObjectParameter("currPage", typeof(int));
+    
+            var pagesizeParameter = pagesize.HasValue ?
+                new ObjectParameter("Pagesize", pagesize) :
+                new ObjectParameter("Pagesize", typeof(int));
+    
+            var strYearParameter = strYear.HasValue ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(int));
+    
+            var strBranhCodeParameter = strBranhCode != null ?
+                new ObjectParameter("strBranhCode", strBranhCode) :
+                new ObjectParameter("strBranhCode", typeof(string));
+    
+            var strSearchParameter = strSearch != null ?
+                new ObjectParameter("strSearch", strSearch) :
+                new ObjectParameter("strSearch", typeof(string));
+    
+            var strFOrgParameter = strFOrg != null ?
+                new ObjectParameter("strFOrg", strFOrg) :
+                new ObjectParameter("strFOrg", typeof(string));
+    
+            var listObjByInspectionParameter = listObjByInspection != null ?
+                new ObjectParameter("ListObjByInspection", listObjByInspection) :
+                new ObjectParameter("ListObjByInspection", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_ProjectInspection", currPageParameter, pagesizeParameter, strYearParameter, strBranhCodeParameter, strSearchParameter, strFOrgParameter, listObjByInspectionParameter);
+        }
+    
+        public virtual ObjectResult<Proc_Search_DonVi_Ins_Result> Proc_Search_DonVi_Ins(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey, Nullable<int> year, string bien, string bien0, string bien1, string lHTT)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("Year", year) :
+                new ObjectParameter("Year", typeof(int));
+    
+            var bienParameter = bien != null ?
+                new ObjectParameter("bien", bien) :
+                new ObjectParameter("bien", typeof(string));
+    
+            var bien0Parameter = bien0 != null ?
+                new ObjectParameter("bien0", bien0) :
+                new ObjectParameter("bien0", typeof(string));
+    
+            var bien1Parameter = bien1 != null ?
+                new ObjectParameter("Bien1", bien1) :
+                new ObjectParameter("Bien1", typeof(string));
+    
+            var lHTTParameter = lHTT != null ?
+                new ObjectParameter("LHTT", lHTT) :
+                new ObjectParameter("LHTT", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_Search_DonVi_Ins_Result>("Proc_Search_DonVi_Ins", pageIndexParameter, pageSizeParameter, searchKeyParameter, yearParameter, bienParameter, bien0Parameter, bien1Parameter, lHTTParameter);
+        }
+    
+        public virtual int Proc_SearchDocument(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey, string searchKeyDoc, string strYear, string strBranhCode, string objIns, string codeIns, string type)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            var searchKeyDocParameter = searchKeyDoc != null ?
+                new ObjectParameter("SearchKeyDoc", searchKeyDoc) :
+                new ObjectParameter("SearchKeyDoc", typeof(string));
+    
+            var strYearParameter = strYear != null ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(string));
+    
+            var strBranhCodeParameter = strBranhCode != null ?
+                new ObjectParameter("strBranhCode", strBranhCode) :
+                new ObjectParameter("strBranhCode", typeof(string));
+    
+            var objInsParameter = objIns != null ?
+                new ObjectParameter("ObjIns", objIns) :
+                new ObjectParameter("ObjIns", typeof(string));
+    
+            var codeInsParameter = codeIns != null ?
+                new ObjectParameter("CodeIns", codeIns) :
+                new ObjectParameter("CodeIns", typeof(string));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("Type", type) :
+                new ObjectParameter("Type", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_SearchDocument", pageIndexParameter, pageSizeParameter, searchKeyParameter, searchKeyDocParameter, strYearParameter, strBranhCodeParameter, objInsParameter, codeInsParameter, typeParameter);
+        }
+    
+        public virtual ObjectResult<Proc_SearchDocumentAll_Result> Proc_SearchDocumentAll(Nullable<int> pageIndex, Nullable<int> pageSize, string type, string fInspection, string fObj)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("Type", type) :
+                new ObjectParameter("Type", typeof(string));
+    
+            var fInspectionParameter = fInspection != null ?
+                new ObjectParameter("FInspection", fInspection) :
+                new ObjectParameter("FInspection", typeof(string));
+    
+            var fObjParameter = fObj != null ?
+                new ObjectParameter("FObj", fObj) :
+                new ObjectParameter("FObj", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_SearchDocumentAll_Result>("Proc_SearchDocumentAll", pageIndexParameter, pageSizeParameter, typeParameter, fInspectionParameter, fObjParameter);
+        }
+    
+        public virtual int Proc_SearchDTTTkoTrung(string fCode, Nullable<int> year)
+        {
+            var fCodeParameter = fCode != null ?
+                new ObjectParameter("FCode", fCode) :
+                new ObjectParameter("FCode", typeof(string));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("Year", year) :
+                new ObjectParameter("Year", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_SearchDTTTkoTrung", fCodeParameter, yearParameter);
+        }
+    
+        public virtual int Proc_SearchDTTTTrung(string fCode, Nullable<int> year)
+        {
+            var fCodeParameter = fCode != null ?
+                new ObjectParameter("FCode", fCode) :
+                new ObjectParameter("FCode", typeof(string));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("Year", year) :
+                new ObjectParameter("Year", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_SearchDTTTTrung", fCodeParameter, yearParameter);
+        }
+    
+        public virtual ObjectResult<Proc_SearchInspection_Result> Proc_SearchInspection(Nullable<int> pageIndex, Nullable<int> pageSize, string strSearch, Nullable<int> strYear, string plan, string strOrg, string fCodeUser, string fCode, string stt, string loaiIns, string lHTT, string lHTTCode)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var strSearchParameter = strSearch != null ?
+                new ObjectParameter("strSearch", strSearch) :
+                new ObjectParameter("strSearch", typeof(string));
+    
+            var strYearParameter = strYear.HasValue ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(int));
+    
+            var planParameter = plan != null ?
+                new ObjectParameter("Plan", plan) :
+                new ObjectParameter("Plan", typeof(string));
+    
+            var strOrgParameter = strOrg != null ?
+                new ObjectParameter("strOrg", strOrg) :
+                new ObjectParameter("strOrg", typeof(string));
+    
+            var fCodeUserParameter = fCodeUser != null ?
+                new ObjectParameter("FCodeUser", fCodeUser) :
+                new ObjectParameter("FCodeUser", typeof(string));
+    
+            var fCodeParameter = fCode != null ?
+                new ObjectParameter("FCode", fCode) :
+                new ObjectParameter("FCode", typeof(string));
+    
+            var sttParameter = stt != null ?
+                new ObjectParameter("stt", stt) :
+                new ObjectParameter("stt", typeof(string));
+    
+            var loaiInsParameter = loaiIns != null ?
+                new ObjectParameter("LoaiIns", loaiIns) :
+                new ObjectParameter("LoaiIns", typeof(string));
+    
+            var lHTTParameter = lHTT != null ?
+                new ObjectParameter("LHTT", lHTT) :
+                new ObjectParameter("LHTT", typeof(string));
+    
+            var lHTTCodeParameter = lHTTCode != null ?
+                new ObjectParameter("LHTTCode", lHTTCode) :
+                new ObjectParameter("LHTTCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_SearchInspection_Result>("Proc_SearchInspection", pageIndexParameter, pageSizeParameter, strSearchParameter, strYearParameter, planParameter, strOrgParameter, fCodeUserParameter, fCodeParameter, sttParameter, loaiInsParameter, lHTTParameter, lHTTCodeParameter);
+        }
+    
+        public virtual ObjectResult<Proc_SearchObjectInspect_Result> Proc_SearchObjectInspect(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey, string typeDb, string value, string dTThanhTra, string fCodeUser, string bien1, string bien2)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            var typeDbParameter = typeDb != null ?
+                new ObjectParameter("TypeDb", typeDb) :
+                new ObjectParameter("TypeDb", typeof(string));
+    
+            var valueParameter = value != null ?
+                new ObjectParameter("Value", value) :
+                new ObjectParameter("Value", typeof(string));
+    
+            var dTThanhTraParameter = dTThanhTra != null ?
+                new ObjectParameter("DTThanhTra", dTThanhTra) :
+                new ObjectParameter("DTThanhTra", typeof(string));
+    
+            var fCodeUserParameter = fCodeUser != null ?
+                new ObjectParameter("FCodeUser", fCodeUser) :
+                new ObjectParameter("FCodeUser", typeof(string));
+    
+            var bien1Parameter = bien1 != null ?
+                new ObjectParameter("Bien1", bien1) :
+                new ObjectParameter("Bien1", typeof(string));
+    
+            var bien2Parameter = bien2 != null ?
+                new ObjectParameter("Bien2", bien2) :
+                new ObjectParameter("Bien2", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_SearchObjectInspect_Result>("Proc_SearchObjectInspect", pageIndexParameter, pageSizeParameter, searchKeyParameter, typeDbParameter, valueParameter, dTThanhTraParameter, fCodeUserParameter, bien1Parameter, bien2Parameter);
+        }
+    
+        public virtual ObjectResult<Proc_SearchOrganization_Result> Proc_SearchOrganization(Nullable<int> pageIndex, Nullable<int> pageSize, string searchKey, string typeDb, string value, string fCodeUser, string bien1, string bien2)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            var typeDbParameter = typeDb != null ?
+                new ObjectParameter("TypeDb", typeDb) :
+                new ObjectParameter("TypeDb", typeof(string));
+    
+            var valueParameter = value != null ?
+                new ObjectParameter("Value", value) :
+                new ObjectParameter("Value", typeof(string));
+    
+            var fCodeUserParameter = fCodeUser != null ?
+                new ObjectParameter("FCodeUser", fCodeUser) :
+                new ObjectParameter("FCodeUser", typeof(string));
+    
+            var bien1Parameter = bien1 != null ?
+                new ObjectParameter("Bien1", bien1) :
+                new ObjectParameter("Bien1", typeof(string));
+    
+            var bien2Parameter = bien2 != null ?
+                new ObjectParameter("Bien2", bien2) :
+                new ObjectParameter("Bien2", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_SearchOrganization_Result>("Proc_SearchOrganization", pageIndexParameter, pageSizeParameter, searchKeyParameter, typeDbParameter, valueParameter, fCodeUserParameter, bien1Parameter, bien2Parameter);
+        }
+    
+        public virtual ObjectResult<Proc_SearchPlan_Result> Proc_SearchPlan(Nullable<int> pageIndex, Nullable<int> pageSize, string strYear, string strOrg, string fCode)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var strYearParameter = strYear != null ?
+                new ObjectParameter("strYear", strYear) :
+                new ObjectParameter("strYear", typeof(string));
+    
+            var strOrgParameter = strOrg != null ?
+                new ObjectParameter("strOrg", strOrg) :
+                new ObjectParameter("strOrg", typeof(string));
+    
+            var fCodeParameter = fCode != null ?
+                new ObjectParameter("FCode", fCode) :
+                new ObjectParameter("FCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_SearchPlan_Result>("Proc_SearchPlan", pageIndexParameter, pageSizeParameter, strYearParameter, strOrgParameter, fCodeParameter);
+        }
+    
+        public virtual ObjectResult<Proc_SearchProjectInspect_Result> Proc_SearchProjectInspect(Nullable<int> pageIndex, Nullable<int> pageSize, string typeDb, string value, string org, string searchKey, string fCode, string bien1, string bien2, string lHTT, string codeLHTT)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("PageIndex", pageIndex) :
+                new ObjectParameter("PageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var typeDbParameter = typeDb != null ?
+                new ObjectParameter("TypeDb", typeDb) :
+                new ObjectParameter("TypeDb", typeof(string));
+    
+            var valueParameter = value != null ?
+                new ObjectParameter("Value", value) :
+                new ObjectParameter("Value", typeof(string));
+    
+            var orgParameter = org != null ?
+                new ObjectParameter("Org", org) :
+                new ObjectParameter("Org", typeof(string));
+    
+            var searchKeyParameter = searchKey != null ?
+                new ObjectParameter("SearchKey", searchKey) :
+                new ObjectParameter("SearchKey", typeof(string));
+    
+            var fCodeParameter = fCode != null ?
+                new ObjectParameter("FCode", fCode) :
+                new ObjectParameter("FCode", typeof(string));
+    
+            var bien1Parameter = bien1 != null ?
+                new ObjectParameter("bien1", bien1) :
+                new ObjectParameter("bien1", typeof(string));
+    
+            var bien2Parameter = bien2 != null ?
+                new ObjectParameter("bien2", bien2) :
+                new ObjectParameter("bien2", typeof(string));
+    
+            var lHTTParameter = lHTT != null ?
+                new ObjectParameter("LHTT", lHTT) :
+                new ObjectParameter("LHTT", typeof(string));
+    
+            var codeLHTTParameter = codeLHTT != null ?
+                new ObjectParameter("CodeLHTT", codeLHTT) :
+                new ObjectParameter("CodeLHTT", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Proc_SearchProjectInspect_Result>("Proc_SearchProjectInspect", pageIndexParameter, pageSizeParameter, typeDbParameter, valueParameter, orgParameter, searchKeyParameter, fCodeParameter, bien1Parameter, bien2Parameter, lHTTParameter, codeLHTTParameter);
+        }
+    
+        [DbFunction("WebApiDataEntities", "SplitStringToTable")]
+        public virtual IQueryable<string> SplitStringToTable(string myString, string deliminator)
+        {
+            var myStringParameter = myString != null ?
+                new ObjectParameter("myString", myString) :
+                new ObjectParameter("myString", typeof(string));
+    
+            var deliminatorParameter = deliminator != null ?
+                new ObjectParameter("deliminator", deliminator) :
+                new ObjectParameter("deliminator", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<string>("[WebApiDataEntities].[SplitStringToTable](@myString, @deliminator)", myStringParameter, deliminatorParameter);
+        }
     }
 }

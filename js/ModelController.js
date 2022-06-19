@@ -4,7 +4,7 @@
     $scope.type = $scope.$resolve.type;
     $scope.ArrThongTinKhac = []
     if ($scope.item != null && $scope.item != null && $scope.item != '') {
-        try { $scope.ArrThongTinKhac = JSON.parse($scope.item.ThongTinKhac) } catch{ }
+        try { $scope.ArrThongTinKhac = JSON.parse($scope.item.ThongTinKhac) } catch { }
 
         $scope.LoadProvin('0', '0', '0');
         $scope.LoadProvin($scope.item.IDTinh, $scope.item.IDHuyen, $scope.item.IDXa);
@@ -413,7 +413,7 @@ angular.module('WebApiApp').controller("ModalDMCacThanhVienHandlerController", f
                     $scope.openModal('', 'DMCacThanhVien', $scope.check)
                 try {
                     $rootScope.SelectedDoiTuong.push($scope.item)
-                } catch{ }
+                } catch { }
             },
             function errorCallback(response) {
                 //console.log(response)
@@ -932,7 +932,7 @@ angular.module("WebApiApp").controller("ModalSetBackupConfigHandlerController", 
 
 });
 
-angular.module('WebApiApp').controller("ModalCreateDataHandlerController", function ($rootScope, $scope, $http, $uibModalInstance) {
+angular.module('WebApiApp').controller("ModalCreateDataHandlerController", function ($rootScope, $scope, $http, $uibModalInstance, $stateParams) {
     $scope.item = $scope.$resolve.item;
     $scope.type = $scope.$resolve.type;
     $scope.check = $scope.$resolve.check;
@@ -940,8 +940,20 @@ angular.module('WebApiApp').controller("ModalCreateDataHandlerController", funct
     $scope.cancelModal = function () {
         $uibModalInstance.dismiss('close');
     }
+
+    if ($scope.item) {
+        if ($scope.item.SendDate)
+            $scope.item.SendDate = new Date($scope.item.SendDate)
+        if ($scope.item.DateOfBirth)
+            $scope.item.DateOfBirth = new Date($scope.item.DateOfBirth)
+    }
+    else $scope.item = {
+        IdList: $stateParams.Id,
+        FInUse: true
+    }
+
     $scope.Calculate = function () {
-        
+
         $scope.item.AverageWage = $scope.item.AverageWage_Tax - $scope.item.Deduct;
         $scope.item.Coefficient = $scope.item.Coefficient_Tax;
         $scope.item.Pension = $scope.item.AverageWage * $scope.item.Coefficient;
@@ -965,7 +977,7 @@ angular.module('WebApiApp').controller("ModalCreateDataHandlerController", funct
         }).then(function successCallback(response) {
             $scope.item = response.data;
             $scope.itemError = "";
-            toastr.success('Đã tính toán và lưu dữ liệu thành công !', 'Thông báo');
+            toastr.success('Lưu dữ liệu thành công !', 'Thông báo');
             $rootScope.LoadHS();
             if (isNew)
                 $scope.item = '';
@@ -980,3 +992,41 @@ angular.module('WebApiApp').controller("ModalCreateDataHandlerController", funct
 
 });
 
+angular.module('WebApiApp').controller("ModalUpdateDataHandlerController", function ($rootScope, $scope, $http, $uibModalInstance, $stateParams) {
+    $scope.item = $scope.$resolve.item;
+    $scope.type = $scope.$resolve.type;
+    $scope.check = $scope.$resolve.check;
+
+    $scope.cancelModal = function () {
+        $uibModalInstance.dismiss('close');
+    }
+
+    $scope.Data = {
+        EMSCode: null,
+        CostOfLiving: null,
+        Calculate: null,
+        Pay: null,
+        DateToPay: null,
+        ListInfo: $rootScope.SelectedHoSoQL
+    }
+
+   
+
+    $scope.SaveModal = function () {
+
+        $http({
+            method: 'POST',
+            url: 'api/ListInfo/UpdateList',
+            data: $scope.Data
+        }).then(function successCallback(response) {
+            $scope.item = response.data;
+            toastr.success('Lưu dữ liệu thành công !', 'Thông báo');
+            $rootScope.LoadHS();
+            $scope.cancelModal();
+        }, function errorCallback(response) {
+            toastr.error('Có lỗi xảy ra hoặc bạn chưa điền đầy đủ các trường bắt buộc !', 'Thông báo');
+        });
+
+    }
+
+});

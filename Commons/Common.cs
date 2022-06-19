@@ -95,7 +95,7 @@ namespace WebApiCore.Commons
             var fieldToSort = searchFilters.Where(t => t.IsSortable).FirstOrDefault();
             if(fieldToSort != null)
             {
-                cmdForOrder += " , " + fieldToSort.Name;
+                cmdForOrder += " , [" + fieldToSort.Name+"]";
 
                 if (fieldToSort.IsDescending)
                     cmdForOrder += " desc ";

@@ -47,7 +47,7 @@ namespace WebApiCore.Models
         public string MonthOfSecondTime { get; set; }
         public Nullable<double> CostOfLiving { get; set; }
         public Nullable<double> Calculate { get; set; }
-        public string Pay { get; set; }
+        public Nullable<bool> Pay { get; set; }
         public Nullable<System.DateTime> DateToPay { get; set; }
         public Nullable<double> Deduct { get; set; }
         public Nullable<double> AverageWage_Tax { get; set; }

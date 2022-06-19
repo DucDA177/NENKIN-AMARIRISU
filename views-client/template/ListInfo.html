@@ -28,6 +28,7 @@
         max-width: 1000px; /* Max Width of the popover (depending on the container!) */
         width: 400px
     }
+
     .text-overflow {
         display: inline-block;
         width: 10px;
@@ -42,10 +43,15 @@
 <div class="form-body form-horizontal col-md-12">
 
     <div class="row ">
-        <div class="col-md-2">
-            <a class="btn btn-primary"
+        <div class="col-md-3" ng-if="!onlyCTV">
+            <a class="btn btn-primary btn-sm"
                style="margin-top:15px"
-               ng-click="openModal('','CreateData')"><i class="fa fa-plus-circle"></i> Thêm mới</a>
+               ng-click="openModal('','CreateData',1)"><i class="fa fa-plus-circle"></i> Thêm mới</a>
+
+            <a class="btn btn-primary btn-sm"
+               ng-show="SelectedHoSoQL.length > 0"
+               style="margin-top:15px"
+               ng-click="openModal('','UpdateData')"><i class="fa fa-edit"></i> Sửa thông tin chung ({{SelectedHoSoQL.length}} hồ sơ)</a>
 
         </div>
         <div class="col-md-3">
@@ -64,11 +70,11 @@
 
         </div>
 
-        <div class="col-md-4">
-            EMS コード
+        <div class="col-md-3">
+            基礎年金番号
             <div class="input-group">
-                <input type="text" ng-model="ListColumn[3].Value"
-                       class="form-control input-sm " placeholder="Nhập  EMS コード..."
+                <input type="text" ng-model="ListColumn[10].Value"
+                       class="form-control input-sm " placeholder="Nhập 基礎年金番号..."
                        ng-enter="LoadHS()">
                 <a class="input-group-addon" ng-click="LoadHS()">
                     <i class="fa fa-search font-blue"></i>
@@ -81,12 +87,11 @@
     </div>
     <div class="row">
         <div class="table-scrollable">
-           <center><h4 class="bold">{{ListConfig.ls.Name}}</h4></center>
+            <center><h4 class="bold">{{ListConfig.ls.Name}}</h4></center>
             <div style="width: 100%; overflow-x: auto; height:430px;overflow-y:scroll">
-                <table class="table table-striped"
-                       id="fixTable">
+                <table class="table table-hover" id="fixTable">
 
-                    <thead>
+                    <thead ng-if="CurUserGroup.includes('TGD')">
                         <tr class="bold font-red">
                             <td colspan="13">Thông số 1: {{ListConfig.cf.Figure1}}</td>
                             <td colspan="10">Thông số 2: {{ListConfig.cf.Figure2}}</td>
@@ -96,7 +101,13 @@
                     </thead>
                     <thead title="Click vào cột tương ứng để sắp xếp dữ liệu">
                         <tr>
-                            <th rowspan="2" class="lightpink parent-header" width="1px">STT</th>
+                            <th rowspan="2" class="lightpink parent-header" width="1px" align="center">STT</th>
+                            <th rowspan="2" class="lightpink parent-header" width="1px">
+                                <div style="text-align:center">
+                                    <input type="checkbox" ng-model="Check" ng-click="OnCheckAll()" />
+                                </div>
+                            </th>
+                            <th rowspan="2" class="lightpink parent-header" width="1px">#</th>
                             <th rowspan="2" class="lightpink parent-header" width="1px">#</th>
                             <th rowspan="2" class="lightpink parent-header" width="1px">#</th>
                             <th rowspan="2" class="lightpink" id="PassportNumber">Số hộ chiếu</th>
@@ -154,7 +165,8 @@
                             <th colspan="2" class="lightpink parent-header">Ghi chú</th>
                             <th colspan="11" class="lightblue parent-header">年金金額</th>
                             <th colspan="4" class="lightgoldenrodyellow parent-header">Quyết Toán</th>
-                            <th colspan="6" class="lawngreen parent-header">Cục Thuế</th>
+                            <th colspan="6" class="lawngreen parent-header"
+                                ng-if="CurUserGroup.includes('TGD') || CurUserGroup.includes('PGD')">Cục Thuế</th>
                         </tr>
                         <tr>
                             <th class="lightpink" id="EmployeeManager">
@@ -232,37 +244,51 @@
                                 払う日 <br />
                                 31
                             </th>
-                            <th class="lawngreen" id="Deduct">
+                            <th class="lawngreen" id="Deduct" ng-show="CurUserGroup.includes('TGD') || CurUserGroup.includes('PGD')">
                                 KHẤU TRỪ <br />
                                 32
                             </th>
-                            <th class="lawngreen" id="AverageWage_Tax">
+                            <th class="lawngreen" id="AverageWage_Tax" ng-show="CurUserGroup.includes('TGD')">
                                 平均賃金 <br />
                                 33
                             </th>
-                            <th class="lawngreen" id="Coefficient_Tax">
+                            <th class="lawngreen" id="Coefficient_Tax" ng-show="CurUserGroup.includes('TGD')">
                                 係数 <br />
                                 34
                             </th>
-                            <th class="lawngreen" id="Pension_Tax">
+                            <th class="lawngreen" id="Pension_Tax" ng-show="CurUserGroup.includes('TGD')">
                                 年金 <br />
                                 35
                             </th>
-                            <th class="lawngreen" id="FirstTime_Tax">
+                            <th class="lawngreen" id="FirstTime_Tax" ng-show="CurUserGroup.includes('TGD')">
                                 1回 <br />
                                 36
                             </th>
-                            <th class="lawngreen" id="SecondTime_Tax">
+                            <th class="lawngreen" id="SecondTime_Tax" ng-show="CurUserGroup.includes('TGD')">
                                 2回 <br />
                                 37
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="ls in ListInfo" >
-                            <td>{{$index +1}}</td>
-                            <td><a ng-click="openModal(ls,'CreateData')" tooltip title="Sửa"><i class="fa fa-edit"></i></a></td>
-                            <td><a ng-click="Del(ls.Id)" tooltip title="Xóa"><i class="fa fa-trash font-red"></i></a></td>
+
+                        <tr ng-repeat="ls in ListInfo" id="row-context-{{$index + 1}}" context="context">
+
+                            <td align="center">{{$index + Paging.pageStart}}</td>
+                            <td align="center">
+                                <input type="checkbox" ng-model="ls.Check"
+                                       ng-click="OnCheck(ls)" />
+                            </td>
+                            <td>
+                                <a ng-if="!onlyCTV" ng-click="openModal(ls,'CreateData',1)"
+                                   tooltip title="Sửa thông tin cá nhân"><i class="fa fa-edit"></i></a>
+                            </td>
+                            <td>
+                                <a ng-if="!onlyCTV && (CurUserGroup.includes('TGD') || CurUserGroup.includes('PGD'))"
+                                   ng-click="openModal(ls,'CreateData',2)"
+                                   tooltip title="Sửa thông tin quyết toán"><i class="fa fa-calculator"></i></a>
+                            </td>
+                            <td><a ng-if="!onlyCTV" ng-click="Del(ls.Id)" tooltip title="Xóa"><i class="fa fa-trash font-red"></i></a></td>
                             <td>{{ls.PassportNumber}}</td>
                             <td>{{ls.SendDate | date: 'yyyy-MM-dd'}} </td>
                             <td>{{ls.EMSCode}}</td>
@@ -307,14 +333,14 @@
                             <td>{{ls.MonthOfSecondTime}}</td>
                             <td>{{ls.CostOfLiving | number}}</td>
                             <td>{{ls.Calculate | number}}</td>
-                            <td>{{ls.Pay}}</td>
-                            <td>{{ls.DateToPay |date:'dd/MM/yyyy'}}</td>
-                            <td>{{ls.Deduct | number}}</td>
-                            <td>{{ls.AverageWage_Tax | number}}</td>
-                            <td>{{ls.Coefficient_Tax | number}}</td>
-                            <td>{{ls.Pension_Tax | number}}</td>
-                            <td>{{ls.FirstTime_Tax | number}}</td>
-                            <td>{{ls.SecondTime_Tax | number}}</td>
+                            <td align="center"> <i ng-show="ls.Pay" class="fa fa-check"></i> </td>
+                            <td>{{ls.DateToPay |date:'yyyy-MM-dd'}}</td>
+                            <td ng-show="CurUserGroup.includes('TGD') || CurUserGroup.includes('PGD')">{{ls.Deduct | number}}</td>
+                            <td ng-show="CurUserGroup.includes('TGD')">{{ls.AverageWage_Tax | number}}</td>
+                            <td ng-show="CurUserGroup.includes('TGD')">{{ls.Coefficient_Tax | number}}</td>
+                            <td ng-show="CurUserGroup.includes('TGD')">{{ls.Pension_Tax | number}}</td>
+                            <td ng-show="CurUserGroup.includes('TGD')">{{ls.FirstTime_Tax | number}}</td>
+                            <td ng-show="CurUserGroup.includes('TGD')">{{ls.SecondTime_Tax | number}}</td>
                         </tr>
 
                     </tbody>
@@ -322,6 +348,7 @@
             </div>
 
         </div>
+
     </div>
 
     <div class="row">
@@ -352,7 +379,16 @@
     </div>
 
 </div>
-
+<ul id="context" class="dropdown-menu" ng-if="!onlyCTV">
+    <li><a onclick="angular.element(document).scope().OnClickContext('check')"><i class="fa fa-check"></i> Chọn / Bỏ chọn</a></li>
+    <li><a onclick="angular.element(document).scope().OnClickContext('edit')"><i class="fa fa-edit"></i> Sửa thông tin cá nhân</a></li>
+    <li ng-if=" CurUserGroup.includes('TGD') || CurUserGroup.includes('PGD')">
+        <a onclick="angular.element(document).scope().OnClickContext('calculate')">
+            <i class="fa fa-calculator"></i> Sửa thông tin quyết toán
+        </a>
+    </li>
+    <li><a onclick="angular.element(document).scope().OnClickContext('delete')"><i class="fa fa-trash font-red"></i> Xóa</a></li>
+</ul>
 <script>
     ComponentsSelect2.init();
 </script>

@@ -865,18 +865,18 @@
     []
   ),
     e.module("datetime").constant("datetimePlaceholder", {
-      year: "Năm",
-      yearShort: "Năm",
-      month: "Tháng",
-      date: "Ngày",
-      day: "Buổi",
-      hour: "Giờ",
-      hour12: "(hour12)",
-      minute: "Phút",
-      second: "Giây",
-      millisecond: "Mili Giây",
+      year: "yyyy",
+      yearShort: "yy",
+      month: "MM",
+      date: "dd",
+      day: "d",
+      hour: "HH",
+      hour12: "hh",
+      minute: "mm",
+      second: "ss",
+      millisecond: "sss",
       ampm: "AM/PM",
-      week: "Tuần",
+      week: "ww",
     });
   var y = {
       num2str: function (e, t, n) {

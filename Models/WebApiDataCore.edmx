@@ -251,7 +251,7 @@
           <Property Name="MonthOfSecondTime" Type="nvarchar" MaxLength="100" />
           <Property Name="CostOfLiving" Type="float" />
           <Property Name="Calculate" Type="float" />
-          <Property Name="Pay" Type="nvarchar" MaxLength="100" />
+          <Property Name="Pay" Type="bit" />
           <Property Name="DateToPay" Type="datetime" />
           <Property Name="Deduct" Type="float" />
           <Property Name="AverageWage_Tax" Type="float" />
@@ -262,6 +262,19 @@
           <Property Name="IdList" Type="int" />
           <Property Name="IsError" Type="bit" />
           <Property Name="FInUse" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LogUserSearch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="Count" Type="int" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" />
@@ -445,6 +458,7 @@
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListInfo" EntityType="Self.ListInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogUserSearch" EntityType="Self.LogUserSearch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainMenu" EntityType="Self.MainMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
@@ -1141,6 +1155,7 @@
           <EntitySet Name="Configurations" EntityType="WebApiDataModel.Configuration" />
           <EntitySet Name="Lists" EntityType="WebApiDataModel.List" />
           <EntitySet Name="ListInfoes" EntityType="WebApiDataModel.ListInfo" />
+          <EntitySet Name="LogUserSearches" EntityType="WebApiDataModel.LogUserSearch" />
           </EntityContainer>
         <ComplexType Name="CountInspectByStatus_Result">
           <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
@@ -2126,7 +2141,7 @@
           <Property Name="MonthOfSecondTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CostOfLiving" Type="Double" />
           <Property Name="Calculate" Type="Double" />
-          <Property Name="Pay" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pay" Type="Boolean" />
           <Property Name="DateToPay" Type="DateTime" Precision="3" />
           <Property Name="Deduct" Type="Double" />
           <Property Name="AverageWage_Tax" Type="Double" />
@@ -2137,6 +2152,19 @@
           <Property Name="IdList" Type="Int32" />
           <Property Name="IsError" Type="Boolean" />
           <Property Name="FInUse" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LogUserSearch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -2612,6 +2640,20 @@
                 <ScalarProperty Name="EMSCode" ColumnName="EMSCode" />
                 <ScalarProperty Name="SendDate" ColumnName="SendDate" />
                 <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogUserSearches">
+            <EntityTypeMapping TypeName="WebApiDataModel.LogUserSearch">
+              <MappingFragment StoreEntitySet="LogUserSearch">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

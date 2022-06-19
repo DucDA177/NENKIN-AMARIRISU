@@ -1,0 +1,281 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <title>TRA CỨU - TÌM KIẾM NENKIN &copy; NENKIN AMARIRISU </title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link id="ng_load_plugins_before" />
+    <link href="assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/select2/css/select2.css" rel="stylesheet" type="text/css" />
+    <link href="assets/admin/pages/css/login-soft.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME STYLES -->
+    <link href="assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css" />
+    <link href="assets/global/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css" />
+    <link id="style_color" href="assets/admin/layout/css/themes/light.css" rel="stylesheet" type="text/css" />
+    <link href="assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+
+<body ng-app="WebApiApp">
+    <style>
+        .control-label {
+            font-weight: bold
+        }
+        .data-value {
+            color: #337ab7;
+            text-align: left !important
+        }
+    </style>
+
+    <div ng-controller="SearchByPassportNumberController">
+        <div class="page-spinner-bar" ng-if="showLoading">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+        <div class="col-md-12">
+            <h4> <label class=" uppercase font-green"><i class="fa fa-search"></i> TRA CỨU - TÌM KIẾM NENKIN &copy; NENKIN AMARIRISU</label></h4>
+        </div>
+        <div class="form-body form-horizontal col-md-12">
+            <div class="form-group ">
+                <label class="control-label col-md-2">Số điện thoại:</label>
+
+                <div class="col-md-4">
+                    <input type="text" ng-model="PhoneNumber"
+                           ng-model-options="{updateOn: 'change'}"
+                           class="form-control input-sm " placeholder="Nhập chính xác số điện thoại của bạn...">
+                </div>
+                <label class="control-label col-md-2">Số hộ chiếu:</label>
+
+                <div class="col-md-4">
+                    <div class="input-group " style="margin-top:-3px">
+                        <input type="text" ng-change="Search()" ng-model="PassportNumber"
+                               ng-model-options="{updateOn: 'change'}"
+                               class="form-control input-sm " placeholder="Nhập chính xác số hộ chiếu cần tìm kiếm...">
+                        <span class="input-group-btn">
+                            <a class="btn btn-default input-sm" ng-click="Search()">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <center><i class="font-red">Nhập thông tin số điện thoại của bạn và số hộ chiếu cần tra cứu</i></center>
+                </div>
+            </div>
+            <div ng-if="data" class="margin-top-10">
+                <div class="row ">
+
+                    <label class="control-label col-md-1">Số hộ chiếu:</label>
+                    <label class="control-label col-md-3 data-value">{{data.PassportNumber}}</label>
+
+                    <label class="control-label col-md-1">送信日:</label>
+                    <label class="control-label col-md-3 data-value">{{data.SendDate | date:'yyyy-MM-dd'}}</label>
+
+                    <label class="control-label col-md-1"> 書類タイプ: </label>
+                    <label class="control-label col-md-1 data-value">{{data.DocumentType}}</label>
+
+                    <div class="col-md-2 text-right" style="margin-top:5px">
+                        <label class="margin-right-10"> <input type="radio" disabled ng-model="data.Gender" value="男" /> 男 </label>
+                        <label class="margin-right-10"> <input type="radio" disabled ng-model="data.Gender" value="女" /> 女 </label>
+                    </div>
+                </div>
+                <div class="row ">
+
+                    <label class="control-label col-md-1">氏名 <span style="color:red">*</span>:</label>
+                    <label class="control-label col-md-3 data-value">{{data.FullName}}</label>
+
+                    <label class="control-label col-md-1">名前の読み方:</label>
+                    <label class="control-label col-md-3 data-value">{{data.HowToReadName}}</label>
+
+                    <label class="control-label col-md-1">生年月日: </label>
+                    <label class="control-label col-md-3 data-value">{{data.DateOfBirth | date:'yyyy-MM-dd'}}</label>
+
+                </div>
+                <div class="row ">
+
+
+                    <label class="control-label col-md-1">基礎年金番号:</label>
+                    <label class="control-label col-md-3 data-value">{{data.BasicPensionNumber}}</label>
+
+
+                    <label class="control-label col-md-1"> 出身地: </label>
+                    <label class="control-label col-md-3 data-value">{{data.PlaceOfBirth}}</label>
+
+                    <label class="control-label col-md-1">銀行番号:</label>
+                    <label class="control-label col-md-3 data-value">{{data.USDBankNumber}}</label>
+
+
+                </div>
+                <div class="row ">
+
+                    <label class="control-label col-md-1">銀行番号:</label>
+                    <label class="control-label col-md-3 data-value">{{data.VNDBankNumber}}</label>
+
+
+                    <label class="control-label col-md-1"> 銀行名: </label>
+                    <label class="control-label col-md-3 data-value">{{data.BankName}}</label>
+
+
+                    <label class="control-label col-md-1">支店:</label>
+                    <label class="control-label col-md-3 data-value">{{data.BankBranch}}</label>
+
+
+                </div>
+                <div class="row">
+                    <center class="font-red bold"><h4><b>管理者</b></h4></center>
+                    <hr />
+                </div>
+                <div class="row ">
+
+                    <label class="control-label col-md-1">社員:</label>
+                    <label class="control-label col-md-5 data-value">{{data.EmployeeManager}}</label>
+
+
+                    <label class="control-label col-md-1"> 窓口: </label>
+                    <label class="control-label col-md-5 data-value">{{data.TicketWindow}}</label>
+
+                </div>
+                <div class="row">
+                    <center class="font-red bold"><h4><b>GHI CHÚ</b></h4></center>
+                    <hr />
+                </div>
+                <div class="row ">
+
+                    <label class="control-label col-md-1">Lỗi:</label>
+                    <label class="control-label col-md-5 data-value">{{data.Error}}</label>
+
+
+                    <label class="control-label col-md-1">Lý do: </label>
+                    <label class="control-label col-md-5 data-value">{{data.Reason}}</label>
+
+
+                </div>
+                <div class="row">
+                    <center class="font-blue bold"><h4><b>年金金額</b></h4></center>
+                    <hr />
+                </div>
+                <div class="row ">
+
+                    <label class="control-label col-md-1">Tạm Ứng:</label>
+                    <label class="control-label col-md-3 data-value">{{data.AdvanceFee | number}}</label>
+
+
+                    <label class="control-label col-md-1"> Phí lỗi: </label>
+                    <label class="control-label col-md-3 data-value">{{data.ErrorFee | number}}</label>
+
+
+                    <label class="control-label col-md-1">Phụ Phí:</label>
+                    <label class="control-label col-md-3 data-value">{{data.OtherFee | number}}</label>
+
+
+                </div>
+                <div class="row ">
+
+                    <label class="control-label col-md-1">費用:</label>
+                    <label class="control-label col-md-3 data-value">{{data.Cost | number}} %</label>
+
+                    <label class="control-label col-md-1">平均賃金:</label>
+                    <label class="control-label col-md-3 data-value">{{data.AverageWage | number}} </label>
+
+                    <label class="control-label col-md-1">係数:</label>
+                    <label class="control-label col-md-3 data-value">{{data.Coefficient | number}} </label>
+
+                </div>
+                <div class="row ">
+                    <label class="control-label col-md-1">年金:</label>
+                    <label class="control-label col-md-3 data-value">{{data.Pension | number}} </label>
+
+                    <label class="control-label col-md-1">1回:</label>
+                    <label class="control-label col-md-3 data-value">{{data.FirstTime | number}} </label>
+
+                    <label class="control-label col-md-1"> 受け取り月 1: </label>
+                    <label class="control-label col-md-3 data-value">{{data.MonthOfFirstTime}}</label>
+
+                </div>
+                <div class="row ">
+
+                    <label class="control-label col-md-1">2回:</label>
+                    <label class="control-label col-md-3 data-value">{{data.SecondTime | number}} </label>
+
+                    <label class="control-label col-md-1"> 受け取り月 2: </label>
+                    <label class="control-label col-md-3 data-value">{{data.MonthOfSecondTime}}</label>
+                </div>
+                <div class="row">
+                    <center class="font-yellow-gold bold"><h4><b>QUYẾT TOÁN</b></h4></center>
+                    <hr />
+                </div>
+                <div class="row ">
+                    <label class="control-label col-md-1">物価:</label>
+                    <label class="control-label col-md-2 data-value">{{data.CostOfLiving | number}} </label>
+
+                    <label class="control-label col-md-1">計算:</label>
+                    <label class="control-label col-md-2 data-value">{{data.Calculate | number}} </label>
+
+                    <label class="control-label col-md-1"> 払う: </label>
+                    <label class="control-label col-md-2 data-value">{{data.Pay ? 'はい' : ''}}</label>
+
+                    <label class="control-label col-md-1">払う日:</label>
+                    <label class="control-label col-md-2 data-value">{{data.DateToPay | date:'yyyy-MM-dd'}} </label>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="assets/global/plugins/angularjs/angular.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/angular-sanitize.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/angular-cookies.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/angular-touch.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/plugins/angular-ui-router.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/plugins/ocLazyLoad.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/plugins/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="assets/global/plugins/select2/js/select2.min.js"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+    <script src="assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/ladda/spin.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/ladda/ladda.min.js" type="text/javascript"></script>
+    <script src="assets/pages/scripts/ui-buttons-spinners.min.js" type="text/javascript"></script>
+    <script src="js/login.js" type="text/javascript"></script>
+    <script src="js/directives.js" type="text/javascript"></script>
+
+    <script src="assets/global/scripts/metronic.js" type="text/javascript"></script>
+    <script src="assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+    <script src="assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+    <script src="assets/admin/pages/scripts/login-soft.js" type="text/javascript"></script>
+    <script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <script src="assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+    <script src="assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script src="js/controllers/SearchByPassportNumberController.js"></script>
+</body>
+</html>

@@ -1,5 +1,52 @@
 ﻿angular.module('WebApiApp').controller('ListInfoController', ['$rootScope', '$scope', '$http', '$cookies', '$uibModal', '$settings', '$stateParams', '$compile', function ($rootScope, $scope, $http, $cookies, $uibModal, $settings, $stateParams, $compile) {
-    
+    $scope.Check = false;
+    if (!$rootScope.SelectedHoSoQL)
+        $rootScope.SelectedHoSoQL = []
+
+
+    $rootScope.OnClickContext = function (action) {
+        let index = parseInt($('#context').attr('data-index')) - 1;
+
+        switch (action){
+            case 'check':
+                debugger
+                $scope.ListInfo[index].Check = !$scope.ListInfo[index].Check
+                $scope.OnCheck($scope.ListInfo[index])
+                $scope.$apply()
+                break;
+            case 'edit':
+                $scope.openModal($scope.ListInfo[index], 'CreateData', 1)
+                break;
+            case 'calculate':
+                $scope.openModal($scope.ListInfo[index], 'CreateData', 2)
+                break;
+            case 'delete':
+                $scope.Del($scope.ListInfo[index].Id)
+                break;
+        }
+    }
+
+
+    $scope.OnCheckAll = function () {
+        angular.forEach($scope.ListInfo, function (value, key) {
+            value.Check = $scope.Check;
+            $scope.OnCheck(value)
+        });
+    }
+
+    $scope.OnCheck = function (item) {
+        debugger
+        let check = $rootScope.SelectedHoSoQL.filter(t => t.Id != item.Id)
+
+        if (item.Check && check.length == $rootScope.SelectedHoSoQL.length) {
+            $rootScope.SelectedHoSoQL.push(item)
+        }
+        if (!item.Check && check.length != $rootScope.SelectedHoSoQL.length) {
+            $rootScope.SelectedHoSoQL = check
+        }
+
+    }
+
     $scope.Del = function (Id) {
         if (confirm('Bạn có chắc chắn muốn xóa đối tượng này ?'))
             $http({
@@ -107,7 +154,14 @@
             $scope.Paging.totalCount = response.data.totalCount;
             $scope.Paging.pageStart = response.data.pageStart;
             $scope.Paging.totalPage = response.data.totalPage;
-            
+
+            $scope.Check = true;
+            angular.forEach($scope.ListInfo, function (value, key) {
+                if ($rootScope.SelectedHoSoQL.filter(t => t.Id == value.Id).length > 0)
+                    value.Check = true;
+                else
+                    $scope.Check = false;
+            });
 
         }, function errorCallback(response) {
             toastr.warning('Có lỗi trong quá trình tải dữ liệu!', 'Thông báo');

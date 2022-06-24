@@ -21,6 +21,7 @@ namespace WebApiCore.Controllers
             public int pageSize { get; set; }
             public List<SearchFilter> searchFilters { get; set; }
             public string EMSCode { get; set; }
+            public string TicketWindow { get; set; }
             public float? CostOfLiving { get; set; }
             public float? Calculate { get; set; }
             public bool? Pay { get; set; }
@@ -34,6 +35,14 @@ namespace WebApiCore.Controllers
             var data = GetDataAndSorting<ListInfo>(dti.pageNumber, dti.pageSize, db, "ListInfo", dti.searchFilters);
 
             return Ok(data);
+        }
+        [HttpGet]
+        [Route("api/ListInfo/ValidOnlyPassportNumber")]
+        public IHttpActionResult ValidOnlyPassportNumber(string PassportNumber)
+        {
+            var check = db.ListInfoes.Any(t=> t.PassportNumber == PassportNumber);
+
+            return Ok(check);
         }
         [HttpGet]
         [Route("api/ListInfo/GetListColumn")]
@@ -93,6 +102,12 @@ namespace WebApiCore.Controllers
                     isUpdated = true;
                 }
 
+                if (dti.TicketWindow != null)
+                {
+                    item.TicketWindow = dti.TicketWindow;
+                    isUpdated = true;
+                }
+
                 if (dti.CostOfLiving != null)
                 {
                     item.CostOfLiving = dti.CostOfLiving;
@@ -137,6 +152,20 @@ namespace WebApiCore.Controllers
             return Ok(dt);
         }
 
+        [HttpGet]
+        [Route("api/ListInfo/LoadListCTV")]
+        public IHttpActionResult LoadListCTV()
+        {
+            var dt = from usg in db.Group_User
+                     join us in db.UserProfiles
+                     on usg.UserName equals us.UserName
+                     where usg.FInUse == true && usg.CodeGroup == "CTV"
+                     && us.FInUse == true
+                     select us;
+
+            return Ok(dt);
+        }
+
         [AllowAnonymous]
         [HttpGet]
         [Route("api/ListInfo/SearchByPassportNumber")]
@@ -169,6 +198,18 @@ namespace WebApiCore.Controllers
                 db.SaveChanges();
             }
             return Ok(dt);
+        }
+
+        [HttpGet]
+        [Route("api/ListInfo/GetAllSearchAccess")]
+        public IHttpActionResult GetAllSearchAccess(int pageNumber, int pageSize, string PhoneNumber)
+        {
+            var query = db.LogUserSearches.AsQueryable();
+
+            if (!string.IsNullOrEmpty(PhoneNumber))
+                query = query.Where(t => t.PhoneNumber == PhoneNumber);
+
+            return Ok(GetPagingList(query, pageNumber, pageSize));
         }
     }
 }

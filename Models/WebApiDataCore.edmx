@@ -261,6 +261,7 @@
           <Property Name="SecondTime_Tax" Type="float" />
           <Property Name="IdList" Type="int" />
           <Property Name="IsError" Type="bit" />
+          <Property Name="CTVUsername" Type="nvarchar" MaxLength="100" />
           <Property Name="FInUse" Type="bit" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
           <Property Name="CreatedAt" Type="datetime" />
@@ -1154,8 +1155,8 @@
           <EntitySet Name="UserProfiles" EntityType="WebApiDataModel.UserProfile" />
           <EntitySet Name="Configurations" EntityType="WebApiDataModel.Configuration" />
           <EntitySet Name="Lists" EntityType="WebApiDataModel.List" />
-          <EntitySet Name="ListInfoes" EntityType="WebApiDataModel.ListInfo" />
           <EntitySet Name="LogUserSearches" EntityType="WebApiDataModel.LogUserSearch" />
+          <EntitySet Name="ListInfoes" EntityType="WebApiDataModel.ListInfo" />
           </EntityContainer>
         <ComplexType Name="CountInspectByStatus_Result">
           <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
@@ -2104,6 +2105,19 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="LogUserSearch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="ListInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -2151,20 +2165,8 @@
           <Property Name="SecondTime_Tax" Type="Double" />
           <Property Name="IdList" Type="Int32" />
           <Property Name="IsError" Type="Boolean" />
+          <Property Name="CTVUsername" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="FInUse" Type="Boolean" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="LogUserSearch">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PassportNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Count" Type="Int32" />
           <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -2590,6 +2592,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="LogUserSearches">
+            <EntityTypeMapping TypeName="WebApiDataModel.LogUserSearch">
+              <MappingFragment StoreEntitySet="LogUserSearch">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ListInfoes">
             <EntityTypeMapping TypeName="WebApiDataModel.ListInfo">
               <MappingFragment StoreEntitySet="ListInfo">
@@ -2598,6 +2614,7 @@
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="CTVUsername" ColumnName="CTVUsername" />
                 <ScalarProperty Name="IsError" ColumnName="IsError" />
                 <ScalarProperty Name="IdList" ColumnName="IdList" />
                 <ScalarProperty Name="SecondTime_Tax" ColumnName="SecondTime_Tax" />
@@ -2640,20 +2657,6 @@
                 <ScalarProperty Name="EMSCode" ColumnName="EMSCode" />
                 <ScalarProperty Name="SendDate" ColumnName="SendDate" />
                 <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LogUserSearches">
-            <EntityTypeMapping TypeName="WebApiDataModel.LogUserSearch">
-              <MappingFragment StoreEntitySet="LogUserSearch">
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

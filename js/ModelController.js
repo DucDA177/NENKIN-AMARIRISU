@@ -966,6 +966,22 @@ angular.module('WebApiApp').controller("ModalCreateDataHandlerController", funct
         $scope.item.SecondTime_Tax = $scope.item.Pension_Tax - $scope.item.FirstTime_Tax;
     }
 
+    $scope.ValidOnlyPassportNumber = function () {
+        if (!$scope.item.PassportNumber)
+            return;
+        $http({
+            method: 'GET',
+            url: 'api/ListInfo/ValidOnlyPassportNumber?PassportNumber=' + $scope.item.PassportNumber,
+        }).then(function successCallback(response) {
+            if (response.data) {
+                toastr.warning('Đã tồn tại số hộ chiếu này !', 'Thông báo');
+                $scope.item.PassportNumber = '';
+            }
+        }, function errorCallback(response) {
+            toastr.error('Có lỗi xảy ra trong quá trình tải dữ liệu !', 'Thông báo');
+        });
+
+    }
 
     $scope.SaveModal = function (isNew) {
         $scope.Calculate();
@@ -990,6 +1006,74 @@ angular.module('WebApiApp').controller("ModalCreateDataHandlerController", funct
 
     }
 
+    $rootScope.GetListCTV();
+
+});
+
+angular.module('WebApiApp').controller("ModalAddCTVHandlerController", function ($rootScope, $scope, $http, $uibModalInstance, $stateParams) {
+    $scope.item = $scope.$resolve.item;
+    $scope.type = $scope.$resolve.type;
+    $scope.check = $scope.$resolve.check;
+
+    $scope.cancelModal = function () {
+        $uibModalInstance.dismiss('close');
+    }
+
+    $scope.user = {
+        UserName: null,
+        HoTen: null,
+        IDDonvi: $rootScope.CurDonVi.Id,
+        IsOnline: true
+    }
+
+    $scope.itemGroup = ['CTV']
+
+    $scope.SaveModal = function () {
+        $http({
+            method: 'POST',
+            url: '/api/Account/Register',
+            data: $scope.user
+        }).then(function successCallback(response) {
+            $http({
+                method: 'POST',
+                url: '/api/UserProfiles',
+                data: $scope.user
+            }).then(function successCallback(response) {
+
+                $http({
+                    method: 'POST',
+                    url: '/Group/SaveGroupByUser',
+                    params: {
+                        user: $scope.user.UserName,
+                        CodeGroup: JSON.stringify($scope.itemGroup)
+                    },
+                }).then(function successCallback(response) {
+
+                    $scope.item.TicketWindow = $scope.user.UserName
+                    $rootScope.GetListCTV();
+
+                    toastr.success('Cập nhật dữ liệu thành công !', 'Thông báo');
+                    $uibModalInstance.dismiss('close');
+
+                }, function errorCallback(response) {
+                    toastr.error('Có lỗi trong quá trình cập nhật dữ liệu !', 'Thông báo');
+
+                });
+
+               
+
+            }, function errorCallback(response) {
+                $scope.itemUserError = response.data
+                $scope.LoadError($scope.itemUserError.ModelState);
+            });
+
+        }, function errorCallback(response) {
+            $scope.itemUserError = response.data
+            $scope.LoadError($scope.itemUserError.ModelState);
+
+        });
+    }
+
 });
 
 angular.module('WebApiApp').controller("ModalUpdateDataHandlerController", function ($rootScope, $scope, $http, $uibModalInstance, $stateParams) {
@@ -1010,7 +1094,9 @@ angular.module('WebApiApp').controller("ModalUpdateDataHandlerController", funct
         ListInfo: $rootScope.SelectedHoSoQL
     }
 
-   
+    $scope.cancelEdit = function (field) {
+        $scope.Data[field] = null;
+    }
 
     $scope.SaveModal = function () {
 

@@ -58,7 +58,7 @@
                                 <th style="vertical-align:middle" class="text-center"> Họ tên </th>
                                 <th style="vertical-align:middle" class="text-center"> Đơn vị </th>
                                 <th style="vertical-align:middle" class="text-center"> Chức vụ </th>
-                                <th style="vertical-align:middle" ng-show="checkAdmin" class="text-center" width="1px"> # </th>
+                                <th style="vertical-align:middle" class="text-center" width="1px"> # </th>
                                 <th style="vertical-align:middle" class="text-center" width="1px"> # </th>
                                 <th style="vertical-align:middle" class="text-center" width="1px"
                                     ng-show="checkAdmin">#</th>
@@ -72,7 +72,7 @@
                                 <td> {{ u.HoTen }} </td>
                                 <td> {{ u.TenDonVi }} </td>
                                 <td> {{ u.ChucVu }} </td>
-                                <td align="center" ng-show="checkAdmin" width="1px"><a title="Đặt lại mật khẩu" ng-click="ResetPass(u)"> <i class="fa fa-undo"></i></a> </td>
+                                <td align="center" width="1px"><a title="Đặt lại mật khẩu" ng-click="ResetPass(u)"> <i class="fa fa-undo"></i></a> </td>
                                 <td align="center" width="1px"><a title="Sửa" ng-click="openEditUser(u,'User')"> <i class="fa fa-edit"></i> </a></td>
                                 <td align="center" width="1px" ng-show="checkAdmin">
                                     <a title="Xóa" ng-click="DeleteUser(u.UserName)"><i class="fa fa-trash font-red"></i></a>

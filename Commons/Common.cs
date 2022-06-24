@@ -73,6 +73,7 @@ namespace WebApiCore.Commons
             public bool IsSortable { get; set; }
             public bool IsDescending { get; set; }
             public bool IsDisplay { get; set; }
+            public bool ExactMatch { get; set; }
         }
         public static ListPaging<T> GetDataAndSorting<T>(int pageNumber, int pageSize, WebApiDataEntities db,
             string tableName, List<SearchFilter> searchFilters)
@@ -85,7 +86,7 @@ namespace WebApiCore.Commons
                 {
                     cmdText += " and " + item.Name;
 
-                    if (item.DataType == "nvarchar")
+                    if (item.DataType == "nvarchar" && !item.ExactMatch)
                         cmdText += " like N'%" + item.Value + "%' ";
                     else
                         cmdText += " = '" + item.Value + "' ";

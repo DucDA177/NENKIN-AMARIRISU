@@ -54,7 +54,13 @@
                ng-click="openModal('','UpdateData')"><i class="fa fa-edit"></i> Sửa thông tin chung ({{SelectedHoSoQL.length}} hồ sơ)</a>
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2" ng-if="!onlyCTV">
+            窓口
+            <select class="form-control input-sm " select2 ng-model="ListColumn[17].Value" ng-change="LoadHS()">
+                <option ng-repeat="u in CTV" value="{{u.UserName}}">{{u.UserName}} | {{u.HoTen}}</option>
+            </select>
+        </div>
+        <div class="col-md-2">
             Số hộ chiếu
             <input type="text" ng-model="ListColumn[1].Value"
                    class="form-control input-sm " placeholder="Nhập số hộ chiếu..."
@@ -70,7 +76,7 @@
 
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             基礎年金番号
             <div class="input-group">
                 <input type="text" ng-model="ListColumn[10].Value"

@@ -1,0 +1,98 @@
+﻿<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> BÁO CÁO LƯỢT TRUY CẬP TÌM KIẾM HỒ SƠ </label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="row ">
+
+        <div class="col-md-4">
+            Số điện thoại
+            <div class="input-group">
+                <input type="text" ng-model="Paging.PhoneNumber"
+                       class="form-control input-sm " placeholder="Nhập số điện thoại để tìm kiếm..."
+                       ng-enter="LoadList()">
+                <a class="input-group-addon" ng-click="LoadList()">
+                    <i class="fa fa-search font-blue"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="table-scrollable ">
+                <!-- BEGIN FORM-->
+                <table class="table table-striped table-bordered table-hover"
+                       id="fixTable">
+                    <thead>
+                        <tr>
+                            <th width="1px" align="center"> STT </th>
+                            <th> <div style="text-align:center">Số điện thoại</div></th>
+                            <th> <div style="text-align:center">Số hộ chiếu</div> </th>
+                            <th> <div style="text-align:center">Số lượt tra cứu</div> </th>
+                            <th> <div style="text-align:center">Thời gian gần nhất tra cứu</div> </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd gradeX" ng-repeat="dm in List">
+                            <td align="center" width="1px"> {{$index + 1}} </td>
+                            <td>  {{dm.PhoneNumber}}</td>
+                            <td>
+                                {{dm.PassportNumber}}
+                            </td>
+                            <td>
+                                {{dm.Count}}
+                            </td>
+
+                            <td>
+                                {{dm.UpdatedAt | date:'HH:mm:ss - yyyy/MM/dd'}}
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="pull-left col-md-3">
+            <div class="input-group col-md-12">
+                <span class="input-group-addon"> Hiển thị </span>
+                <select ng-model="Paging.pageSize"
+                        ng-options="template.value as template.text for template in displayPage"
+                        ng-change="LoadList()" class="form-control select2"></select>
+
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="pull-right" style="margin-top:-10px">
+                <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                    <div class="pagination-panel">
+                        Trang
+                        <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                            <i class="fa fa-angle-left"></i>
+                        </a><input type="text" allow-only-numbers ng-model="Paging.currentPage" class="pagination-panel-input form-control input-mini input-inline input-sm" maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="LoadList()" ng-model-options="{updateOn: 'change'}">
+                        <a href="#" class="btn btn-sm default next " ng-click="NextPage()" title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                        <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+</script>
+
+
+
+
+
+

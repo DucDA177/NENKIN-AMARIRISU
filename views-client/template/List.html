@@ -7,10 +7,12 @@
     <div class="form-group ">
 
         <div class="col-md-8">
-            <a ng-if="!isShowAddNew" class="btn btn-primary btn-sm" ng-click="handleAddNew()"><i class="fa fa-plus-circle"></i> Thêm mới</a>
-            <div ng-if="isShowAddNew">
-                <a class="btn btn-success btn-sm" ng-click="Save()"><i class="fa fa-save"></i> Lưu</a>
-                <a class="btn btn-danger btn-sm" ng-click="handleAddNew()"><i class="fa fa-times"></i> Hủy</a>
+            <div ng-show="CurUserGroup.includes('TGD') || CurUserGroup.includes('PGD')">
+                <a ng-if="!isShowAddNew" class="btn btn-primary btn-sm" ng-click="handleAddNew()"><i class="fa fa-plus-circle"></i> Thêm mới</a>
+                <div ng-if="isShowAddNew">
+                    <a class="btn btn-success btn-sm" ng-click="Save()"><i class="fa fa-save"></i> Lưu</a>
+                    <a class="btn btn-danger btn-sm" ng-click="handleAddNew()"><i class="fa fa-times"></i> Hủy</a>
+                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -71,10 +73,12 @@
                             <td>
                                 {{dm.CreatedAt | date:'dd/MM/yyyy'}}
                             </td>
-                           
+
                             <td><a ui-sref="ListInfo({ Id: dm.Id})" tooltip title="Xem chi tiết"><i class="fa fa-list"></i></a></td>
-                            <td><a ng-click="Edit(dm)" tooltip title="Sửa"><i class="fa fa-edit"></i></a></td>
-                            <td><a ng-click="Del(dm.Id)" tooltip title="Xóa"><i class="fa fa-trash font-red"></i></a></td>
+                            <td><a ng-show="CurUserGroup.includes('TGD') || CurUserGroup.includes('PGD')"
+                                   ng-click="Edit(dm)" tooltip title="Sửa"><i class="fa fa-edit"></i></a></td>
+                            <td><a ng-show="CurUserGroup.includes('TGD') || CurUserGroup.includes('PGD')"
+                                   ng-click="Del(dm.Id)" tooltip title="Xóa"><i class="fa fa-trash font-red"></i></a></td>
 
                         </tr>
 

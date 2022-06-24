@@ -13,17 +13,42 @@
 
             <label class="control-label col-md-2">EMS コード:</label>
             <div class="col-md-10">
-                <input type="text" class="form-control input-sm" ng-model="Data.EMSCode">
-
+                <div class="input-group">
+                    <input type="text" class="form-control input-sm" ng-model="Data.EMSCode">
+                    <a tooltip title="Hủy sửa"
+                       ng-click="cancelEdit('EMSCode')"
+                       class="input-group-addon"><i class="fa fa-times font-red"></i></a>
+                </div>
             </div>
 
+        </div>
+        <div class="row margin-bottom-5">
+            <label class="control-label col-md-2"> 窓口: </label>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <select class="form-control input-sm " select2 ng-model="Data.TicketWindow">
+                        <option ng-repeat="u in CTV" value="{{u.UserName}}">{{u.UserName}} | {{u.HoTen}}</option>
+                    </select>
+                    <a tooltip title="Thêm cộng tác viên"
+                       ng-click="openModalSmall(Data,'AddCTV')"
+                       class="input-group-addon"><i class="fa fa-plus-square font-blue"></i></a>
+                    <a tooltip title="Hủy sửa"
+                       ng-click="cancelEdit('TicketWindow')"
+                       class="input-group-addon"><i class="fa fa-times font-red"></i></a>
+                </div>
+
+            </div>
         </div>
         <div class="row margin-bottom-5">
 
             <label class="control-label col-md-2">物価:</label>
             <div class="col-md-10">
-                <input type="number" class="form-control input-sm" ng-model="Data.CostOfLiving">
-
+                <div class="input-group">
+                    <input type="number" class="form-control input-sm" ng-model="Data.CostOfLiving">
+                    <a tooltip title="Hủy sửa"
+                       ng-click="cancelEdit('CostOfLiving')"
+                       class="input-group-addon"><i class="fa fa-times font-red"></i></a>
+                </div>
             </div>
 
         </div>
@@ -31,8 +56,12 @@
 
             <label class="control-label col-md-2">計算:</label>
             <div class="col-md-10">
-                <input type="number" class="form-control input-sm" ng-model="Data.Calculate">
-
+                <div class="input-group">
+                    <input type="number" class="form-control input-sm" ng-model="Data.Calculate">
+                    <a tooltip title="Hủy sửa"
+                       ng-click="cancelEdit('Calculate')"
+                       class="input-group-addon"><i class="fa fa-times font-red"></i></a>
+                </div>
             </div>
 
         </div>
@@ -49,13 +78,17 @@
 
             <label class="control-label col-md-2">払う日:</label>
             <div class="col-md-10">
-                <input type="text"
-                       placeholder="yyyy/MM/dd"
-                       datetime="yyyy/MM/dd"
-                       class="form-control input-sm"
-                       ng-model="Data.DateToPay"
-                       datetime-separator=",.-/" />
-
+                <div class="input-group">
+                    <input type="text"
+                           placeholder="yyyy/MM/dd"
+                           datetime="yyyy/MM/dd"
+                           class="form-control input-sm"
+                           ng-model="Data.DateToPay"
+                           datetime-separator=",.-/" />
+                    <a tooltip title="Hủy sửa"
+                       ng-click="cancelEdit('DateToPay')"
+                       class="input-group-addon"><i class="fa fa-times font-red"></i></a>
+                </div>
             </div>
 
         </div>

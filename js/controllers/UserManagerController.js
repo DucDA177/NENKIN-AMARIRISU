@@ -140,7 +140,7 @@ angular.module('WebApiApp').controller('UserManagerController', ['$rootScope', '
         bootbox.prompt({
             title: "Bạn có chắc chắn muốn đặt lại mật khẩu cho tài khoản " + item.UserName
                 + "? Mật khẩu đặt lại mặc định là aBc@123. Vui lòng nhập lại mật khẩu nếu có sự thay đổi!",
-            value: 'aBc@123',
+            value: '123abc',
             callback: function (result) {
                 if (!result) return;
                 $http({

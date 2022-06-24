@@ -144,8 +144,8 @@ namespace WebApiCore.Models
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<Configuration> Configurations { get; set; }
         public virtual DbSet<List> Lists { get; set; }
-        public virtual DbSet<ListInfo> ListInfoes { get; set; }
         public virtual DbSet<LogUserSearch> LogUserSearches { get; set; }
+        public virtual DbSet<ListInfo> ListInfoes { get; set; }
     
         public virtual int aspnet_AnyDataInTables(Nullable<int> tablesToCheck)
         {

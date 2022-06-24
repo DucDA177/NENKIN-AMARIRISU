@@ -3,6 +3,7 @@
     if (!$rootScope.SelectedHoSoQL)
         $rootScope.SelectedHoSoQL = []
 
+    $rootScope.GetListCTV();
 
     $rootScope.OnClickContext = function (action) {
         let index = parseInt($('#context').attr('data-index')) - 1;
@@ -35,7 +36,7 @@
     }
 
     $scope.OnCheck = function (item) {
-        debugger
+        
         let check = $rootScope.SelectedHoSoQL.filter(t => t.Id != item.Id)
 
         if (item.Check && check.length == $rootScope.SelectedHoSoQL.length) {
@@ -68,8 +69,6 @@
             url: 'api/ListInfo/GetListColumn',
         }).then(function successCallback(response) {
             $scope.ListColumn = response.data;
-            let listNotDisplay = ['Id', 'IdList', 'IsError', 'FInUse',
-                'CreatedBy', 'CreatedAt', 'UpdatedBy', 'UpdatedAt'];
             $("#fixTable th").not('.parent-header').each(function (index,e) {
                 angular.forEach($scope.ListColumn, function (value, key) {
                     if (value.Name == e.id) {
@@ -79,6 +78,16 @@
                         if (!listNotDisplay.includes(value.Name))
                             value.IsDisplay = true;
                     }
+                    if (value.Name == 'TicketWindow') {
+                        value.ExactMatch = true;
+                        if ($rootScope.onlyCTV)
+                            value.Value = $rootScope.user.UserName
+                    }
+                        
+                    if (value.Name == 'IdList')
+                        value.Value = $stateParams.Id;
+                    if (value.Name == 'FInUse')
+                        value.Value = true;
                 });
             });
             $rootScope.LoadHS();
@@ -137,8 +146,7 @@
             if ($scope.Paging.currentPage < 1)
                 $scope.Paging.currentPage = 1
         }
-        $scope.ListColumn.filter(t => t.Name == 'IdList')[0].value = $stateParams.Id;
-        $scope.ListColumn.filter(t => t.Name == 'FInUse')[0].value = true;
+
         let data = {
             pageNumber: $scope.Paging.currentPage,
             pageSize: $scope.Paging.pageSize,
@@ -167,7 +175,6 @@
             toastr.warning('Có lỗi trong quá trình tải dữ liệu!', 'Thông báo');
         });
     }
-    
     
     $scope.$on('$viewContentLoaded', function () {
         $("#fixTable th").not('.parent-header').click(function (e) {

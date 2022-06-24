@@ -23,7 +23,10 @@
 
                 <label class="control-label col-md-1">Số hộ chiếu:</label>
                 <div class="col-md-3">
-                    <input type="text" class="form-control input-sm" ng-model="item.PassportNumber">
+                    <input type="text" class="form-control input-sm"
+                           ng-change="ValidOnlyPassportNumber()"
+                           ng-model-options="{updateOn:'change'}"
+                           ng-model="item.PassportNumber">
 
                 </div>
 
@@ -130,7 +133,14 @@
 
                 <label class="control-label col-md-1"> 窓口: </label>
                 <div class="col-md-5">
-                    <input type="text" class="form-control input-sm" ng-model="item.TicketWindow">
+                    <div class="input-group">
+                        <select class="form-control input-sm " select2 ng-model="item.TicketWindow">
+                            <option ng-repeat="u in CTV" value="{{u.UserName}}">{{u.UserName}} | {{u.HoTen}}</option>
+                        </select>
+                        <a tooltip title="Thêm cộng tác viên"
+                           ng-click="openModalSmall(item,'AddCTV')"
+                           class="input-group-addon"><i class="fa fa-plus-square font-blue"></i></a>
+                    </div>
 
                 </div>
             </div>
@@ -216,7 +226,7 @@
                 </div>-->
 
             </div>
-            
+
         </div>
         <div ng-if="check == 2">
             <div class="row">
@@ -319,11 +329,3 @@
         </div>
     </div>
 </div>
-
-
-
-<script>
-    jQuery(document).ready(function () {
-        ComponentsSelect2.init();
-    });
-</script>

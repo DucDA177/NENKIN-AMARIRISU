@@ -3052,6 +3052,7 @@
     <Content Include="js\ckeditor.js" />
     <Content Include="js\controllers\AccountController.js" />
     <Content Include="js\controllers\AreasController.js" />
+    <Content Include="js\controllers\BaoCao\SearchAccessController.js" />
     <Content Include="js\controllers\ConfigurationController.js" />
     <Content Include="js\controllers\DanhMuc\DMChungController.js" />
     <Content Include="js\controllers\DashboardController.js" />
@@ -3797,6 +3798,7 @@
     <Content Include="views-client\dashboard.html" />
     <Content Include="views-client\profile\account.html" />
     <Content Include="views-client\template\Areas.html" />
+    <Content Include="views-client\template\BaoCao\SearchAccess.html" />
     <Content Include="views-client\template\Configuration.html" />
     <Content Include="views-client\template\DanhMuc\DMChung.html" />
     <Content Include="views-client\template\DanhMuc\DMDiaBan.html" />
@@ -3811,6 +3813,7 @@
     <Content Include="views-client\template\List.html" />
     <Content Include="views-client\template\MainMenu.html" />
     <Content Include="views-client\template\Menu.html" />
+    <Content Include="views-client\template\Modal\ModalAddCTV.html" />
     <Content Include="views-client\template\Modal\ModalChonOCung.html" />
     <Content Include="views-client\template\Modal\ModalConfig.html" />
     <Content Include="views-client\template\Modal\ModalDeleteBak.html" />

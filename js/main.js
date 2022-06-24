@@ -98,7 +98,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
         ];
 
         $scope.months = ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'];
-        
+
         $scope.DefaultArea = '01' // Hà Nội
         $scope.isHidePagebar = 0;
 
@@ -107,6 +107,21 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
 
         }
 
+        $rootScope.GetListCTV = function () {
+
+            $http({
+                method: 'GET',
+                url: 'api/ListInfo/LoadListCTV'
+            }).then(function successCallback(response) {
+                $rootScope.CTV = response.data;
+            }, function errorCallback(response) {
+                toastr.error('Có lỗi xảy ra trong quá trình tải dữ liệu !', 'Thông báo');
+            });
+
+        };
+
+        listNotDisplay = ['Id', 'IdList', 'IsError','CTVUsername', 'FInUse',
+            'CreatedBy', 'CreatedAt', 'UpdatedBy', 'UpdatedAt'];
 
         $scope.CheckReadTB = function (u) {
             if (u.NguoiDoc == null || !u.NguoiDoc.includes($rootScope.user.UserName + '#'))
@@ -125,7 +140,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
                     if (u.Link && result)
                         try {
                             $state.go(u.Link)
-                        } catch{ }
+                        } catch { }
                     else return;
                 }
             );
@@ -457,8 +472,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
 
 
         }
-
-        $scope.openModal = function (item, type, check, other) {
+        $scope.initModal = function (item, type, check, other,size) {
 
             $scope.modalInstance = $uibModal.open({
                 ariaLabelledBy: 'modal-title',
@@ -469,7 +483,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
                 controllerAs: 'vm',
                 scope: $scope,
                 backdrop: 'static',
-                size: 'lg',
+                size: size,
                 resolve: {
                     item: function () { return item },
                     check: function () { return check },
@@ -479,6 +493,12 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
 
         }
 
+        $scope.openModal = function (item, type, check, other) {
+            $scope.initModal(item, type, check, other,'lg')
+        }
+        $scope.openModalSmall = function (item, type, check, other) {
+            $scope.initModal(item, type, check, other, 'sm')
+        }
 
         $scope.LogOut = function () {
             $http({
@@ -571,8 +591,8 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
             $rootScope.IsLockScreen = true;
         }
 
-        
-      
+
+
     }]);
 
 WebApiApp.controller("ModalLockScreenHandlerController", function ($cookies, $scope, $http, $uibModalInstance, $rootScope) {
@@ -850,6 +870,9 @@ WebApiApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', funct
                     + "&bust=" + Math.random().toString(36).slice(2)
             },
             data: { pageTitle: 'QUẢN LÝ HỒ SƠ NENKIN' },
+            params: {
+                param: { FCode: 'ListInfo' }
+            },
             controller: "ListInfoController",
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -863,10 +886,10 @@ WebApiApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', funct
                 }]
             }
         })
-       
+
 }]);
 WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies', "$state", "$stateParams",
-    function ($q, $rootScope, $http, $urlRouter, $settings, $cookies, $state, $stateParams, ) {
+    function ($q, $rootScope, $http, $urlRouter, $settings, $cookies, $state, $stateParams,) {
 
         $rootScope.$on('$includeContentLoaded', function () {
             // $rootScope.GetNotificationTTDX();
@@ -904,7 +927,7 @@ WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies
                 });
 
                 $('body').addClass('no-pointer');
-                
+
 
                 return data;
             }

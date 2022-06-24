@@ -57,6 +57,7 @@ namespace WebApiCore.Models
         public Nullable<double> SecondTime_Tax { get; set; }
         public Nullable<int> IdList { get; set; }
         public Nullable<bool> IsError { get; set; }
+        public string CTVUsername { get; set; }
         public Nullable<bool> FInUse { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using WebApiCore.Models;
 using static WebApiCore.Commons.Common;
+using static WebApiCore.Controllers.FilesController;
 
 namespace WebApiCore.Controllers
 {
@@ -210,6 +213,72 @@ namespace WebApiCore.Controllers
                 query = query.Where(t => t.PhoneNumber == PhoneNumber);
 
             return Ok(GetPagingList(query, pageNumber, pageSize));
+        }
+
+        [HttpGet]
+        [Route("api/ListInfo/LoadFile")]
+        public List<FileToUpload> LoadFile(int Id)
+        {
+
+            List<FileToUpload> ls = new List<FileToUpload>();
+            if (Id == 0) return ls;
+            string DuongDanFile = "FILE_DINH_KEM/" + Id;
+            string folderPath = HttpContext.Current.Server.MapPath("~/"+DuongDanFile);
+            bool exists = Directory.Exists(folderPath);
+            if (exists)
+            {
+                DirectoryInfo d = new DirectoryInfo(folderPath);//Assuming Test is your Folder
+                FileInfo[] Files = d.GetFiles(); //Getting Text files
+                if (Files.Any())
+                    foreach (var file in Files)
+                    {
+                        //string contents = File.ReadAllText(file);
+                        FileToUpload fl = new FileToUpload();
+                        fl.filename = DuongDanFile + "/" + file.Name;
+                        fl.FName = file.Name;
+                        fl.isSaved = true;
+                        ls.Add(fl);
+                    }
+            }
+
+            return ls;
+        }
+
+        [HttpPost]
+        [Route("api/ListInfo/UploadFile")]
+        public IHttpActionResult UploadFile(int Id)
+        {
+
+            HttpFileCollection httpRequest = HttpContext.Current.Request.Files;
+            
+            if (httpRequest.Count == 0)
+                return Ok();
+
+            string _folderpath = "FILE_DINH_KEM/" + Id;
+
+            string folderpath = HttpContext.Current.Server.MapPath("~/"+_folderpath);
+
+            bool exists = Directory.Exists(folderpath);
+
+            if (!exists)
+                Directory.CreateDirectory(folderpath);
+
+            for (int i = 0; i <= httpRequest.Count - 1; i++)
+            {
+                HttpPostedFile postedfile = httpRequest[i];
+                if (postedfile.ContentLength > 0)
+                {
+                    var fileSavePath = Path.Combine(folderpath, postedfile.FileName);
+                    if (File.Exists(fileSavePath))
+                    {
+                        File.Delete(fileSavePath);
+                    }
+                    postedfile.SaveAs(fileSavePath);
+
+                }
+            }
+            
+            return Ok();
         }
     }
 }

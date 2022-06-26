@@ -120,19 +120,25 @@
 
             </div>
             <div class="row">
-                <center class="font-red bold"><h4><b>管理者</b></h4></center>
-                <hr />
+                <div class="col-md-8">
+                    <center class="font-red bold"><h4><b>管理者</b></h4></center>
+                    <hr />
+                </div>
+                <div class="col-md-4">
+                    <center class="font-red bold"><h4><b>Tệp đính kèm</b></h4></center>
+                    <hr />
+                </div>
             </div>
             <div class="row margin-bottom-5">
 
                 <label class="control-label col-md-1">社員:</label>
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <input type="text" class="form-control input-sm" ng-model="item.EmployeeManager">
 
                 </div>
 
                 <label class="control-label col-md-1"> 窓口: </label>
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <div class="input-group">
                         <select class="form-control input-sm " select2 ng-model="item.TicketWindow">
                             <option ng-repeat="u in CTV" value="{{u.UserName}}">{{u.UserName}} | {{u.HoTen}}</option>
@@ -143,21 +149,46 @@
                     </div>
 
                 </div>
+                <div class="col-md-4" style="position:absolute;right:0px; max-height:150px; overflow-y:scroll">
+                    <input type="file"
+                           id="ngexcelfile"
+                           multiple
+                           placeholder="Chọn tệp đính kèm từ máy tính"
+                           class="form-control input-sm"
+                           ng-files="getTheFiles($files)" />
+                    <table border="0">
+                        <tbody>
+                            <tr ng-repeat="f in ListFileUpLoad">
+                                <td>
+                                    <a href="{{f.filename}}" target="_blank">{{f.FName}}</a>
+                                </td>
+                                <td>
+                                    <a ng-click="RemoveFile($index,f.filename,f.key)" ng-hide="hideBtn">
+                                        <i class="fa fa-times-circle font-red"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="row">
-                <center class="font-red bold"><h4><b>GHI CHÚ</b></h4></center>
-                <hr />
+                <div class="col-md-8">
+                    <center class="font-red bold"><h4><b>GHI CHÚ</b></h4></center>
+                    <hr />
+                </div>
+                
             </div>
             <div class="row margin-bottom-5">
 
                 <label class="control-label col-md-1">Lỗi:</label>
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <input type="text" class="form-control input-sm" ng-model="item.Error">
 
                 </div>
 
                 <label class="control-label col-md-1">Lý do: </label>
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <input type="text" class="form-control input-sm" ng-model="item.Reason">
 
                 </div>

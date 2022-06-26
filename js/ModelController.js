@@ -993,18 +993,105 @@ angular.module('WebApiApp').controller("ModalCreateDataHandlerController", funct
         }).then(function successCallback(response) {
             $scope.item = response.data;
             $scope.itemError = "";
-            toastr.success('Lưu dữ liệu thành công !', 'Thông báo');
-            $rootScope.LoadHS();
-            if (isNew)
-                $scope.item = '';
-            else
-                $scope.cancelModal();
+            $scope.uploadFiles($scope.item.Id, isNew)
         }, function errorCallback(response) {
             $scope.itemError = response.data;
             toastr.error('Có lỗi xảy ra hoặc bạn chưa điền đầy đủ các trường bắt buộc !', 'Thông báo');
         });
 
     }
+
+    $scope.LoadFileUpload = function () {
+        //debugger
+        if ($scope.item.Id)
+            $http({
+                method: "GET",
+                url:
+                    "api/ListInfo/LoadFile?Id=" + $scope.item.Id,
+            }).then(
+                function successCallback(response) {
+                    $scope.ListFileUpLoad = response.data;
+                },
+                function errorCallback(response) {
+                    toastr.error("Có lỗi trong quá trình tải dữ liệu !", "Thông báo");
+                }
+            );
+        else $scope.ListFileUpLoad = [];
+    }();
+
+    var formdata = new FormData();
+    $scope.getTheFiles = function ($files) {
+        debugger
+        angular.forEach($files, function (value, key) {
+
+            if (value.size >= 1073741824) {
+                toastr.error(
+                    "Tệp tin " +
+                    value.name +
+                    " có dung lượng quá lớn nên không thể tải lên!",
+                    "Thông báo"
+                );
+            } else {
+                formdata.append(key, value, value.name);
+                var o = {
+                    FName: value.name,
+                    key: key,
+                    filename: value.path,
+                    isSaved: false,
+                };
+                $scope.ListFileUpLoad.push(o);
+                $scope.$apply();
+            }
+        });
+    };
+    $scope.RemoveFile = function (index, link, key) {
+
+        if (key != null)
+            formdata.delete(key);
+
+        $scope.ListFileUpLoad.splice(index, 1);
+        if (link)
+            $http({
+                method: "GET",
+                url: "api/Files/DeleteFile?link=" + link,
+            })
+                .success(function (response) { })
+                .error(function (response) {
+                    toastr.error("Có lỗi trong quá trình xóa tệp đính kèm!", "Thông báo");
+                });
+    };
+
+    $scope.uploadFiles = function (Id, isNew) {
+
+        var request = {
+            method: "POST",
+            url: "api/ListInfo/UploadFile?Id=" + Id,
+            data: formdata,
+            headers: {
+                "Content-Type": undefined,
+            },
+        };
+        $http(request)
+            .success(function (d) {
+                $scope.ListFileUpLoad = [];
+                formdata = new FormData();
+
+                toastr.success('Lưu dữ liệu thành công !', 'Thông báo');
+                $rootScope.LoadHS();
+                if (isNew)
+                    $scope.item = '';
+                else
+                    $scope.cancelModal();
+
+            })
+            .error(function () {
+                toastr.error(
+                    "Có lỗi trong quá trình tải lên tệp đính kèm!",
+                    "Thông báo"
+                );
+            });
+    };
+
 
     $rootScope.GetListCTV();
 

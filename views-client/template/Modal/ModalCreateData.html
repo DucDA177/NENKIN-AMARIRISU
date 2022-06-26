@@ -156,13 +156,13 @@
                            placeholder="Chọn tệp đính kèm từ máy tính"
                            class="form-control input-sm"
                            ng-files="getTheFiles($files)" />
-                    <table border="0">
+                    <table border="0" class="table">
                         <tbody>
                             <tr ng-repeat="f in ListFileUpLoad">
                                 <td>
                                     <a href="{{f.filename}}" target="_blank">{{f.FName}}</a>
                                 </td>
-                                <td>
+                                <td align="center">
                                     <a ng-click="RemoveFile($index,f.filename,f.key)" ng-hide="hideBtn">
                                         <i class="fa fa-times-circle font-red"></i>
                                     </a>
